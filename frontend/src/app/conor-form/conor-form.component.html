@@ -1,0 +1,42 @@
+<p>{{ intro }}</p>
+<form [formGroup]="conorForm" (ngSubmit)="onSubmit()">
+    <ng-container *ngIf="questions.length > currentQuestionIndex">
+      <div>
+        <label>{{ questions[currentQuestionIndex].label }}</label>
+        
+        <ng-container [ngSwitch]="questions[currentQuestionIndex].type">
+          
+          <!-- Radio Button Logic -->
+            <div *ngSwitchCase="'radio'">
+                <div class="radio-options">
+                    <div *ngFor="let option of questions[currentQuestionIndex].options">
+                        <label>
+                            <input
+                                type="radio"
+                                [formControlName]="questions[currentQuestionIndex].controlName"
+                                [value]="option.value"
+                            />
+                            {{ option.label }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div *ngSwitchCase="'text'">
+
+            </div>
+        </ng-container>
+  
+        <!-- Next Button -->
+        <!-- <button type="button" (click)="onNextQuestion()">Next</button> -->
+<!-- 
+        <ng-container *ngIf="next === false?wait(): 'next = true'"></ng-container>
+        <ng-container *ngIf="next === true?nextQuestion(): 'next = false'"></ng-container> -->
+
+      </div>
+    </ng-container>
+  
+    <!-- Submit Button -->
+    <button type="submit" *ngIf="currentQuestionIndex === questions.length">Submit</button>
+  </form>
+
+<p>{{ conclusion }}</p>

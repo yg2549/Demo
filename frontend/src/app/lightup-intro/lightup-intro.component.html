@@ -10,17 +10,16 @@
     <div *ngIf="item.outputType === 'question'" class="response-container">
 
       <!-- Text Input for Answer -->
-      <div *ngIf="item.type === 'text'" class="bubble answer-input right-align">
+      <div *ngIf="item.type === 'text' && showAnswers2 === true" class="bubble answer-input right-align">
         <input
           type="text"
           [formControlName]="item.controlName"
           (change)="onAnswerSelected()"
-          placeholder="Type your answer here"
         />
       </div>
 
       <!-- All Radio Options in One Bubble, Right-Aligned -->
-      <div *ngIf="item.type === 'radio'" class="bubble answer-input right-align">
+      <div *ngIf="item.type === 'radio' && showAnswers1 === true" class="bubble answer-input right-align">
         <div class="radio-container" dir="rtl">
           <ng-container *ngFor="let option of item.options">
             <label class="radio-option">
@@ -40,7 +39,7 @@
 
   </ng-container>
 
-  <button type="submit" class="submit-button" *ngIf="currentIndex === outputs.length">Submit</button>
+  <button type="submit" class="submit-button" *ngIf="currentIndex === outputs.length && showSubmit === true">בוא/י נמשיך</button>
 </form>
 
     

@@ -82,7 +82,11 @@ export class ConclusionComponent {
     console.log(this.currentIndex);
     if (this.currentIndex < this.outputs.length) {
       const currentItem = this.outputs[this.currentIndex];
-      if(this.currentIndex == 2 && this.askMenstrual == false){
+      if(sessionStorage['gender'] === "man" && (this.currentIndex === 0 || this.currentIndex === 1 || this.currentIndex === 2)){
+        this.currentIndex++;
+        this.showNextItem();
+      }
+      else if((this.currentIndex == 2 || this.currentIndex == 3) && this.askMenstrual == false){
         this.currentIndex++;
         this.showNextItem();
       }

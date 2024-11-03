@@ -1,5 +1,8 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <label for="user">מספר משתתף</label>
-    <input id="user" formControlName="user" />
-    <button type="submit">Submit</button>
-  </form>
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+      <label for="user">מספר משתתף</label>
+      <input id="user" formControlName="user" />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  

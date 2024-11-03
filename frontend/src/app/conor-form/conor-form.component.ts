@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } 
 import { NgForOf, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Router } from '@angular/router'
+import { distinctUntilChanged, timer } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -162,42 +163,73 @@ export class ConorFormComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.conorForm.valueChanges.subscribe(() => {
-      // const currentQuestionControl = this.conorForm.get(this.questions[this.currentQuestionIndex].controlName);
+    this.setUpAutoNextQuestion()
+    // this.conorForm.valueChanges.subscribe(() => {
       // console.log(currentQuestionControl);
       // if (currentQuestionControl && currentQuestionControl.value) {
         // this.onNextQuestion();
       // }
-      console.log("answer detected");
-      this.onNextQuestion();
+      // console.log(currentQuestionControl?.value);
+      // this.onNextQuestion();
+    // });
+  }
+  initializeForm(){
+    const controlsConfig: { [key: string]: any } = {};
+    this.questions.forEach((q) => {
+      controlsConfig[q.controlName] = [''];
+    });
+    this.conorForm = this.fb.group(controlsConfig);
+  }
+  setUpAutoNextQuestion(){
+    const currentControlName = this.questions[this.currentQuestionIndex].controlName;
+    this.conorForm.get(currentControlName)?.valueChanges
+    .pipe(distinctUntilChanged())
+    .subscribe(value => {
+      if (value !== null && value !== undefined) {
+        console.log(value);
+        this.onNextQuestion();
+      }
     });
   }
   onNextQuestion() {
+    if (this.currentQuestionIndex < this.questions.length -1) {
+      this.currentQuestionIndex++;
+      this.setUpAutoNextQuestion(); // Set up the next question’s listener
+    }
     // if (this.currentQuestionIndex < this.questions.length - 1) {
     //   this.currentQuestionIndex++;
     // }
     // else{
     //   this.onSubmit();
     // }
-    if (this.currentQuestionIndex < this.questions.length - 1) {
-      const nextIndex = ++this.currentQuestionIndex;
-      const nextControlName = this.questions[nextIndex].controlName;
-      const nextControl = this.conorForm.get(nextControlName);
+    // if (this.currentQuestionIndex < this.questions.length - 1) {
+    //   const nextIndex = ++this.currentQuestionIndex;
+    //   const nextControlName = this.questions[nextIndex].controlName;
+    //   const nextControl = this.conorForm.get(nextControlName);
   
-      // Subscribe to changes on the next question's control
-      nextControl?.valueChanges.subscribe(value => {
-        if (value) {
-          this.onNextQuestion();
-        }
-      });
-    }
+    //   // Subscribe to changes on the next question's control
+    //   nextControl?.valueChanges.subscribe(value => {
+    //     if (value) {
+    //       this.onNextQuestion();
+    //     }
+    //   });
+    // }
     else{
       this.onSubmit();
     }
 
   }
   onSubmit() {
-    console.log('Form submitted:', this.conorForm.value);
+    timer(100).subscribe(() => {
+      const allFilled = Object.values(this.conorForm.controls).every(control => control.value !== null && control.value !== undefined && control.value !== '');
+      
+      if (allFilled) {
+        console.log('Form submitted:', this.conorForm.value);
+      } else {
+        console.warn('Not all fields are filled. Submission halted.');
+      }
+    });
+    // console.log('Form submitted:', this.conorForm.value);
   }
 
   // wait() {

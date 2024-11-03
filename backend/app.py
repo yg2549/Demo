@@ -7,61 +7,63 @@ import pymongo
 
 load_dotenv('./.env')
 responses = []
+# app = create_app()
+    # CORS(app)
 
-def create_app():
-    app = Flask(__name__, static_folder='static/browser')
-    connection = pymongo.MongoClient(os.getenv("MONGO_URI"))
-    db = connection["Tova"]
-    users = db.participants.find()
-    for user in users:
-        print(user)
-    @app.route('/')
-    def show_home():
-        try:
-            connection.admin.command("ping")
-            print("MongoDB connection successful")
-        except Exception as e:
-            print("MongoDB connection error:", e)
+# def create_app():
+app = Flask(__name__, static_folder='static/browser')
+connection = pymongo.MongoClient(os.getenv("MONGO_URI"))
+db = connection["Tova"]
+users = db.participants.find()
+for user in users:
+    print(user)
+@app.route('/')
+def show_home():
+    try:
+        connection.admin.command("ping")
+        print("MongoDB connection successful")
+    except Exception as e:
+        print("MongoDB connection error:", e)
 
-        # return make_response({"page":"active"})
-        return send_from_directory(app.static_folder, 'index.html')
+    # return make_response({"page":"active"})
+    return send_from_directory(app.static_folder, 'index.html')
 
-    
-    # Serve static files from the Angular app
-    @app.route('/<path:path>')
-    def serve_static(path):
-        return send_from_directory(app.static_folder, path)
 
-    @app.route('/api/create-user', methods=["POST"])
-    def create_user():
-        user = request.data.decode()
-        # print(user)
-        print("here in create api", user)
-        db.participants.insert_one({"user":user})
-        this_user = db.participants.find_one({"user":user})
-        return make_response({"message":user}, 200)
+# Serve static files from the Angular app
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory(app.static_folder, path)
 
-    @app.route('/api/modify-user', methods=["POST"])
-    def modify_user():
-        # print("called")
-        user = request.json[0]
-        field = request.json[1]
-        data = request.json[2]
-        # print(item1)
-        # print(item2)
-        db.participants.update_one({"user":user}, { '$set': { field:data} })
-        return make_response({"message":"api was called"}, 200)
-    
-    @app.route('/api/export-results', methods=["POST"])
-    def export_results():
-        user = request.json[0]
-        # user = db.participants.find_one({"user":request_user})
-        results = aggregate_results(user)
-        for item in results:
-            print(item)
-        return make_response({"message":"api was called"}, 200)
+@app.route('/api/create-user', methods=["POST"])
+def create_user():
+    user = request.data.decode()
+    # print(user)
+    print("here in create api", user)
+    db.participants.insert_one({"user":user})
+    this_user = db.participants.find_one({"user":user})
+    return make_response({"message":user}, 200)
 
-    def aggregate_results(user):
+@app.route('/api/modify-user', methods=["POST"])
+def modify_user():
+    # print("called")
+    user = request.json[0]
+    field = request.json[1]
+    data = request.json[2]
+    # print(item1)
+    # print(item2)
+    db.participants.update_one({"user":user}, { '$set': { field:data} })
+    return make_response({"message":"api was called"}, 200)
+
+@app.route('/api/export-results', methods=["POST"])
+def export_results():
+    user = request.json[0]
+    # user = db.participants.find_one({"user":request_user})
+    results = aggregate_results(user)
+    for item in results:
+        print(item)
+    return make_response({"message":"api was called"}, 200)
+
+def aggregate_results(user):
         user = db.participants.find_one({"user":user})
         print(user)
         intro_results = user['intro_results']
@@ -89,12 +91,12 @@ def create_app():
     #     for res in responses:
     #         print (res)
     #     return make_response("success", 200)
-    return app
+    # return app
 
 
-if __name__ == "__main__":
-    FLASK_PORT = os.getenv("FLASK_PORT", "3000")
-    app = create_app()
-    CORS(app)
+# if __name__ == "__main__":
+#     FLASK_PORT = os.getenv("FLASK_PORT", "3000")
+    # app = create_app()
+    # CORS(app)
     # app.run(port=FLASK_PORT)
-    app.run(host="0.0.0.0", port=5000)
+    # app.run()

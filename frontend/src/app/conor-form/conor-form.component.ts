@@ -1,8 +1,8 @@
-import { NgIf, NgSwitchCase, NgSwitch, NgForOf } from '@angular/common';
+import { NgIf, NgSwitchCase, NgSwitch, NgForOf, ViewportScroller } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterOutlet } from '@angular/router'
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -11,11 +11,13 @@ import { Router, RouterOutlet } from '@angular/router'
   styleUrls: ['./conor-form.component.css'], // Replace with your actual styles URL
   imports: [ReactiveFormsModule, NgIf, NgSwitchCase, NgSwitch, NgForOf]
 })
-export class ConorFormComponent implements OnInit {
+export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewChecked {
+  @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
   conorForm: FormGroup;
   intro = "";
   conclusion = "thank you";
   showConclusion = false;
+  // scrollContainer: any
   questions = [
     { 
       label: "'חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד 'אני מצליח.ה להסתגל לשינויי", 
@@ -53,66 +55,66 @@ export class ConorFormComponent implements OnInit {
         { label: "נכון כמעט כל הזמן", value: 4}
       ]   
     },
-    // { 
-    //   label: "'חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד 'התמודדות עם לחץ מחזקת אותי", 
-    //   controlName: "q4", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "לא נכון בכלל", value: 0},
-    //     { label: "נכון לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים נכון", value: 2 },
-    //     { label: "נכון לעיתים קרובות", value: 3 },
-    //     { label: "נכון כמעט כל הזמן", value: 4}
-    //   ]  
-    // },
-    // { 
-    //   label: "'חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד 'אני נוטה להתאושש בקלות ממחלה או קושי", 
-    //   controlName: "q5", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "לא נכון בכלל", value: 0},
-    //     { label: "נכון לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים נכון", value: 2 },
-    //     { label: "נכון לעיתים קרובות", value: 3 },
-    //     { label: "נכון כמעט כל הזמן", value: 4}
-    //   ]   
-    // },
-    // { 
-    //   label: "'חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד 'תחת לחץ, אני מתמקד.ת וחושב בבהירות", 
-    //   controlName: "q6", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "לא נכון בכלל", value: 0},
-    //     { label: "נכון לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים נכון", value: 2 },
-    //     { label: "נכון לעיתים קרובות", value: 3 },
-    //     { label: "נכון כמעט כל הזמן", value: 4}
-    //   ]   
-    // },
-    // { 
-    //   label: "'חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד 'אני יכול.ה להשיג את המטרות שלי למרות הקשיים", 
-    //   controlName: "q7", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "לא נכון בכלל", value: 0},
-    //     { label: "נכון לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים נכון", value: 2 },
-    //     { label: "נכון לעיתים קרובות", value: 3 },
-    //     { label: "נכון כמעט כל הזמן", value: 4}
-    //   ]    
-    // },
-    // { 
-    //   label: "'חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד 'אני לא מתייאש.ת בקלות מכישלונות", 
-    //   controlName: "q8", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "לא נכון בכלל", value: 0},
-    //     { label: "נכון לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים נכון", value: 2 },
-    //     { label: "נכון לעיתים קרובות", value: 3 },
-    //     { label: "נכון כמעט כל הזמן", value: 4}
-    //   ]    
-    // },
+    { 
+      label: "'חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד 'התמודדות עם לחץ מחזקת אותי", 
+      controlName: "q4", 
+      type: "radio", 
+      options: [
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4}
+      ]  
+    },
+    { 
+      label: "'חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד 'אני נוטה להתאושש בקלות ממחלה או קושי", 
+      controlName: "q5", 
+      type: "radio", 
+      options: [
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4}
+      ]   
+    },
+    { 
+      label: "'חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד 'תחת לחץ, אני מתמקד.ת וחושב בבהירות", 
+      controlName: "q6", 
+      type: "radio", 
+      options: [
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4}
+      ]   
+    },
+    { 
+      label: "'חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד 'אני יכול.ה להשיג את המטרות שלי למרות הקשיים", 
+      controlName: "q7", 
+      type: "radio", 
+      options: [
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4}
+      ]    
+    },
+    { 
+      label: "'חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד 'אני לא מתייאש.ת בקלות מכישלונות", 
+      controlName: "q8", 
+      type: "radio", 
+      options: [
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4}
+      ]    
+    },
     { 
       label: "'חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד 'אני חושב.ת על עצמי כעל אדם חזק", 
       controlName: "q9", 
@@ -146,6 +148,7 @@ export class ConorFormComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient, // Inject HttpClient here
     private router: Router,
+    private scroller: ViewportScroller
   ) {
     this.conorForm = this.fb.group({});
     this.questions.forEach(question => {
@@ -153,17 +156,25 @@ export class ConorFormComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit(): void {
+    this.scrollToBottom();
+  }
+  ngAfterViewChecked() {
+    this.scrollToBottom(); // Call scroll after each check
+  }
+
   ngOnInit() {
-    // Show answer options for the first question after a short delay
     this.showQuestionWithDelay();
   }
 
   showQuestionWithDelay() {
+    // this.scrollToBottom();
     this.showAnswers = false; // Hide options initially
     setTimeout(() => {
       this.showAnswers = true; // Show options after delay
-    // }, 1000); // Adjust delay time (in milliseconds) as needed
-  }, 1)
+      this.scrollToBottom();
+    }, 1000); // Adjust delay time (in milliseconds) as needed
+  // }, 1)
   }
 
   onAnswerSelected() {
@@ -175,9 +186,19 @@ export class ConorFormComponent implements OnInit {
       this.moveToNextQuestion();
     }
   }
-
+  testMethod(){
+    console.log("current scroll top",this.scrollContainer.nativeElement.scrollTop);
+    console.log("current scroll height", this.scrollContainer.nativeElement.scrollHeight);
+  }
   moveToNextQuestion() {
     this.currentQuestionIndex++;
+    // if(this.currentQuestionIndex == 5){
+      this.testMethod();
+      this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
+      this.scroller.scrollToPosition([0, this.scrollContainer.nativeElement.scrollHeight])
+      this.testMethod();
+    // }
+    const container = document.getElementById('scrollContainer')?.offsetHeight;
     if (this.currentQuestionIndex < this.questions.length) {
       this.showQuestionWithDelay(); // Show next question with a delay for answer options
     } else {
@@ -185,6 +206,11 @@ export class ConorFormComponent implements OnInit {
     }
   }
 
+  private scrollToBottom(): void {
+    setTimeout(() =>{
+      this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
+    },500)
+  }
   getValueName(value: number){
     const options = [
       { label: "לא נכון בכלל", value: 0},
@@ -196,27 +222,23 @@ export class ConorFormComponent implements OnInit {
     return options[value].label;
       
   }
-
+          
   onSubmit() {
     console.log("Form submitted:", this.conorForm.value);
     setTimeout(() => {
       this.showConclusion = true;
-    // }, 1000)
-  }, 1)
+    }, 1000)
+  // }, 1)
     const user = sessionStorage['user'];
     this.http.post('http://localhost:3000/api/modify-user', [user, "conor_results", this.conorForm.value])
     .subscribe(res => {
       // const response = JSON.stringify(res);
       console.log("response", res);
     });
-    setTimeout(() => {
-      this.router.navigate(['/conor-form'])
-    // }, 1000)
-  }, 1)
 
     setTimeout(() => {
       this.router.navigate(['/stress-form'])
-    // }, 1000)
-  }, 1)
+    }, 1000)
+  // }, 1)
   }
 }

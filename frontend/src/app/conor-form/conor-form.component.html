@@ -1,4 +1,4 @@
-<div class="chat-container" dir="rtl">
+<div class="chat-container" dir="rtl" id='scrollContainer' #scrollContainer style="overflow-y: auto; height: 650px;">
     <p>{{ intro }}</p>
   
     <!-- Loop through past questions as separate message boxes -->
@@ -27,16 +27,20 @@
           <ng-container [ngSwitch]="questions[currentQuestionIndex].type">
             
             <!-- Radio Button Options on the Left -->
-            <div *ngSwitchCase="'radio'" class="radio-options">
-              <label *ngFor="let option of questions[currentQuestionIndex].options">
-                <input
-                  type="radio"
-                  [formControlName]="questions[currentQuestionIndex].controlName"
-                  [value]="option.value"
-                  (change)="onAnswerSelected()"
-                />
-                {{ option.label }}
-              </label>
+            <div *ngSwitchCase="'radio'" class="bubble answer-input right-align">
+                <div class="radio-container" dir="rtl">
+                    <ng-container *ngFor="let option of questions[currentQuestionIndex].options">
+                        <label class="radio-option">
+                            <input
+                                type="radio"
+                                [formControlName]="questions[currentQuestionIndex].controlName"
+                                [value]="option.value"
+                                (change)="onAnswerSelected()"
+                            />
+                            {{ option.label }}
+                        </label>
+                    </ng-container>
+                </div>
             </div>
   
             <!-- Text Input Option -->

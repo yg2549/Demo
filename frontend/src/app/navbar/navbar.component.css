@@ -1,0 +1,40 @@
+.logo {
+  display: flex;
+  flex-direction: column;
+  background-color: #DFF5E1;
+}
+p {
+  align-self: center;
+  text-align: center;
+}
+.navbar {
+  position: fixed; /* Fixes the navbar in place */
+  top: 0; /* Aligns to the top */
+  right: 0; /* Aligns to the right */
+  height: 100%; /* Full height of the viewport */
+  background-color: #f8f9fa; /* Background color for the navbar */
+  padding: 10px; /* Padding inside the navbar */
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow for aesthetics */
+  width:10%;
+}
+
+.navbar ul {
+  list-style-type: none; /* Removes default list styling */
+  padding-top: 40%; /* Removes default padding */
+  margin: 0; /* Removes default margin */
+}
+
+.navbar li {
+  margin: 10px 0; /* Spacing between items */
+}
+
+.navbar li a {
+  text-decoration: none; /* Removes underline from links */
+  color: #333; /* Text color */
+}
+
+.navbar li.active {
+  font-weight: bold; /* Bold font for active link */
+}
+
+  

@@ -1,60 +1,64 @@
-<div class="chat-container" dir="rtl">
-    <p>{{ intro }}</p>
-  
-    <!-- Loop through past questions as separate message boxes -->
-    <ng-container *ngFor="let question of questions; let i = index">
-      <!-- Question Message Bubble on the Left -->
-      <div *ngIf="i < currentQuestionIndex" class="bubble question">
-        <p>{{ question.label }}</p>
+<div class="chat-container" dir="rtl" id='scrollContainer' #scrollContainer style="overflow-y: auto; height: 650px;">
+  <p>{{ intro }}</p>
+
+  <!-- Loop through past questions as separate message boxes -->
+  <ng-container *ngFor="let question of questions; let i = index">
+    <!-- Question Message Bubble on the Left -->
+    <div *ngIf="i < currentQuestionIndex" class="bubble question">
+      <p>{{ question.label }}</p>
+    </div>
+
+    <!-- Answer Message Bubble on the Left -->
+    <div *ngIf="i < currentQuestionIndex" class="bubble answer-input">
+      <p>{{ getValueName(stressForm.get(question.controlName)?.value)}}</p>
+    </div>
+  </ng-container>
+
+  <!-- Current Question and Answer Input -->
+  <form [formGroup]="stressForm" (ngSubmit)="onSubmit()" class="form">
+    <ng-container *ngIf="questions.length > currentQuestionIndex">
+      <!-- Current Question Message Bubble on the Left -->
+      <div class="bubble question">
+        <label>{{ questions[currentQuestionIndex].label }}</label>
       </div>
-  
-      <!-- Answer Message Bubble on the Left -->
-      <div *ngIf="i < currentQuestionIndex" class="bubble answer-input">
-        <p>{{ getValueName(conorForm.get(question.controlName)?.value)}}</p>
+
+      <!-- Current Answer Options on the Left, displayed with delay -->
+      <div *ngIf="showAnswers" class="bubble answer-options">
+        <ng-container [ngSwitch]="questions[currentQuestionIndex].type">
+          
+          <!-- Radio Button Options on the Left -->
+          <div *ngSwitchCase="'radio'" class="bubble answer-input right-align">
+              <div class="radio-container" dir="rtl">
+                  <ng-container *ngFor="let option of questions[currentQuestionIndex].options">
+                      <label class="radio-option">
+                          <input
+                              type="radio"
+                              [formControlName]="questions[currentQuestionIndex].controlName"
+                              [value]="option.value"
+                              (change)="onAnswerSelected()"
+                          />
+                          {{ option.label }}
+                      </label>
+                  </ng-container>
+              </div>
+          </div>
+
+          <!-- Text Input Option -->
+          <div *ngSwitchCase="'text'">
+            <input
+              type="text"
+              [formControlName]="questions[currentQuestionIndex].controlName"
+              (input)="onAnswerSelected()"
+            />
+          </div>
+
+        </ng-container>
       </div>
     </ng-container>
-  
-    <!-- Current Question and Answer Input -->
-    <form [formGroup]="conorForm" (ngSubmit)="onSubmit()" class="form">
-      <ng-container *ngIf="questions.length > currentQuestionIndex">
-        <!-- Current Question Message Bubble on the Left -->
-        <div class="bubble question">
-          <label>{{ questions[currentQuestionIndex].label }}</label>
-        </div>
-  
-        <!-- Current Answer Options on the Left, displayed with delay -->
-        <div *ngIf="showAnswers" class="bubble answer-input">
-          <ng-container [ngSwitch]="questions[currentQuestionIndex].type">
-            
-            <!-- Radio Button Options on the Left -->
-            <div *ngSwitchCase="'radio'" class="radio-options">
-              <label *ngFor="let option of questions[currentQuestionIndex].options">
-                <input
-                  type="radio"
-                  [formControlName]="questions[currentQuestionIndex].controlName"
-                  [value]="option.value"
-                  (change)="onAnswerSelected()"
-                />
-                {{ option.label }}
-              </label>
-            </div>
-  
-            <!-- Text Input Option -->
-            <div *ngSwitchCase="'text'">
-              <input
-                type="text"
-                [formControlName]="questions[currentQuestionIndex].controlName"
-                (input)="onAnswerSelected()"
-              />
-            </div>
-  
-          </ng-container>
-        </div>
-      </ng-container>
 
-    </form>
-  
-    <div *ngIf="showConclusion === true">
+  </form>
+  <div *ngIf="showConclusion === true">
       <p>{{ conclusion }}</p>
-    </div>
   </div>
+  
+</div>

@@ -35,6 +35,11 @@ export class LightupIntroComponent {
         {label: "נקבה", value: "woman"},
         {label: "אחר", value: "other"},
       ],
+      // options: [
+      //   {label: "man", value: "man"},
+      //   {label: "woman", value: "woman"},
+      //   {label: "other", value: "other"},
+      // ],
     },
     {
       outputType: "statement",
@@ -100,6 +105,8 @@ export class LightupIntroComponent {
   }
   onSubmit(){
     const user = sessionStorage['user'];
+    const gender = this.introForm.value['gender'];
+    sessionStorage.setItem('gender', gender);
     console.log(this.introForm.value)
     this.http.post('http://localhost:3000/api/modify-user', [user, "intro_results", this.introForm.value])
       .subscribe(res => {

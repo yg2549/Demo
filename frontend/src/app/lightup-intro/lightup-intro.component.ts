@@ -72,15 +72,15 @@ export class LightupIntroComponent {
 
       if (currentItem.outputType === 'statement') {
         this.currentIndex++;
-        setTimeout(() => this.showNextItem(), 2000); // Delay to show next statement
-        // setTimeout(() => this.showNextItem(), 1); // use shorter delay for testing
+        // setTimeout(() => this.showNextItem(), 2000); // Delay to show next statement
+        setTimeout(() => this.showNextItem(), 1); // use shorter delay for testing
       } else if (currentItem.outputType === 'question') {
         if (currentItem.type === 'radio') {
           this.showAnswers = false; // Initially hide answers
           setTimeout(() => {
             this.showAnswers = true; // Show answers after delay
-          }, 1000); // Delay before showing radio options
-          // }, 1); //use a shorter delay for testing
+          // }, 1000); // Delay before showing radio options
+          }, 1); //use a shorter delay for testing
         }
         this.currentIndex++; // Move to next item after showing question
       }
@@ -90,8 +90,8 @@ export class LightupIntroComponent {
     this.showAnswers = false; // Hide options initially
     setTimeout(() => {
       this.showAnswers = true; // Show options after delay
-    }, 500); // Adjust delay time (in milliseconds) as needed
-    // }, 1); //use a shorter delay for testing
+    // }, 500); // Adjust delay time (in milliseconds) as needed
+    }, 1); //use a shorter delay for testing
   }
   onAnswerSelected() {
     if (this.currentIndex <= this.outputs.length) {
@@ -99,16 +99,17 @@ export class LightupIntroComponent {
     }
   }
   onSubmit(){
-    const username = sessionStorage['username'];
+    const user = sessionStorage['user'];
     console.log(this.introForm.value)
-    this.http.post('http://localhost:3000/api/modify-user', [username, this.introForm.value])
+    this.http.post('http://localhost:3000/api/modify-user', [user, "intro_results", this.introForm.value])
       .subscribe(res => {
         // const response = JSON.stringify(res);
         console.log("response", res);
       });
       setTimeout(() => {
         this.router.navigate(['/conor-form'])
-      }, 1000)
+      // }, 1000)
+    }, 1)
   }
 }
 

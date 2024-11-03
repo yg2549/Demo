@@ -13,6 +13,9 @@ def create_app():
     app = Flask(__name__, static_folder='../frontend/dist/frontend/browser')
     connection = pymongo.MongoClient(os.getenv("MONGO_URI"))
     db = connection["Tova"]
+    users = db.participants.find()
+    for user in users:
+        print(user)
     @app.route('/')
     def show_home():
         try:
@@ -23,39 +26,57 @@ def create_app():
 
         return make_response({"page":"active"})
 
-    # @app.route('/create-user')
-    # def show_user():
-    #     # print("called")
-    #     # username = request.data.decode()
-    #     # print(username)
-    #     print(len(list(db.participants.find())))
-    #     return make_response({"message":"received"}, 200)
-
     @app.route('/api/create-user', methods=["POST"])
     def create_user():
-        username = request.data.decode()
-        print(username)
-        db.participants.insert_one({"user":username})
-        print(len(list(db.participants.find())))
-        return make_response({"message":username}, 200)
+        user = request.data.decode()
+        # print(user)
+        print("here in create api", user)
+        db.participants.insert_one({"user":user})
+        this_user = db.participants.find_one({"user":user})
+        return make_response({"message":user}, 200)
 
     @app.route('/api/modify-user', methods=["POST"])
     def modify_user():
-        print("called")
-        item1 = request.json[0]
-        item2 = request.json[1]
-        print(item2)
-        return make_response({"message":"api was called"}, 200)
-                 
-
-    @app.route('/api/receive-data', methods=["POST"])
-    def receive_data():
         # print("called")
-        item = request.data.decode().replace("'", '"')
-        new_item = json.loads(item)
-        # responses.append(new_item)
-        # if new_item
-        return make_response({"message":"received"}, 200)
+        user = request.json[0]
+        field = request.json[1]
+        data = request.json[2]
+        # print(item1)
+        # print(item2)
+        db.participants.update_one({"user":user}, { '$set': { field:data} })
+        return make_response({"message":"api was called"}, 200)
+    
+    @app.route('/api/export-results', methods=["POST"])
+    def export_results():
+        user = request.json[0]
+        # user = db.participants.find_one({"user":request_user})
+        results = aggregate_results(user)
+        for item in results:
+            print(item)
+        return make_response({"message":"api was called"}, 200)
+
+    def aggregate_results(user):
+        user = db.participants.find_one({"user":user})
+        print(user)
+        intro_results = user['intro_results']
+        conor_results = user['conor_results']
+        stress_results = user['stress_results']
+
+        conor_sum = 0
+        stress_sum = 0
+        for question in conor_results:
+            conor_sum += conor_results[question]
+        for question in stress_results:
+            stress_sum += stress_results[question]
+        
+        gender = intro_results["gender"]
+        written_answers = []
+        if intro_results["wellbeing"] == "":
+            written_answers.append("user did not report current mood")
+        else:
+            written_answers.append(intro_results["wellbeing"])
+        
+        return [gender, conor_sum, stress_sum, written_answers]
 
     # @app.route('/get-all-responses')
     # def show_all_responses():

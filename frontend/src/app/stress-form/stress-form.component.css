@@ -3,7 +3,13 @@
   flex-direction: column;
   align-items: flex-start; /* Align everything to the left by default */
   padding: 10px;
-  width:85%
+  width:85%;
+  /* max-height: 500px; */
+  overflow-y: scroll;
+}
+
+#scrollContainer {
+  scroll-behavior: smooth;
 }
 
 .bubble {
@@ -31,7 +37,7 @@
   align-self: flex-end; /* Align answers to the right */
 }
 .answer-options{
-  background-color: cornflowerblue;
+  background-color: #DFF5E1;
   align-self: flex-end;
 }
 .radio-options {
@@ -40,7 +46,7 @@
   align-items: flex-end; /* Align radio buttons to the left */
 }
 .answer-input {
-  background-color: #f1f8e9; /* Light green for answer input */
+  background-color: #DFF5E1; /* Light green for answer input */
   align-self: flex-end; /* Keep answers aligned to the left */
   padding: 5px; /* Padding for the answer input */
 }

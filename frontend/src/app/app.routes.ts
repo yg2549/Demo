@@ -6,7 +6,7 @@ import { LightupIntroComponent } from './lightup-intro/lightup-intro.component';
 import { IntroComponent } from './intro/intro.component';
 
 export const routes: Routes = [
-    { path: '', component: AppComponent},
+    { path: '', component: IntroComponent},
     { path: 'intro', component: IntroComponent},
     { path: 'lightup-intro', component: LightupIntroComponent },  // Default route
     { path: 'conor-form', component: ConorFormComponent },

@@ -37,13 +37,14 @@
     align-items: flex-start;
   }
   
-  .bubble.answer-input {
+  .bubble.answer-input.right-align {
     background-color: 	#f1f8e9;
     border-radius: 15px;
     padding: 8px 12px;
     margin-top: 5px;
     text-align: right;
   }
+
   .radio-options {
     display: flex;
     flex-direction: row; /* Align options in a row */
@@ -59,4 +60,16 @@
   
   .radio-container label {
     margin: 0 10px; /* Add margin between options */
+  }
+  .submit-button {
+    width: 30%;
+    align-self: center;
+    background-color: #DFF5E1;
+    color: black;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
   }

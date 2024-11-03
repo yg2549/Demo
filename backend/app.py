@@ -7,16 +7,10 @@ import pymongo
 
 load_dotenv('./.env')
 responses = []
-# app = create_app()
-    # CORS(app)
-
-# def create_app():
 app = Flask(__name__, static_folder='static/browser')
 connection = pymongo.MongoClient(os.getenv("MONGO_URI"))
 db = connection["Tova"]
-users = db.participants.find()
-for user in users:
-    print(user)
+
 @app.route('/')
 def show_home():
     try:
@@ -27,9 +21,8 @@ def show_home():
 
     # return make_response({"page":"active"})
     return send_from_directory(app.static_folder, 'index.html')
-
-
 # Serve static files from the Angular app
+
 @app.route('/<path:path>')
 def serve_static(path):
     return send_from_directory(app.static_folder, path)
@@ -86,17 +79,4 @@ def aggregate_results(user):
         
         return [gender, conor_sum, stress_sum, written_answers]
 
-    # @app.route('/get-all-responses')
-    # def show_all_responses():
-    #     for res in responses:
-    #         print (res)
-    #     return make_response("success", 200)
-    # return app
-
-
-# if __name__ == "__main__":
-#     FLASK_PORT = os.getenv("FLASK_PORT", "3000")
-    # app = create_app()
-    # CORS(app)
-    # app.run(port=FLASK_PORT)
-    # app.run()
+app.run()

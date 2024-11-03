@@ -14,12 +14,15 @@ import { Router } from '@angular/router';
 export class LightupIntroComponent {
   introForm: FormGroup;
   displayedItems: Array<any> = [];
-  showAnswers = false;
+  showAnswers1 = false;
+  showAnswers2 = false;
   currentIndex = 0;
+  showSubmit = false;
   outputs = [
     {
       outputType: "statement",
-      content: "שלום, אנחנו שמחים מאד שהצטרפת לתוכנית Lightup. במשך שלושת החודשים הבאים נעבור מסע משותף בדרך לבניית שגרה מטיבה. "
+      content: "שלום, אנחנו שמחים מאד שהצטרפת לתוכנית Lightup. במשך שלושת החודשים הבאים נעבור מסע משותף בדרך לבניית שגרה מטיבה. ",
+
     },
     {
       outputType: "statement",
@@ -35,11 +38,6 @@ export class LightupIntroComponent {
         {label: "נקבה", value: "woman"},
         {label: "אחר", value: "other"},
       ],
-      // options: [
-      //   {label: "man", value: "man"},
-      //   {label: "woman", value: "woman"},
-      //   {label: "other", value: "other"},
-      // ],
     },
     {
       outputType: "statement",
@@ -77,26 +75,32 @@ export class LightupIntroComponent {
 
       if (currentItem.outputType === 'statement') {
         this.currentIndex++;
-        // setTimeout(() => this.showNextItem(), 2000); // Delay to show next statement
-        setTimeout(() => this.showNextItem(), 1); // use shorter delay for testing
-      } else if (currentItem.outputType === 'question') {
-        if (currentItem.type === 'radio') {
-          this.showAnswers = false; // Initially hide answers
+        setTimeout(() => this.showNextItem(), 2000); // Delay to show next statement
+
+      }
+      else if (currentItem.outputType === 'question') {
+        if(currentItem.type == 'radio'){
           setTimeout(() => {
-            this.showAnswers = true; // Show answers after delay
-          // }, 1000); // Delay before showing radio options
-          }, 1); //use a shorter delay for testing
+            this.showAnswers1 = true; // Show answers after delay
+          }, 1000); // Delay before showing radio options
+        }
+        else{
+          setTimeout(() => {
+            this.showAnswers2 = true; // Show answers after delay
+          }, 1000); // Delay before showing radio options
+          setTimeout(() => {
+            this.showSubmit = true; // Show answers after delay
+          }, 3000); // Delay before showing radio options
         }
         this.currentIndex++; // Move to next item after showing question
       }
     }
   }
   showQuestionWithDelay() {
-    this.showAnswers = false; // Hide options initially
-    setTimeout(() => {
-      this.showAnswers = true; // Show options after delay
+    // this.showAnswers = false; // Hide options initially
+    // setTimeout(() => {
+    //   this.showAnswers = true; // Show options after delay
     // }, 500); // Adjust delay time (in milliseconds) as needed
-    }, 1); //use a shorter delay for testing
   }
   onAnswerSelected() {
     if (this.currentIndex <= this.outputs.length) {
@@ -115,8 +119,7 @@ export class LightupIntroComponent {
       });
       setTimeout(() => {
         this.router.navigate(['/conor-form'])
-      // }, 1000)
-    }, 1)
+      }, 1000)
   }
 }
 

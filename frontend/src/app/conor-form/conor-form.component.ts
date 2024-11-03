@@ -1,6 +1,7 @@
 import { NgIf, NgSwitchCase, NgSwitch, NgForOf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterOutlet } from '@angular/router'
 
 @Component({
   standalone: true,
@@ -139,7 +140,10 @@ export class ConorFormComponent implements OnInit {
   currentQuestionIndex = 0;
   showAnswers = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+  ) {
     this.conorForm = this.fb.group({});
     this.questions.forEach(question => {
       this.conorForm.addControl(question.controlName, this.fb.control(''));
@@ -179,6 +183,7 @@ export class ConorFormComponent implements OnInit {
 
   onSubmit() {
     console.log("Form submitted:", this.conorForm.value);
+    this.router.navigate(['/stress-form']);
   }
 }
 

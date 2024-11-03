@@ -1,0 +1,58 @@
+<div class="chat-container" dir="rtl">
+    <p>{{ intro }}</p>
+  
+    <!-- Loop through past questions as separate message boxes -->
+    <ng-container *ngFor="let question of questions; let i = index">
+      <!-- Question Message Bubble on the Left -->
+      <div *ngIf="i < currentQuestionIndex" class="bubble question">
+        <p>{{ question.label }}</p>
+      </div>
+  
+      <!-- Answer Message Bubble on the Left -->
+      <div *ngIf="i < currentQuestionIndex" class="bubble answer-input">
+        <p>{{ conorForm.get(question.controlName)?.value }}</p>
+      </div>
+    </ng-container>
+  
+    <!-- Current Question and Answer Input -->
+    <form [formGroup]="conorForm" (ngSubmit)="onSubmit()">
+      <ng-container *ngIf="questions.length > currentQuestionIndex">
+        <!-- Current Question Message Bubble on the Left -->
+        <div class="bubble question">
+          <label>{{ questions[currentQuestionIndex].label }}</label>
+        </div>
+  
+        <!-- Current Answer Options on the Left, displayed with delay -->
+        <div *ngIf="showAnswers" class="bubble answer-input">
+          <ng-container [ngSwitch]="questions[currentQuestionIndex].type">
+            
+            <!-- Radio Button Options on the Left -->
+            <div *ngSwitchCase="'radio'" class="radio-options">
+              <label *ngFor="let option of questions[currentQuestionIndex].options">
+                <input
+                  type="radio"
+                  [formControlName]="questions[currentQuestionIndex].controlName"
+                  [value]="option.value"
+                  (change)="onAnswerSelected()"
+                />
+                {{ option.label }}
+              </label>
+            </div>
+  
+            <!-- Text Input Option -->
+            <div *ngSwitchCase="'text'">
+              <input
+                type="text"
+                [formControlName]="questions[currentQuestionIndex].controlName"
+                (input)="onAnswerSelected()"
+              />
+            </div>
+  
+          </ng-container>
+        </div>
+      </ng-container>
+
+    </form>
+  
+    <p>{{ conclusion }}</p>
+  </div>

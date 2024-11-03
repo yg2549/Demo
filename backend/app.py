@@ -3,6 +3,7 @@ from flask import Flask, make_response, request, redirect, url_for, jsonify, sen
 from flask_cors import CORS
 import os
 import json
+import pymongo
 
 load_dotenv('./.env')
 responses = []
@@ -10,15 +11,42 @@ responses = []
 def create_app():
 
     app = Flask(__name__, static_folder='../frontend/dist/frontend/browser')
+    connection = pymongo.MongoClient(os.getenv("MONGO_URI"))
+    db = connection["Tova"]
+    @app.route('/')
+    def show_home():
+        try:
+            connection.admin.command("ping")
+            print("MongoDB connection successful")
+        except Exception as e:
+            print("MongoDB connection error:", e)
 
-    @app.route('/api/stress-data', methods=["POST"])
-    def post_data():
-        # if request.method == "GET":
-        #     return make_response("accessed", 200)
+        return make_response({"page":"active"})
+
+    # @app.route('/create-user')
+    # def show_user():
+    #     # print("called")
+    #     # username = request.data.decode()
+    #     # print(username)
+    #     print(len(list(db.participants.find())))
+    #     return make_response({"message":"received"}, 200)
+
+    @app.route('/api/create-user', methods=["POST"])
+    def create_user():
         print("called")
+        username = request.data.decode()
+        print(username)
+        db.participants.insert_one({"user":username})
+        print(len(list(db.participants.find())))
+        return make_response({"message":username}, 200)
+
+    @app.route('/api/receive-data', methods=["POST"])
+    def receive_data():
+        # print("called")
         item = request.data.decode().replace("'", '"')
         new_item = json.loads(item)
-        responses.append(new_item)
+        # responses.append(new_item)
+        # if new_item
         return make_response({"message":"received"}, 200)
 
     # @app.route('/get-all-responses')

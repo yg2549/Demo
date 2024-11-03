@@ -203,7 +203,8 @@ export class StressFormComponent implements OnInit {
     this.showAnswers = false; // Hide options initially
     setTimeout(() => {
       this.showAnswers = true; // Show options after delay
-    }, 500); // Adjust delay time (in milliseconds) as needed
+    // }, 500); // Adjust delay time (in milliseconds) as needed
+    }, 1); //change delay for testing
   }
 
   onAnswerSelected() {
@@ -223,6 +224,18 @@ export class StressFormComponent implements OnInit {
     } else {
       this.onSubmit(); // Automatically submit when the last question is answered
     }
+  }
+
+  getValueName(value: number){
+    const options = [
+      { label: "כמעט אף פעם", value: 0},
+      { label: "לעיתים רחוקות", value: 1 },
+      { label: "לפעמים", value: 2 },
+      { label: "לעיתים קרובות", value: 3 },
+      { label: "לעיתים קרובות מאד", value: 4}
+    ]
+
+    return options[value].label;
   }
 
   onSubmit() {

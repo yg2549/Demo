@@ -1,5 +1,5 @@
-<form [formGroup]="introForm" (ngSubmit)="onSubmit()">
-    <label for="username">Username</label>
-    <input type="text" id="username" formControlName="username">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="username">מספר משתתף</label>
+    <input id="username" formControlName="username" />
     <button type="submit">Submit</button>
-</form>
+  </form>

@@ -1,0 +1,49 @@
+General chat message container
+.chat-message {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
+  /* Chat bubble styling */
+  .chatbot-bubble {
+    max-width: 60%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin: 5px 0;
+  }
+  
+  /* Statement and Question Label styling (left-aligned) */
+  .statement {
+    background-color: #e0e0e0;
+    align-self: flex-start; /* Align statement/question label to the left */
+    text-align: left;
+  }
+  
+  /* Answer options container aligned to the right */
+  .response-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  /* Answer bubble styling (right-aligned) */
+  .right-align {
+    max-width: 60%;
+    align-self: flex-end;
+  }
+  
+  .answer-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .bubble.answer-input {
+    background-color: 	#98FF98;
+    border-radius: 15px;
+    padding: 8px 12px;
+    margin-top: 5px;
+    text-align: right;
+  }
+  

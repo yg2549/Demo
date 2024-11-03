@@ -33,12 +33,20 @@ def create_app():
 
     @app.route('/api/create-user', methods=["POST"])
     def create_user():
-        print("called")
         username = request.data.decode()
         print(username)
         db.participants.insert_one({"user":username})
         print(len(list(db.participants.find())))
         return make_response({"message":username}, 200)
+
+    @app.route('/api/modify-user', methods=["POST"])
+    def modify_user():
+        print("called")
+        item1 = request.json[0]
+        item2 = request.json[1]
+        print(item2)
+        return make_response({"message":"api was called"}, 200)
+                 
 
     @app.route('/api/receive-data', methods=["POST"])
     def receive_data():

@@ -1,0 +1,73 @@
+<form [formGroup]="introForm" (ngSubmit)="onSubmit()">
+    <ng-container *ngFor="let item of displayedItems; let i = index">
+  
+      <!-- Left-Aligned Question or Statement Bubble -->
+      <div *ngIf="item.outputType === 'statement' || item.outputType === 'question'" class="chatbot-bubble statement">
+        <p>{{ item.content || item.label }}</p>
+      </div>
+  
+      <!-- Right-Aligned Answer Bubble for Questions -->
+      <div *ngIf="item.outputType === 'question'" class="response-container">
+        
+        <!-- Text Input for Answer -->
+        <div *ngIf="item.type === 'text'" class="bubble answer-input right-align">
+          <input
+            type="text"
+            [formControlName]="item.controlName"
+            (change)="onAnswerSelected()"
+            placeholder="Type your answer here"
+          />
+        </div>
+  
+        <!-- All Radio Options in One Bubble, Right-Aligned -->
+        <div *ngIf="item.type === 'radio'" class="bubble answer-input right-align">
+          <ng-container *ngFor="let option of item.options">
+            <label class="radio-option">
+              <input
+                type="radio"
+                [formControlName]="item.controlName"
+                [value]="option.value"
+                (change)="onAnswerSelected()"
+              />
+              {{ option.label }}
+            </label>
+          </ng-container>
+        </div>
+        
+      </div> <!-- End Right-Aligned Answer Bubble -->
+  
+    </ng-container>
+  
+    <button type="submit" class="submit-button" *ngIf="currentIndex === outputs.length">Submit</button>
+  </form>
+    
+<!-- <form [formGroup]="introForm" (ngSubmit)="onSubmit()">
+    <ng-container *ngFor="let item of outputs">
+      <div *ngIf="item.outputType === 'statement'">
+        <p>{{ item.content }}</p>
+      </div>
+      <div *ngIf="item.outputType === 'question'">
+        <label>{{ item.label }}</label>
+        <div *ngIf="item.type === 'text'">
+            <input
+            type="text"
+            [formControlName]="item.controlName"
+          />
+        </div>
+        <div *ngIf="item.type === 'radio'">
+            <div *ngFor="let option of item.options">
+            <label>
+                <input
+                type="radio"
+                [formControlName]="item.controlName"
+                [value]="option.value"
+                />
+            {{ option.label }}
+            </label>
+        </div>
+        </div>
+      </div>
+    </ng-container>
+    <button type="submit">Submit</button>
+  </form> -->
+  

@@ -1,42 +1,58 @@
-<p>{{ intro }}</p>
-<form [formGroup]="conorForm" (ngSubmit)="onSubmit()">
-    <ng-container *ngIf="questions.length > currentQuestionIndex">
-      <div>
-        <label>{{ questions[currentQuestionIndex].label }}</label>
-        
-        <ng-container [ngSwitch]="questions[currentQuestionIndex].type">
-          
-          <!-- Radio Button Logic -->
-            <div *ngSwitchCase="'radio'">
-                <div class="radio-options">
-                    <div *ngFor="let option of questions[currentQuestionIndex].options">
-                        <label>
-                            <input
-                                type="radio"
-                                [formControlName]="questions[currentQuestionIndex].controlName"
-                                [value]="option.value"
-                            />
-                            {{ option.label }}
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div *ngSwitchCase="'text'">
-
-            </div>
-        </ng-container>
+<div class="chat-container" dir="rtl">
+    <p>{{ intro }}</p>
   
-        <!-- Next Button -->
-        <!-- <button type="button" (click)="onNextQuestion()">Next</button> -->
-<!-- 
-        <ng-container *ngIf="next === false?wait(): 'next = true'"></ng-container>
-        <ng-container *ngIf="next === true?nextQuestion(): 'next = false'"></ng-container> -->
-
+    <!-- Loop through past questions as separate message boxes -->
+    <ng-container *ngFor="let question of questions; let i = index">
+      <!-- Question Message Bubble on the Left -->
+      <div *ngIf="i < currentQuestionIndex" class="bubble question">
+        <p>{{ question.label }}</p>
+      </div>
+  
+      <!-- Answer Message Bubble on the Left -->
+      <div *ngIf="i < currentQuestionIndex" class="bubble answer-input">
+        <p>{{ conorForm.get(question.controlName)?.value }}</p>
       </div>
     </ng-container>
   
-    <!-- Submit Button -->
-    <button type="submit" *ngIf="currentQuestionIndex === questions.length">Submit</button>
-  </form>
+    <!-- Current Question and Answer Input -->
+    <form [formGroup]="conorForm" (ngSubmit)="onSubmit()">
+      <ng-container *ngIf="questions.length > currentQuestionIndex">
+        <!-- Current Question Message Bubble on the Left -->
+        <div class="bubble question">
+          <label>{{ questions[currentQuestionIndex].label }}</label>
+        </div>
+  
+        <!-- Current Answer Options on the Left, displayed with delay -->
+        <div *ngIf="showAnswers" class="bubble answer-input">
+          <ng-container [ngSwitch]="questions[currentQuestionIndex].type">
+            
+            <!-- Radio Button Options on the Left -->
+            <div *ngSwitchCase="'radio'" class="radio-options">
+              <label *ngFor="let option of questions[currentQuestionIndex].options">
+                <input
+                  type="radio"
+                  [formControlName]="questions[currentQuestionIndex].controlName"
+                  [value]="option.value"
+                  (change)="onAnswerSelected()"
+                />
+                {{ option.label }}
+              </label>
+            </div>
+  
+            <!-- Text Input Option -->
+            <div *ngSwitchCase="'text'">
+              <input
+                type="text"
+                [formControlName]="questions[currentQuestionIndex].controlName"
+                (input)="onAnswerSelected()"
+              />
+            </div>
+  
+          </ng-container>
+        </div>
+      </ng-container>
 
-<p>{{ conclusion }}</p>
+    </form>
+  
+    <p>{{ conclusion }}</p>
+  </div>

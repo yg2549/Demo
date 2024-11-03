@@ -9,8 +9,7 @@ load_dotenv('./.env')
 responses = []
 
 def create_app():
-
-    app = Flask(__name__, static_folder='../frontend/dist/frontend/browser')
+    app = Flask(__name__, static_folder='static/browser')
     connection = pymongo.MongoClient(os.getenv("MONGO_URI"))
     db = connection["Tova"]
     users = db.participants.find()
@@ -24,7 +23,14 @@ def create_app():
         except Exception as e:
             print("MongoDB connection error:", e)
 
-        return make_response({"page":"active"})
+        # return make_response({"page":"active"})
+        return send_from_directory(app.static_folder, 'index.html')
+
+    
+    # Serve static files from the Angular app
+    @app.route('/<path:path>')
+    def serve_static(path):
+        return send_from_directory(app.static_folder, path)
 
     @app.route('/api/create-user', methods=["POST"])
     def create_user():

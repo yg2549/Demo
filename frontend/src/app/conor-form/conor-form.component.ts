@@ -14,6 +14,7 @@ export class ConorFormComponent implements OnInit {
   conorForm: FormGroup;
   intro = "";
   conclusion = "thank you";
+  showConclusion = false;
   questions = [
     { 
       label: "'חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד 'אני מצליח.ה להסתגל לשינויי", 
@@ -159,7 +160,7 @@ export class ConorFormComponent implements OnInit {
     this.showAnswers = false; // Hide options initially
     setTimeout(() => {
       this.showAnswers = true; // Show options after delay
-    }, 500); // Adjust delay time (in milliseconds) as needed
+    }, 1000); // Adjust delay time (in milliseconds) as needed
   }
 
   onAnswerSelected() {
@@ -194,7 +195,13 @@ export class ConorFormComponent implements OnInit {
   }
 
   onSubmit() {
+    
     console.log("Form submitted:", this.conorForm.value);
-    this.router.navigate(['/stress-form']);
+    setTimeout(() => {
+      this.showConclusion = true;
+    }, 1000)
+    setTimeout(() => {
+      this.router.navigate(['/stress-form'])
+    }, 1000)
   }
 }

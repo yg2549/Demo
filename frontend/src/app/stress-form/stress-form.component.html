@@ -54,5 +54,7 @@
 
     </form>
   
-    <p>{{ conclusion }}</p>
+    <div *ngIf="showConclusion === true">
+      <p>{{ conclusion }}</p>
+    </div>
   </div>

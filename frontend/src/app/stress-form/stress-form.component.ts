@@ -13,6 +13,7 @@ export class StressFormComponent implements OnInit {
   conorForm: FormGroup;
   intro = "";
   conclusion = ".בהחלט תקופה מאתגרת, חשוב מאד שאת משתפת ומקדישה זמן לעצמך";
+  showConclusion = false;
   questions = [
     { 
       label: "?בחודש האחרון, באיזו מידה היית 'מעוצבנ.ת' בגלל משהו שקרה באופן בלתי צפוי", 
@@ -203,8 +204,8 @@ export class StressFormComponent implements OnInit {
     this.showAnswers = false; // Hide options initially
     setTimeout(() => {
       this.showAnswers = true; // Show options after delay
-    // }, 500); // Adjust delay time (in milliseconds) as needed
-    }, 1); //change delay for testing
+    }, 1000); // Adjust delay time (in milliseconds) as needed
+    // }, 1); //change delay for testing
   }
 
   onAnswerSelected() {
@@ -239,6 +240,7 @@ export class StressFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.showConclusion = true;
     console.log("Form submitted:", this.conorForm.value);
   }
 }

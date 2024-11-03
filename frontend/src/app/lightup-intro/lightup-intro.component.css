@@ -1,13 +1,12 @@
-General chat message container
-.chat-message {
+  .form {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
+    max-width: 100%;
   }
   
   /* Chat bubble styling */
   .chatbot-bubble {
-    max-width: 60%;
     padding: 10px 15px;
     border-radius: 20px;
     margin: 5px 0;
@@ -15,32 +14,31 @@ General chat message container
   
   /* Statement and Question Label styling (left-aligned) */
   .statement {
-    background-color: #e0e0e0;
-    align-self: flex-start; /* Align statement/question label to the left */
-    text-align: left;
+    background-color: #e0f7fa;
+    align-self: flex-end; /* Align statement/question label to the left */
+    text-align: right;
   }
   
   /* Answer options container aligned to the right */
   .response-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
   }
   
   /* Answer bubble styling (right-aligned) */
   .right-align {
-    max-width: 60%;
-    align-self: flex-end;
+    align-self: flex-start;
   }
   
   .answer-options {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
   }
   
   .bubble.answer-input {
-    background-color: 	#98FF98;
+    background-color: 	#f1f8e9;
     border-radius: 15px;
     padding: 8px 12px;
     margin-top: 5px;

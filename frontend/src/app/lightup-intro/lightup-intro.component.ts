@@ -72,15 +72,15 @@ export class LightupIntroComponent {
 
       if (currentItem.outputType === 'statement') {
         this.currentIndex++;
-        // setTimeout(() => this.showNextItem(), 2000); // Delay to show next statement
-        setTimeout(() => this.showNextItem(), 1); // use shorter delay for testing
+        setTimeout(() => this.showNextItem(), 2000); // Delay to show next statement
+        // setTimeout(() => this.showNextItem(), 1); // use shorter delay for testing
       } else if (currentItem.outputType === 'question') {
         if (currentItem.type === 'radio') {
           this.showAnswers = false; // Initially hide answers
           setTimeout(() => {
             this.showAnswers = true; // Show answers after delay
-          // }, 500); // Delay before showing radio options
-          }, 1); //use a shorter delay for testing
+          }, 1000); // Delay before showing radio options
+          // }, 1); //use a shorter delay for testing
         }
         this.currentIndex++; // Move to next item after showing question
       }
@@ -90,8 +90,8 @@ export class LightupIntroComponent {
     this.showAnswers = false; // Hide options initially
     setTimeout(() => {
       this.showAnswers = true; // Show options after delay
-    // }, 500); // Adjust delay time (in milliseconds) as needed
-    }, 1); //use a shorter delay for testing
+    }, 500); // Adjust delay time (in milliseconds) as needed
+    // }, 1); //use a shorter delay for testing
   }
   onAnswerSelected() {
     if (this.currentIndex <= this.outputs.length) {
@@ -106,7 +106,9 @@ export class LightupIntroComponent {
         // const response = JSON.stringify(res);
         console.log("response", res);
       });
-    this.router.navigate(['/conor-form'])
+      setTimeout(() => {
+        this.router.navigate(['/conor-form'])
+      }, 1000)
   }
 }
 

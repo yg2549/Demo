@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: flex-start; /* Align everything to the left by default */
   padding: 10px;
+  width:85%
 }
 
 .bubble {

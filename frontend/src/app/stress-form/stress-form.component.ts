@@ -58,6 +58,90 @@ export class StressFormComponent implements OnInit {
       controlName: "q4", 
       type: "radio", 
       options: [
+        { label: "כמעט אף פעם", value: 4 },
+        { label: "לעיתים רחוקות", value: 3 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 2 },
+        { label: "לעיתים קרובות מאד", value: 1}
+      ]
+    },
+    { 
+      label: "?בחודש האחרון, באיזו מידה הרגשת שאת/ה מתמודד.ת ביעילות עם שינויים חשובים בחייך", 
+      controlName: "q5", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 4},
+        { label: "לעיתים רחוקות", value: 3 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 2 },
+        { label: "לעיתים קרובות מאד", value: 1}
+      ]
+    },
+    { 
+      label: "?בחודש האחרון, באיזו מידה הרגשת בטחון ביכולתך לטפל בבעיותיך האישיות", 
+      controlName: "q6", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 4},
+        { label: "לעיתים רחוקות", value: 3 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 1 },
+        { label: "לעיתים קרובות מאד", value: 0}
+      ] 
+    },
+    { 
+      label: "?בחודש האחרון, באיזו מידה הרגשת שהדברים מתפתחים בהתאם לרצונך", 
+      controlName: "q7", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 4},
+        { label: "לעיתים רחוקות", value: 3 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 1 },
+        { label: "לעיתים קרובות מאד", value: 0}
+      ]   
+    },
+    { 
+      label: "?בחודש האחרון, באיזו מידה יכולת להתמודד עם כל הדברים שהיה עליך לעשות", 
+      controlName: "q8", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ] 
+    },
+    { 
+      label: "?בחודש האחרון, באיזו מידה יכולת לשלוט בדברים המרגיזים אותך", 
+      controlName: "q9", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 4},
+        { label: "לעיתים רחוקות", value: 3 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 1 },
+        { label: "לעיתים קרובות מאד", value: 0}
+      ] 
+    },
+    { 
+      label: "?בחודש האחרון, באיזו מידה הרגשת שאת שולט.ת במצב", 
+      controlName: "q10", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 4},
+        { label: "לעיתים רחוקות", value: 3 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 1 },
+        { label: "לעיתים קרובות מאד", value: 0}
+      ] 
+    },
+    { 
+      label: "?בחודש האחרון, באיזו מידה התרגזת בגלל אירועים שהיו מחוץ לשליטתך", 
+      controlName: "q11", 
+      type: "radio", 
+      options: [
         { label: "כמעט אף פעם", value: 0},
         { label: "לעיתים רחוקות", value: 1 },
         { label: "לפעמים", value: 2 },
@@ -65,126 +149,42 @@ export class StressFormComponent implements OnInit {
         { label: "לעיתים קרובות מאד", value: 4}
       ]
     },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה הרגשת שאת/ה מתמודד.ת ביעילות עם שינויים חשובים בחייך", 
-    //   controlName: "q5", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ]
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה הרגשת בטחון ביכולתך לטפל בבעיותיך האישיות", 
-    //   controlName: "q6", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ] 
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה הרגשת שהדברים מתפתחים בהתאם לרצונך", 
-    //   controlName: "q7", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ]   
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה יכולת להתמודד עם כל הדברים שהיה עליך לעשות", 
-    //   controlName: "q8", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ] 
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה יכולת לשלוט בדברים המרגיזים אותך", 
-    //   controlName: "q9", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ] 
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה הרגשת שאת שולט.ת במצב", 
-    //   controlName: "q10", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ] 
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה התרגזת בגלל אירועים שהיו מחוץ לשליטתך", 
-    //   controlName: "q11", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ]
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה הטרידו אותך מחשבות על דברים שהיה עליך להשלים", 
-    //   controlName: "q12", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ]  
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה יכולת לשלוט בדרך שבה את/ה מנצל.ת את זמנך", 
-    //   controlName: "q13", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ]  
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה הרגשת שהקשיים מצטברים עד כדי כך שלא יכולת להתגבר עליהם", 
-    //   controlName: "q14", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ]  
-    // },
+    { 
+      label: "?בחודש האחרון, באיזו מידה הטרידו אותך מחשבות על דברים שהיה עליך להשלים", 
+      controlName: "q12", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ]  
+    },
+    { 
+      label: "?בחודש האחרון, באיזו מידה יכולת לשלוט בדרך שבה את/ה מנצל.ת את זמנך", 
+      controlName: "q13", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 4},
+        { label: "לעיתים רחוקות", value: 3 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 1 },
+        { label: "לעיתים קרובות מאד", value: 0}
+      ]  
+    },
+    { 
+      label: "?בחודש האחרון, באיזו מידה הרגשת שהקשיים מצטברים עד כדי כך שלא יכולת להתגבר עליהם", 
+      controlName: "q14", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ]  
+    },
   
   ]
   currentQuestionIndex = 0;

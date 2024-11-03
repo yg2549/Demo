@@ -12,18 +12,18 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class StressFormComponent implements OnInit {
   conorForm: FormGroup;
   intro = "";
-  conclusion = "thank you";
+  conclusion = ".בהחלט תקופה מאתגרת, חשוב מאד שאת משתפת ומקדישה זמן לעצמך";
   questions = [
     { 
       label: "?בחודש האחרון, באיזו מידה היית 'מעוצבנ.ת' בגלל משהו שקרה באופן בלתי צפוי", 
       controlName: "q1", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
       ]   
     },
     { 
@@ -31,131 +31,131 @@ export class StressFormComponent implements OnInit {
       controlName: "q2", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]     
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ]   
     },
     { 
       label:"?'בחודש האחרון, באיזו מידה הרגשת עצבני/ת ו'לחוצ.ה", 
       controlName: "q3", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]   
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ]
     },
     { 
       label: "?בחודש האחרון, באיזו מידה טיפלת בהצלחה במטרדים מרגיזים", 
       controlName: "q4", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]  
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ]
     },
     { 
       label: "?בחודש האחרון, באיזו מידה הרגשת שאת/ה מתמודד.ת ביעילות עם שינויים חשובים בחייך", 
       controlName: "q5", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]   
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ]
     },
     { 
       label: "?בחודש האחרון, באיזו מידה הרגשת בטחון ביכולתך לטפל בבעיותיך האישיות", 
       controlName: "q6", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]   
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ] 
     },
     { 
       label: "?בחודש האחרון, באיזו מידה הרגשת שהדברים מתפתחים בהתאם לרצונך", 
       controlName: "q7", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]    
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ]   
     },
     { 
       label: "?בחודש האחרון, באיזו מידה יכולת להתמודד עם כל הדברים שהיה עליך לעשות", 
       controlName: "q8", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]    
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ] 
     },
     { 
       label: "?בחודש האחרון, באיזו מידה יכולת לשלוט בדברים המרגיזים אותך", 
       controlName: "q9", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]  
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ] 
     },
     { 
       label: "?בחודש האחרון, באיזו מידה הרגשת שאת שולט.ת במצב", 
       controlName: "q10", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]  
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ] 
     },
     { 
       label: "?בחודש האחרון, באיזו מידה התרגזת בגלל אירועים שהיו מחוץ לשליטתך", 
       controlName: "q11", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]  
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ]
     },
     { 
       label: "?בחודש האחרון, באיזו מידה הטרידו אותך מחשבות על דברים שהיה עליך להשלים", 
       controlName: "q12", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
       ]  
     },
     { 
@@ -163,11 +163,11 @@ export class StressFormComponent implements OnInit {
       controlName: "q13", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
       ]  
     },
     { 
@@ -175,11 +175,11 @@ export class StressFormComponent implements OnInit {
       controlName: "q14", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
       ]  
     },
   

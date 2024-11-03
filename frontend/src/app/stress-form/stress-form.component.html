@@ -10,12 +10,12 @@
   
       <!-- Answer Message Bubble on the Left -->
       <div *ngIf="i < currentQuestionIndex" class="bubble answer-input">
-        <p>{{ conorForm.get(question.controlName)?.value }}</p>
+        <p>{{ getValueName(conorForm.get(question.controlName)?.value)}}</p>
       </div>
     </ng-container>
   
     <!-- Current Question and Answer Input -->
-    <form [formGroup]="conorForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="conorForm" (ngSubmit)="onSubmit()" class="form">
       <ng-container *ngIf="questions.length > currentQuestionIndex">
         <!-- Current Question Message Bubble on the Left -->
         <div class="bubble question">

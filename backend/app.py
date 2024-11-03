@@ -78,5 +78,5 @@ def aggregate_results(user):
             written_answers.append(intro_results["wellbeing"])
         
         return [gender, conor_sum, stress_sum, written_answers]
-
+CORS(app)
 app.run()

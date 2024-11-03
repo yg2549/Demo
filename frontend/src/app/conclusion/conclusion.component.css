@@ -1,0 +1,62 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 85%;
+  }
+  
+  /* Chat bubble styling */
+  .chatbot-bubble {
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin: 5px 0;
+  }
+  
+  /* Statement and Question Label styling (left-aligned) */
+  .statement {
+    background-color: #e0f7fa;
+    align-self: flex-end; /* Align statement/question label to the left */
+    text-align: right;
+  }
+  
+  /* Answer options container aligned to the right */
+  .response-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Answer bubble styling (right-aligned) */
+  .right-align {
+    align-self: flex-start;
+  }
+  
+  .answer-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .bubble.answer-input {
+    background-color: 	#f1f8e9;
+    border-radius: 15px;
+    padding: 8px 12px;
+    margin-top: 5px;
+    text-align: right;
+  }
+  .radio-options {
+    display: flex;
+    flex-direction: row; /* Align options in a row */
+    justify-content: flex-end; /* Align to the right */
+  }
+  
+  .radio-container {
+    display: flex;
+    flex-direction: row; /* Align items in a row */
+    direction: rtl; /* Ensure the content flows right to left */
+    align-items: center; /* Vertically center the items */
+  }
+  
+  .radio-container label {
+    margin: 0 10px; /* Add margin between options */
+  }

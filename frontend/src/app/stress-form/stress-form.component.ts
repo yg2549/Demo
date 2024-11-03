@@ -285,7 +285,7 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
     });
 
     setTimeout(() => {
-      this.router.navigate(['/stress-form'])
+      this.router.navigate(['/conclusion'])
     }, 1000)
   // }, 1)
   }

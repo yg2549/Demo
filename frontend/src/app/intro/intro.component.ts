@@ -18,18 +18,19 @@ export class IntroComponent {
     private router: Router,
   ){
     this.form = this.fb.group({
-      username: new FormControl('')  // Add default value here if needed
+      user: new FormControl('')  // Add default value here if needed
     });
   }
 
   onSubmit(){
-    const username = this.form.value.username;
-    sessionStorage.setItem('username', username);
-    this.http.post('http://localhost:3000/api/create-user', username)
+    const user = this.form.value.user;
+    console.log("user",user)
+    sessionStorage.setItem('user', user);
+    this.http.post('http://localhost:3000/api/create-user', user)
       .subscribe(res => {
         // const response = JSON.stringify(res);
         console.log("response", res);
       });
-    this.router.navigate(['/lightup-intro'])
+    this.router.navigate(['/lightup-intro']);
   }
 }

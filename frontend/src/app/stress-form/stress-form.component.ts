@@ -1,6 +1,8 @@
 import { NgIf, NgSwitchCase, NgSwitch, NgForOf } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -63,132 +65,136 @@ export class StressFormComponent implements OnInit {
         { label: "לעיתים קרובות מאד", value: 4}
       ]
     },
-    { 
-      label: "?בחודש האחרון, באיזו מידה הרגשת שאת/ה מתמודד.ת ביעילות עם שינויים חשובים בחייך", 
-      controlName: "q5", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ]
-    },
-    { 
-      label: "?בחודש האחרון, באיזו מידה הרגשת בטחון ביכולתך לטפל בבעיותיך האישיות", 
-      controlName: "q6", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ] 
-    },
-    { 
-      label: "?בחודש האחרון, באיזו מידה הרגשת שהדברים מתפתחים בהתאם לרצונך", 
-      controlName: "q7", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ]   
-    },
-    { 
-      label: "?בחודש האחרון, באיזו מידה יכולת להתמודד עם כל הדברים שהיה עליך לעשות", 
-      controlName: "q8", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ] 
-    },
-    { 
-      label: "?בחודש האחרון, באיזו מידה יכולת לשלוט בדברים המרגיזים אותך", 
-      controlName: "q9", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ] 
-    },
-    { 
-      label: "?בחודש האחרון, באיזו מידה הרגשת שאת שולט.ת במצב", 
-      controlName: "q10", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ] 
-    },
-    { 
-      label: "?בחודש האחרון, באיזו מידה התרגזת בגלל אירועים שהיו מחוץ לשליטתך", 
-      controlName: "q11", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ]
-    },
-    { 
-      label: "?בחודש האחרון, באיזו מידה הטרידו אותך מחשבות על דברים שהיה עליך להשלים", 
-      controlName: "q12", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ]  
-    },
-    { 
-      label: "?בחודש האחרון, באיזו מידה יכולת לשלוט בדרך שבה את/ה מנצל.ת את זמנך", 
-      controlName: "q13", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ]  
-    },
-    { 
-      label: "?בחודש האחרון, באיזו מידה הרגשת שהקשיים מצטברים עד כדי כך שלא יכולת להתגבר עליהם", 
-      controlName: "q14", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ]  
-    },
+    // { 
+    //   label: "?בחודש האחרון, באיזו מידה הרגשת שאת/ה מתמודד.ת ביעילות עם שינויים חשובים בחייך", 
+    //   controlName: "q5", 
+    //   type: "radio", 
+    //   options: [
+    //     { label: "כמעט אף פעם", value: 0},
+    //     { label: "לעיתים רחוקות", value: 1 },
+    //     { label: "לפעמים", value: 2 },
+    //     { label: "לעיתים קרובות", value: 3 },
+    //     { label: "לעיתים קרובות מאד", value: 4}
+    //   ]
+    // },
+    // { 
+    //   label: "?בחודש האחרון, באיזו מידה הרגשת בטחון ביכולתך לטפל בבעיותיך האישיות", 
+    //   controlName: "q6", 
+    //   type: "radio", 
+    //   options: [
+    //     { label: "כמעט אף פעם", value: 0},
+    //     { label: "לעיתים רחוקות", value: 1 },
+    //     { label: "לפעמים", value: 2 },
+    //     { label: "לעיתים קרובות", value: 3 },
+    //     { label: "לעיתים קרובות מאד", value: 4}
+    //   ] 
+    // },
+    // { 
+    //   label: "?בחודש האחרון, באיזו מידה הרגשת שהדברים מתפתחים בהתאם לרצונך", 
+    //   controlName: "q7", 
+    //   type: "radio", 
+    //   options: [
+    //     { label: "כמעט אף פעם", value: 0},
+    //     { label: "לעיתים רחוקות", value: 1 },
+    //     { label: "לפעמים", value: 2 },
+    //     { label: "לעיתים קרובות", value: 3 },
+    //     { label: "לעיתים קרובות מאד", value: 4}
+    //   ]   
+    // },
+    // { 
+    //   label: "?בחודש האחרון, באיזו מידה יכולת להתמודד עם כל הדברים שהיה עליך לעשות", 
+    //   controlName: "q8", 
+    //   type: "radio", 
+    //   options: [
+    //     { label: "כמעט אף פעם", value: 0},
+    //     { label: "לעיתים רחוקות", value: 1 },
+    //     { label: "לפעמים", value: 2 },
+    //     { label: "לעיתים קרובות", value: 3 },
+    //     { label: "לעיתים קרובות מאד", value: 4}
+    //   ] 
+    // },
+    // { 
+    //   label: "?בחודש האחרון, באיזו מידה יכולת לשלוט בדברים המרגיזים אותך", 
+    //   controlName: "q9", 
+    //   type: "radio", 
+    //   options: [
+    //     { label: "כמעט אף פעם", value: 0},
+    //     { label: "לעיתים רחוקות", value: 1 },
+    //     { label: "לפעמים", value: 2 },
+    //     { label: "לעיתים קרובות", value: 3 },
+    //     { label: "לעיתים קרובות מאד", value: 4}
+    //   ] 
+    // },
+    // { 
+    //   label: "?בחודש האחרון, באיזו מידה הרגשת שאת שולט.ת במצב", 
+    //   controlName: "q10", 
+    //   type: "radio", 
+    //   options: [
+    //     { label: "כמעט אף פעם", value: 0},
+    //     { label: "לעיתים רחוקות", value: 1 },
+    //     { label: "לפעמים", value: 2 },
+    //     { label: "לעיתים קרובות", value: 3 },
+    //     { label: "לעיתים קרובות מאד", value: 4}
+    //   ] 
+    // },
+    // { 
+    //   label: "?בחודש האחרון, באיזו מידה התרגזת בגלל אירועים שהיו מחוץ לשליטתך", 
+    //   controlName: "q11", 
+    //   type: "radio", 
+    //   options: [
+    //     { label: "כמעט אף פעם", value: 0},
+    //     { label: "לעיתים רחוקות", value: 1 },
+    //     { label: "לפעמים", value: 2 },
+    //     { label: "לעיתים קרובות", value: 3 },
+    //     { label: "לעיתים קרובות מאד", value: 4}
+    //   ]
+    // },
+    // { 
+    //   label: "?בחודש האחרון, באיזו מידה הטרידו אותך מחשבות על דברים שהיה עליך להשלים", 
+    //   controlName: "q12", 
+    //   type: "radio", 
+    //   options: [
+    //     { label: "כמעט אף פעם", value: 0},
+    //     { label: "לעיתים רחוקות", value: 1 },
+    //     { label: "לפעמים", value: 2 },
+    //     { label: "לעיתים קרובות", value: 3 },
+    //     { label: "לעיתים קרובות מאד", value: 4}
+    //   ]  
+    // },
+    // { 
+    //   label: "?בחודש האחרון, באיזו מידה יכולת לשלוט בדרך שבה את/ה מנצל.ת את זמנך", 
+    //   controlName: "q13", 
+    //   type: "radio", 
+    //   options: [
+    //     { label: "כמעט אף פעם", value: 0},
+    //     { label: "לעיתים רחוקות", value: 1 },
+    //     { label: "לפעמים", value: 2 },
+    //     { label: "לעיתים קרובות", value: 3 },
+    //     { label: "לעיתים קרובות מאד", value: 4}
+    //   ]  
+    // },
+    // { 
+    //   label: "?בחודש האחרון, באיזו מידה הרגשת שהקשיים מצטברים עד כדי כך שלא יכולת להתגבר עליהם", 
+    //   controlName: "q14", 
+    //   type: "radio", 
+    //   options: [
+    //     { label: "כמעט אף פעם", value: 0},
+    //     { label: "לעיתים רחוקות", value: 1 },
+    //     { label: "לפעמים", value: 2 },
+    //     { label: "לעיתים קרובות", value: 3 },
+    //     { label: "לעיתים קרובות מאד", value: 4}
+    //   ]  
+    // },
   
   ]
   currentQuestionIndex = 0;
   showAnswers = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router
+  ) {
     this.conorForm = this.fb.group({});
     this.questions.forEach(question => {
       this.conorForm.addControl(question.controlName, this.fb.control(''));
@@ -204,8 +210,8 @@ export class StressFormComponent implements OnInit {
     this.showAnswers = false; // Hide options initially
     setTimeout(() => {
       this.showAnswers = true; // Show options after delay
-    }, 1000); // Adjust delay time (in milliseconds) as needed
-    // }, 1); //change delay for testing
+    // }, 1000); // Adjust delay time (in milliseconds) as needed
+    }, 1); //change delay for testing
   }
 
   onAnswerSelected() {
@@ -241,6 +247,18 @@ export class StressFormComponent implements OnInit {
 
   onSubmit() {
     this.showConclusion = true;
+    const user = sessionStorage['user'];
+    this.http.post('http://localhost:3000/api/modify-user', [user, "stress_results", this.conorForm.value])
+    .subscribe(res => {
+      // const response = JSON.stringify(res);
+      console.log("response", res);
+    });
     console.log("Form submitted:", this.conorForm.value);
+
+    this.http.post('http://localhost:3000/api/export-results', [user]).subscribe(
+      res => {
+        console.log("response", res)
+      }
+    )
   }
 }

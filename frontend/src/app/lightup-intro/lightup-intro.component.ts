@@ -83,12 +83,12 @@ export class LightupIntroComponent implements AfterViewChecked{
       if(this.currentIndex == 1){
         setTimeout(() => {
           this.displayedItems.push(currentItem); // Add current item to displayedItems array
-        }, 10000)
+        }, 5000)
       }
       else if(this.currentIndex == 2){
         setTimeout(() => {
           this.displayedItems.push(currentItem); // Add current item to displayedItems array
-        }, 18000)
+        }, 5000)
       }
       else{
         setTimeout(() => {

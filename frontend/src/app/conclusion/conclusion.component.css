@@ -45,6 +45,8 @@
   }
   
   .bubble.answer-input.right-align {
+    display: flex;
+    flex-direction: column;
     background-color: 	#f1f8e9;
     border-radius: 15px;
     padding: 8px 12px;
@@ -54,13 +56,13 @@
 
   .radio-options {
     display: flex;
-    flex-direction: row; /* Align options in a row */
+    flex-direction: column; /* Align options in a row */
     justify-content: flex-end; /* Align to the right */
   }
   
   .radio-container {
     display: flex;
-    flex-direction: row; /* Align items in a row */
+    flex-direction: column; /* Align items in a row */
     direction: rtl; /* Ensure the content flows right to left */
     align-items: center; /* Vertically center the items */
   }

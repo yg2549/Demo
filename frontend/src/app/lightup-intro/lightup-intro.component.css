@@ -58,9 +58,16 @@
     direction: rtl; /* Ensure the content flows right to left */
     align-items: center; /* Vertically center the items */
   }
+  * {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: large;
+  }
   
   .radio-container label {
     margin: 0 10px; /* Add margin between options */
+  }
+  #scrollContainer {
+    scroll-behavior: smooth;
   }
   .submit-button {
     width: 30%;

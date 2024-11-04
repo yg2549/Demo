@@ -1,4 +1,4 @@
-<form [formGroup]="introForm" (ngSubmit)="onSubmit()" class="form">
+<form [formGroup]="introForm" (ngSubmit)="onSubmit()" class="form" id="scrollContainer" #scrollContainer style="overflow-y: auto; height: 650px;">
   <ng-container *ngFor="let item of displayedItems; let i = index">
 
     <!-- Left-Aligned Question or Statement Bubble -->
@@ -41,35 +41,3 @@
 
   <button type="submit" class="submit-button" *ngIf="currentIndex === outputs.length && showSubmit === true">בוא/י נמשיך</button>
 </form>
-
-    
-<!-- <form [formGroup]="introForm" (ngSubmit)="onSubmit()">
-    <ng-container *ngFor="let item of outputs">
-      <div *ngIf="item.outputType === 'statement'">
-        <p>{{ item.content }}</p>
-      </div>
-      <div *ngIf="item.outputType === 'question'">
-        <label>{{ item.label }}</label>
-        <div *ngIf="item.type === 'text'">
-            <input
-            type="text"
-            [formControlName]="item.controlName"
-          />
-        </div>
-        <div *ngIf="item.type === 'radio'">
-            <div *ngFor="let option of item.options">
-            <label>
-                <input
-                type="radio"
-                [formControlName]="item.controlName"
-                [value]="option.value"
-                />
-            {{ option.label }}
-            </label>
-        </div>
-        </div>
-      </div>
-    </ng-container>
-    <button type="submit">Submit</button>
-  </form> -->
-  

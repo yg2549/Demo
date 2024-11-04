@@ -4,6 +4,14 @@
     margin-bottom: 15px;
     width: 85%;
   }
+  * {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: large;
+  }
+
+  #scrollContainer {
+    scroll-behavior: smooth;
+  }  
   
   /* Chat bubble styling */
   .chatbot-bubble {

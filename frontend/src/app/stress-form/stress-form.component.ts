@@ -15,12 +15,12 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
   @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
   stressForm: FormGroup;
   intro = "";
-  conclusion = "בהחלט תקופה מאתגרת, חשוב מאד שאת משתפת ומקדישה זמן לעצמך.";
+  conclusion = "continue";
   showConclusion = false;
   // scrollContainer: any
   questions = [
     { 
-      label: "?בחודש האחרון, באיזו מידה היית 'מעוצבנ.ת' בגלל משהו שקרה באופן בלתי צפוי", 
+      label: "בחודש האחרון, באיזו מידה היית 'מעוצבנ.ת' בגלל משהו שקרה באופן בלתי צפוי", 
       controlName: "q1", 
       type: "radio", 
       options: [
@@ -32,7 +32,7 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
       ]   
     },
     { 
-      label: "?בחודש האחרון, באיזו מידה הרגשת חוסר שליטה בדברים החשובים בחייך", 
+      label: "בחודש האחרון, באיזו מידה הרגשת חוסר שליטה בדברים החשובים בחייך", 
       controlName: "q2", 
       type: "radio", 
       options: [
@@ -44,7 +44,7 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
       ]   
     },
     { 
-      label:"?'בחודש האחרון, באיזו מידה הרגשת עצבני/ת ו'לחוצ.ה", 
+      label:"בחודש האחרון, באיזו מידה הרגשת עצבני.ת 'לחוצ.ה", 
       controlName: "q3", 
       type: "radio", 
       options: [
@@ -67,126 +67,130 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
         { label: "לעיתים קרובות מאד", value: 0}
       ]
     },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה הרגשת שאת/ה מתמודד.ת ביעילות עם שינויים חשובים בחייך", 
-    //   controlName: "q5", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ]
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה הרגשת בטחון ביכולתך לטפל בבעיותיך האישיות", 
-    //   controlName: "q6", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ] 
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה הרגשת שהדברים מתפתחים בהתאם לרצונך", 
-    //   controlName: "q7", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ]   
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה יכולת להתמודד עם כל הדברים שהיה עליך לעשות", 
-    //   controlName: "q8", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ] 
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה יכולת לשלוט בדברים המרגיזים אותך", 
-    //   controlName: "q9", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ] 
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה הרגשת שאת שולט.ת במצב", 
-    //   controlName: "q10", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ] 
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה התרגזת בגלל אירועים שהיו מחוץ לשליטתך", 
-    //   controlName: "q11", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ]
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה הטרידו אותך מחשבות על דברים שהיה עליך להשלים", 
-    //   controlName: "q12", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ]  
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה יכולת לשלוט בדרך שבה את/ה מנצל.ת את זמנך", 
-    //   controlName: "q13", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ]  
-    // },
-    // { 
-    //   label: "?בחודש האחרון, באיזו מידה הרגשת שהקשיים מצטברים עד כדי כך שלא יכולת להתגבר עליהם", 
-    //   controlName: "q14", 
-    //   type: "radio", 
-    //   options: [
-    //     { label: "כמעט אף פעם", value: 0},
-    //     { label: "לעיתים רחוקות", value: 1 },
-    //     { label: "לפעמים", value: 2 },
-    //     { label: "לעיתים קרובות", value: 3 },
-    //     { label: "לעיתים קרובות מאד", value: 4}
-    //   ]  
-    // },
+    { 
+      label: "?בחודש האחרון, באיזו מידה הרגשת שאת.ה מתמודד.ת ביעילות עם שינויים חשובים בחייך", 
+      controlName: "q5", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 4},
+        { label: "לעיתים רחוקות", value: 3 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 1 },
+        { label: "לעיתים קרובות מאד", value: 0}
+      ]
+    },
+    {
+      statement: "true",
+      label: "בהחלט תקופה מאתגרת, חשוב מאד שאת.ה משתפ.ת ומקדיש.ה זמן לעצמך."
+    },
+    { 
+      label: "בחודש האחרון, באיזו מידה הרגשת בטחון ביכולתך לטפל בבעיותיך האישיות", 
+      controlName: "q6", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 4},
+        { label: "לעיתים רחוקות", value: 3 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 1 },
+        { label: "לעיתים קרובות מאד", value: 0}
+      ] 
+    },
+    { 
+      label: "בחודש האחרון, באיזו מידה הרגשת שהדברים מתפתחים בהתאם לרצונך", 
+      controlName: "q7", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 4},
+        { label: "לעיתים רחוקות", value: 3 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 1 },
+        { label: "לעיתים קרובות מאד", value: 0}
+      ]   
+    },
+    { 
+      label: "בחודש האחרון, באיזו מידה יכולת להתמודד עם כל הדברים שהיה עליך לעשות", 
+      controlName: "q8", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ] 
+    },
+    { 
+      label: "בחודש האחרון, באיזו מידה יכולת לשלוט בדברים המרגיזים אותך", 
+      controlName: "q9", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 4},
+        { label: "לעיתים רחוקות", value: 3 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 1 },
+        { label: "לעיתים קרובות מאד", value: 0}
+      ] 
+    },
+    { 
+      label: "בחודש האחרון, באיזו מידה הרגשת שאת.ה שולט.ת במצב", 
+      controlName: "q10", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 4},
+        { label: "לעיתים רחוקות", value: 3 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 1 },
+        { label: "לעיתים קרובות מאד", value: 0}
+      ] 
+    },
+    { 
+      label: "בחודש האחרון, באיזו מידה התרגזת בגלל אירועים שהיו מחוץ לשליטתך", 
+      controlName: "q11", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ]
+    },
+    { 
+      label: "בחודש האחרון, באיזו מידה הטרידו אותך מחשבות על דברים שהיה עליך להשלים", 
+      controlName: "q12", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ]  
+    },
+    { 
+      label: "בחודש האחרון, באיזו מידה יכולת לשלוט בדרך שבה את/ה מנצל.ת את זמנך", 
+      controlName: "q13", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 4},
+        { label: "לעיתים רחוקות", value: 3 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 1 },
+        { label: "לעיתים קרובות מאד", value: 0}
+      ]  
+    },
+    { 
+      label: "בחודש האחרון, באיזו מידה הרגשת שהקשיים מצטברים עד כדי כך שלא יכולת להתגבר עליהם", 
+      controlName: "q14", 
+      type: "radio", 
+      options: [
+        { label: "כמעט אף פעם", value: 0},
+        { label: "לעיתים רחוקות", value: 1 },
+        { label: "לפעמים", value: 2 },
+        { label: "לעיתים קרובות", value: 3 },
+        { label: "לעיתים קרובות מאד", value: 4}
+      ]  
+    },
   
   ]
   currentQuestionIndex = 0;
@@ -200,12 +204,16 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
   ) {
     this.stressForm = this.fb.group({});
     this.questions.forEach(question => {
-      this.stressForm.addControl(question.controlName, this.fb.control(''));
+      if(!question.statement){
+        console.log("called")
+        this.stressForm.addControl(question.controlName!, this.fb.control(''));
+      }
     });
   }
 
   ngAfterViewInit(): void {
   }
+  
   ngAfterViewChecked() {
     this.scrollToBottom(); // Call scroll after each check
   }
@@ -215,16 +223,24 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
   }
 
   showQuestionWithDelay() {
-    this.showAnswers = false; // Hide options initially
-    setTimeout(() => {
-      this.showAnswers = true; // Show options after delay
-      this.scrollToBottom();
-    }, 1000); // Adjust delay time (in milliseconds) as needed
+    if(this.currentQuestionIndex == 5){
+      setTimeout(() => {
+        this.scrollToBottom();
+        this.moveToNextQuestion();
+      }, 500); // Adjust delay time (in milliseconds) as needed
+    }
+    else{
+      this.showAnswers = false; // Hide options initially
+      setTimeout(() => {
+        this.showAnswers = true; // Show options after delay
+        this.scrollToBottom();
+      }, 1000); // Adjust delay time (in milliseconds) as needed
+    }
   }
 
   onAnswerSelected() {
     const controlName = this.questions[this.currentQuestionIndex].controlName;
-    const value = this.stressForm.get(controlName)?.value;
+    const value = this.stressForm.get(controlName!)!.value;
 
     // Automatically move to the next question if an answer is selected
     if (value !== undefined) {
@@ -234,9 +250,10 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
 
   moveToNextQuestion() {
     this.currentQuestionIndex++;
-    this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
-    this.scroller.scrollToPosition([0, this.scrollContainer.nativeElement.scrollHeight])
-    
+    // if(this.currentQuestionIndex == 6){
+    //   setTimeout(() => {
+    //   }, 500);
+    // }
     if (this.currentQuestionIndex < this.questions.length) {
       this.showQuestionWithDelay(); // Show next question with a delay for answer options
     } else {

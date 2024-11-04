@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -21,6 +21,7 @@ export class IntroComponent {
       user: new FormControl('')  // Add default value here if needed
     });
   }
+
 
   onSubmit(){
     const user = this.form.value.user;

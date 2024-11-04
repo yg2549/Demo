@@ -32,7 +32,7 @@ def serve_static(path):
 @app.route('/api/create-user', methods=["POST"])
 def create_user():
     user = request.data.decode()
-    db.participants.insert_one({"user":user})
+    db.tova_participants.insert_one({"user":user})
     return make_response({"message":user}, 200)
 
 @app.route('/api/modify-user', methods=["POST"])
@@ -43,7 +43,7 @@ def modify_user():
     data = request.json[2]
     # print(item1)
     # print(item2)
-    db.participants.update_one({"user":user}, { '$set': { field:data} })
+    db.tova_participants.update_one({"user":user}, { '$set': { field:data} })
     return make_response({"message":"api was called"}, 200)
 
 @app.route('/api/export-results', methods=["POST"])
@@ -145,7 +145,7 @@ def assign_menstrual(form):
         return "n/a"
     return form["changesExplained"]
 def aggregate_results(user):
-    user = db.participants.find_one({"user":user})
+    user = db.tova_participants.find_one({"user":user})
     print(user)
     intro_results = user['intro_results']
     conor_results = user['conor_results']

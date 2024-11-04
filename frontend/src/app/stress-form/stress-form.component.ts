@@ -56,7 +56,7 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
       ]
     },
     { 
-      label: "?בחודש האחרון, באיזו מידה טיפלת בהצלחה במטרדים מרגיזים", 
+      label: "בחודש האחרון, באיזו מידה טיפלת בהצלחה במטרדים מרגיזים", 
       controlName: "q4", 
       type: "radio", 
       options: [
@@ -68,7 +68,7 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
       ]
     },
     { 
-      label: "?בחודש האחרון, באיזו מידה הרגשת שאת.ה מתמודד.ת ביעילות עם שינויים חשובים בחייך", 
+      label: "בחודש האחרון, באיזו מידה הרגשת שאת.ה מתמודד.ת ביעילות עם שינויים חשובים בחייך", 
       controlName: "q5", 
       type: "radio", 
       options: [

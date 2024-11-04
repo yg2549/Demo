@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
-    width: 85%;
     direction: rtl;
   }
   
@@ -36,7 +35,7 @@
   .answer-options {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
   }
   
   .bubble.answer-input {
@@ -49,7 +48,7 @@
   .radio-options {
     display: flex;
     flex-direction: row; /* Align options in a row */
-    justify-content: flex-start; /* Align to the right */
+    justify-content: center; /* Align to the right */
   }
   
   .radio-container {

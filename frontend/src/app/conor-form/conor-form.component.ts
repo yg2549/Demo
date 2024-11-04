@@ -1,4 +1,4 @@
-import { NgIf, NgSwitchCase, NgSwitch, NgForOf, ViewportScroller } from '@angular/common';
+import { NgIf, NgSwitchCase, NgSwitch, NgForOf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -15,12 +15,12 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
   @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
   conorForm: FormGroup;
   intro = "";
-  conclusion = "תודה רבה על התשובות. זה טבעי לחוש ככה. בואי נמשיך.";
+  conclusion = "תודה רבה על התשובות. זה טבעי לחוש ככה. בוא.י נמשיך.";
   showConclusion = false;
   // scrollContainer: any
   questions = [
     { 
-      label: "חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד: אני מצליח.ה להסתגל לשינויים", 
+      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: אני מצליח.ה להסתגל לשינויים", 
       controlName: "q1",
       type: "radio", 
       options: [
@@ -32,7 +32,7 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
       ]   
     },
     { 
-      label: "חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד: אני יכול.ה להתמודד עם כל דבר", 
+      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: אני יכול.ה להתמודד עם כל דבר", 
       controlName: "q2", 
       type: "radio", 
       options: [
@@ -44,7 +44,7 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
       ]     
     },
     { 
-      label:"חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד: אני רואה את הצד המשעשע בדברים", 
+      label:"חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: אני רואה את הצד המשעשע בדברים", 
       controlName: "q3", 
       type: "radio", 
       options: [
@@ -56,7 +56,7 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
       ]   
     },
     { 
-      label: "חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד: התמודדות עם לחץ מחזקת אותי", 
+      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: התמודדות עם לחץ מחזקת אותי", 
       controlName: "q4", 
       type: "radio", 
       options: [
@@ -68,7 +68,7 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
       ]  
     },
     { 
-      label: "חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד: אני נוטה להתאושש בקלות ממחלה או קושי", 
+      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: אני נוטה להתאושש בקלות ממחלה או קושי", 
       controlName: "q5", 
       type: "radio", 
       options: [
@@ -80,7 +80,7 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
       ]   
     },
     { 
-      label: "חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד: תחת לחץ, אני מתמקד.ת וחושב בבהירות", 
+      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: תחת לחץ, אני מתמקד.ת וחושב בבהירות", 
       controlName: "q6", 
       type: "radio", 
       options: [
@@ -92,7 +92,7 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
       ]   
     },
     { 
-      label: "חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד: אני יכול.ה להשיג את המטרות שלי למרות הקשיים", 
+      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: אני יכול.ה להשיג את המטרות שלי למרות הקשיים", 
       controlName: "q7", 
       type: "radio", 
       options: [
@@ -104,7 +104,7 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
       ]    
     },
     { 
-      label: "חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד: אני לא מתייאש.ת בקלות מכישלונות", 
+      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: אני לא מתייאש.ת בקלות מכישלונות", 
       controlName: "q8", 
       type: "radio", 
       options: [
@@ -116,7 +116,7 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
       ]    
     },
     { 
-      label: "חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד: אני חושב.ת על עצמי כעל אדם חזק", 
+      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: אני חושב.ת על עצמי כעל אדם חזק", 
       controlName: "q9", 
       type: "radio", 
       options: [
@@ -128,7 +128,7 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
       ]  
     },
     { 
-      label: "חשבי על החודש האחרון, עד כמה נכון לגביך ההיגד אני: יכול.ה להתמודד עם רגשות לא נעימים", 
+      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד אני: יכול.ה להתמודד עם רגשות לא נעימים", 
       controlName: "q10", 
       type: "radio", 
       options: [
@@ -148,7 +148,7 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
     private fb: FormBuilder,
     private http: HttpClient, // Inject HttpClient here
     private router: Router,
-    private scroller: ViewportScroller
+    // private scroller: ViewportScroller
   ) {
     this.conorForm = this.fb.group({});
     this.questions.forEach(question => {
@@ -157,7 +157,6 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
   }
 
   ngAfterViewInit(): void {
-    // this.scrollToBottom();
   }
   ngAfterViewChecked() {
     this.scrollToBottom(); // Call scroll after each check
@@ -171,7 +170,6 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
     this.showAnswers = false; // Hide options initially
     setTimeout(() => {
       this.showAnswers = true; // Show options after delay
-      this.scrollToBottom();
     }, 1000); // Adjust delay time (in milliseconds) as needed
   }
 
@@ -187,8 +185,8 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
 
   moveToNextQuestion() {
     this.currentQuestionIndex++;
-    this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
-    this.scroller.scrollToPosition([0, this.scrollContainer.nativeElement.scrollHeight])
+    // this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
+    // this.scroller.scrollToPosition([0, this.scrollContainer.nativeElement.scrollHeight])
     
     if (this.currentQuestionIndex < this.questions.length) {
       this.showQuestionWithDelay(); // Show next question with a delay for answer options
@@ -198,6 +196,7 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
   }
 
   private scrollToBottom(): void {
+    // console.log("called");
     setTimeout(() =>{
       this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
     },500)

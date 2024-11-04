@@ -8,6 +8,10 @@
   overflow-y: scroll;
   direction: rtl;
 }
+* {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: large;
+}
 
 #scrollContainer {
   scroll-behavior: smooth;

@@ -1,4 +1,4 @@
-<form [formGroup]="conclusionForm" (ngSubmit)="onSubmit()" class="form">
+<form [formGroup]="conclusionForm" (ngSubmit)="onSubmit()" class="form" id='scrollContainer' #scrollContainer style="overflow-y: auto; height: 650px;">
     <ng-container *ngFor="let item of displayedItems; let i = index">
   
       <!-- Left-Aligned Question or Statement Bubble -->

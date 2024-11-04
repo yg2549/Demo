@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgIf, NgSwitchCase, NgSwitch, NgForOf } from '@angular/common';
@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./lightup-intro.component.css'], // Corrected from styleUrl to styleUrls
   imports: [ReactiveFormsModule, NgIf, NgSwitchCase, NgSwitch, NgForOf]
 })
-export class LightupIntroComponent {
+export class LightupIntroComponent implements AfterViewChecked{
+  @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
   introForm: FormGroup;
   displayedItems: Array<any> = [];
   showAnswers1 = false;
@@ -26,12 +27,12 @@ export class LightupIntroComponent {
     },
     {
       outputType: "statement",
-      content: "השנה האחרונה הייתה מטלטלת עבור כולנו ורבים מאיתנו חווים קשיים שונים ביום יום בעקבות כך. השאלון הבא יאפשר לנו להכיר אותך קצת יותר ולהבין מה את חשה היום ובזמן הזה. דרכו נוכל להבין כיצד לבנות יחד תהליך משמעותי ומועיל לאורך התכנית. השאלון אנונימי, לא נשמרים פרטים מזהים שלך."
+      content: "השנה האחרונה הייתה מטלטלת עבור כולנו ורבים מאיתנו חווים קשיים שונים ביום יום בעקבות כך. השאלון הבא יאפשר לנו להכיר אותך קצת יותר ולהבין מה את.ה חש.ה היום ובזמן הזה. דרכו נוכל להבין כיצד לבנות יחד תהליך משמעותי ומועיל לאורך התכנית. השאלון אנונימי, לא נשמרים פרטים מזהים שלך."
     },
     {
       outputType: "question",
       type: "radio",
-      label: "לפני שנמשיך, תוכל/י בבקשה לסמן מה המגדר שלך?",
+      label: "לפני שנמשיך, תוכל.י בבקשה לסמן מה המגדר שלך?",
       controlName: "gender",
       options: [
         {label: "זכר", value: "man"},
@@ -46,7 +47,7 @@ export class LightupIntroComponent {
     {
       outputType: "question",
       type: "text",
-      label: "תרצי לשתף איך את מרגישה היום?",
+      label: "תרצ.י לשתף איך את מרגישה היום?",
       controlName: "wellbeing"
     }
 
@@ -67,6 +68,15 @@ export class LightupIntroComponent {
   ngOnInit() {
     // Show answer options for the first question after a short delay
     this.showNextItem();
+  }
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+  }
+  private scrollToBottom(): void {
+    // console.log("called");
+    setTimeout(() =>{
+      this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
+    },500)
   }
   showNextItem() {
     if (this.currentIndex < this.outputs.length) {

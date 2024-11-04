@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgIf, NgSwitchCase, NgSwitch, NgForOf } from '@angular/common';
@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./conclusion.component.css'], // Corrected from styleUrl to styleUrls
   imports: [ReactiveFormsModule, NgIf, NgSwitchCase, NgSwitch, NgForOf]
 })
-export class ConclusionComponent {
+export class ConclusionComponent implements AfterViewChecked{
+  @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
   conclusionForm: FormGroup;
   displayedItems: Array<any> = [];
   showAnswers = false;
@@ -21,7 +22,7 @@ export class ConclusionComponent {
     {
       outputType: "question",
       type: "radio",
-      label: "האם שמת לב לשינויים במחזור החודשי שלך בחודשים האחרונים?",
+      label: "האם שמת לב לשינויים במחזור החודשי שלך בחודשים האחרונים",
       controlName: "menstrualChanges",
       options: [
         {label: "כן", value: true},
@@ -35,7 +36,7 @@ export class ConclusionComponent {
     {
       outputType: "question",
       type: "text",
-      label: "תרצי לספר מה השינויים אליהם שמת לב?",
+      label: "תרצי לספר מה השינויים אליהם שמת לב",
       controlName: "changesExplained"
     },
     {
@@ -43,18 +44,14 @@ export class ConclusionComponent {
       content: "תודה רבה ששיתפת."
     },
     {
-      outputType: "statement",
-      content: "מעולה, ענית על הכל, התשובות שלך יעזורו לצוות בחווה לבנות תוכנית מותאמת עבורך."
-    },
-    {
       outputType: "question",
       type: "text",
-      label: "יש עוד משהו שתרצי לשתף?",
+      label: "יש עוד משהו שתרצ.י לשתף?",
       controlName: "additional comments"
     },
     {
       outputType: "statement",
-      content: "תודה רבה ששיתפת."
+      content: "מעולה, ענית על הכל, התשובות שלך יעזורו לצוות בחווה לבנות תוכנית מותאמת עבורך."
     },
 
   ]
@@ -74,9 +71,13 @@ export class ConclusionComponent {
     // Show answer options for the first question after a short delay
     this.showNextItem();
   }
-  skipQuestion() {
-    this.currentIndex++;
-    this.showNextItem();
+  ngAfterViewChecked() {
+    this.scrollToBottom(); // Call scroll after each check
+  }
+  private scrollToBottom(): void {
+    setTimeout(() =>{
+      this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
+    },500)
   }
   showNextItem() {
     console.log(this.currentIndex);
@@ -95,10 +96,12 @@ export class ConclusionComponent {
         this.showNextItem();
       }
       else{
-        this.displayedItems.push(currentItem); // Add current item to displayedItems array
+        setTimeout(() => this.displayedItems.push(currentItem), 500);
+         // Add current item to displayedItems array
         if (currentItem.outputType === 'statement') {
           this.currentIndex++;
-          setTimeout(() => this.showNextItem(), 2000); // Delay to show next statement
+          setTimeout(() => this.showNextItem(), 
+          1000); // Delay to show next statement
             // setTimeout(() => this.showNextItem(), 1); // use shorter delay for testing
         }
         else if (currentItem.outputType === 'question') {
@@ -106,8 +109,8 @@ export class ConclusionComponent {
             this.showAnswers = false; // Initially hide answers
             setTimeout(() => {
               this.showAnswers = true; // Show answers after delay
-            // }, 1000); // Delay before showing radio options
-            }, 1); //use a shorter delay for testing
+            }, 1000); // Delay before showing radio options
+            // }, 1); //use a shorter delay for testing
           }
           this.currentIndex++; // Move to next item after showing question
         }
@@ -118,8 +121,8 @@ export class ConclusionComponent {
     this.showAnswers = false; // Hide options initially
     setTimeout(() => {
       this.showAnswers = true; // Show options after delay
-    // }, 500); // Adjust delay time (in milliseconds) as needed
-    }, 1); //use a shorter delay for testing
+    }, 3000); // Adjust delay time (in milliseconds) as needed
+    // }, 1); //use a shorter delay for testing
   }
   onAnswerSelected() {
     if (this.conclusionForm.value.menstrualChanges == true){
@@ -142,6 +145,6 @@ export class ConclusionComponent {
       });
       setTimeout(() => {
         this.router.navigate(['/'])
-      }, 4000)
+      }, 5000)
   }
 }

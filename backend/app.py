@@ -79,4 +79,4 @@ def aggregate_results(user):
         
         return [gender, conor_sum, stress_sum, written_answers]
 CORS(app)
-app.run()
+app.run(host='0.0.0.0', port=5000)

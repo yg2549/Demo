@@ -4,7 +4,6 @@ from flask_cors import CORS
 import os
 import json
 import pymongo
-from User import User
 import pandas
 import openpyxl
 

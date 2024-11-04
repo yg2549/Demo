@@ -71,38 +71,55 @@ export class LightupIntroComponent implements AfterViewChecked{
   }
   ngAfterViewChecked(): void {
     this.scrollToBottom();
+    
   }
   private scrollToBottom(): void {
     // console.log("called");
-    setTimeout(() =>{
-      this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
-    },500)
+    this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
   }
   showNextItem() {
     if (this.currentIndex < this.outputs.length) {
       const currentItem = this.outputs[this.currentIndex];
-      this.displayedItems.push(currentItem); // Add current item to displayedItems array
+      if(this.currentIndex == 1){
+        setTimeout(() => {
+          this.displayedItems.push(currentItem); // Add current item to displayedItems array
+        }, 10000)
+      }
+      else if(this.currentIndex == 2){
+        setTimeout(() => {
+          this.displayedItems.push(currentItem); // Add current item to displayedItems array
+        }, 18000)
+      }
+      else{
+        setTimeout(() => {
+          this.displayedItems.push(currentItem); // Add current item to displayedItems array
+        }, 500)
+      }
 
       if (currentItem.outputType === 'statement') {
-        this.currentIndex++;
-        setTimeout(() => this.showNextItem(), 2000); // Delay to show next statement
+        
+        // setTimeout(() => {
+          this.currentIndex++;
+          this.showNextItem()
+        // }, 10000); // Delay to show next statement
 
       }
       else if (currentItem.outputType === 'question') {
         if(currentItem.type == 'radio'){
           setTimeout(() => {
             this.showAnswers1 = true; // Show answers after delay
-          }, 1000); // Delay before showing radio options
+          }, 5000); // Delay before showing radio options
         }
         else{
           setTimeout(() => {
             this.showAnswers2 = true; // Show answers after delay
-          }, 1000); // Delay before showing radio options
+          }, 500); // Delay before showing radio options
           setTimeout(() => {
             this.showSubmit = true; // Show answers after delay
-          }, 3000); // Delay before showing radio options
+          }, 1000); // Delay before showing radio options
         }
         this.currentIndex++; // Move to next item after showing question
+        
       }
     }
   }

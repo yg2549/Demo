@@ -9,6 +9,8 @@ flask = "*"
 flask-cors = "*"
 pymongo = "*"
 gunicorn = "*"
+pandas = "*"
+openpyxl = "*"
 
 [dev-packages]
 

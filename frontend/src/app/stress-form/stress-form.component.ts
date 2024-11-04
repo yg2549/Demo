@@ -60,11 +60,11 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
       controlName: "q4", 
       type: "radio", 
       options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
+        { label: "כמעט אף פעם", value: 4},
+        { label: "לעיתים רחוקות", value: 3 },
         { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
+        { label: "לעיתים קרובות", value: 1 },
+        { label: "לעיתים קרובות מאד", value: 0}
       ]
     },
     // { 

@@ -41,17 +41,17 @@ export class ConclusionComponent implements AfterViewChecked{
     },
     {
       outputType: "statement",
-      content: "תודה רבה ששיתפת."
+      content: "תודה רבה ששיתפת"
     },
     {
       outputType: "question",
       type: "text",
-      label: "יש עוד משהו שתרצ.י לשתף?",
+      label: "יש עוד משהו שתרצ.י לשתף",
       controlName: "additional comments"
     },
     {
       outputType: "statement",
-      content: "מעולה, ענית על הכל, התשובות שלך יעזורו לצוות בחווה לבנות תוכנית מותאמת עבורך."
+      content: "מעולה, ענית על הכל, התשובות שלך יעזורו לצוות בחווה לבנות תוכנית מותאמת עבורך"
     },
 
   ]

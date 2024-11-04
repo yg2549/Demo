@@ -14,7 +14,7 @@
 }
 
 #scrollContainer {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 .bubble {

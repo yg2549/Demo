@@ -32,7 +32,7 @@ export class LightupIntroComponent implements AfterViewChecked{
     {
       outputType: "question",
       type: "radio",
-      label: "לפני שנמשיך, תוכל.י בבקשה לסמן מה המגדר שלך?",
+      label: "לפני שנמשיך, תוכל.י בבקשה לסמן מה המגדר שלך",
       controlName: "gender",
       options: [
         {label: "זכר", value: "man"},
@@ -47,7 +47,7 @@ export class LightupIntroComponent implements AfterViewChecked{
     {
       outputType: "question",
       type: "text",
-      label: "תרצ.י לשתף איך את מרגישה היום?",
+      label: "תרצ.י לשתף איך את מרגישה היום",
       controlName: "wellbeing"
     }
 

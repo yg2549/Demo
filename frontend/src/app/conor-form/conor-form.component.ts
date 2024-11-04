@@ -15,7 +15,7 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
   @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
   conorForm: FormGroup;
   intro = "";
-  conclusion = "תודה רבה על התשובות. זה טבעי לחוש ככה. בוא.י נמשיך.";
+  conclusion = "תודה רבה על התשובות. זה טבעי לחוש ככה. בוא.י נמשיך";
   showConclusion = false;
   // scrollContainer: any
   questions = [

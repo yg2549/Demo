@@ -81,7 +81,7 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
     },
     {
       statement: "true",
-      label: "בהחלט תקופה מאתגרת, חשוב מאד שאת.ה משתפ.ת ומקדיש.ה זמן לעצמך."
+      label: "בהחלט תקופה מאתגרת, חשוב מאד שאת.ה משתפ.ת ומקדיש.ה זמן לעצמך"
     },
     { 
       label: "בחודש האחרון, באיזו מידה הרגשת בטחון ביכולתך לטפל בבעיותיך האישיות", 

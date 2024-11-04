@@ -142,6 +142,6 @@ export class ConclusionComponent {
       });
       setTimeout(() => {
         this.router.navigate(['/'])
-      }, 1000)
+      }, 4000)
   }
 }

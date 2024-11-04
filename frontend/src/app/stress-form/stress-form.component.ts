@@ -215,7 +215,10 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
   }
   
   ngAfterViewChecked() {
-    this.scrollToBottom(); // Call scroll after each check
+    setTimeout(() => {
+      this.scrollToBottom(); // Call scroll after each check
+    }, 3000)
+    
   }
 
   ngOnInit() {
@@ -262,9 +265,9 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
   }
 
   private scrollToBottom(): void {
-    setTimeout(() =>{
-      this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
-    },500)
+    // setTimeout(() =>{
+      this.scrollContainer.nativeElement.scrollTop = 2 * this.scrollContainer.nativeElement.scrollHeight;
+    // },500)
   }
   getValueName(value: number){
     const options = [

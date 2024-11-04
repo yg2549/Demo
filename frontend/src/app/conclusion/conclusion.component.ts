@@ -141,8 +141,7 @@ export class ConclusionComponent {
         console.log("response", res);
       });
       setTimeout(() => {
-        // this.router.navigate(['/conor-form'])
-      // }, 1000)
-    }, 1)
+        this.router.navigate(['/'])
+      }, 1000)
   }
 }

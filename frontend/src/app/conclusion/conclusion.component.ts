@@ -18,6 +18,7 @@ export class ConclusionComponent implements AfterViewChecked{
   showAnswers = false;
   currentIndex = 0;
   askMenstrual = false;
+  showSubmit = false;
   outputs = [
     {
       outputType: "question",
@@ -125,13 +126,32 @@ export class ConclusionComponent implements AfterViewChecked{
     // }, 1); //use a shorter delay for testing
   }
   onAnswerSelected() {
+    // console.log("here");
+    console.log(this.currentIndex, this.outputs[this.currentIndex])
+    if(this.currentIndex == 5){
+      console.log("hi")
+      setTimeout(() => {
+        this.showSubmit = true; // Show options after delay
+      }, 2000);
+    }
     if (this.conclusionForm.value.menstrualChanges == true){
       this.askMenstrual = true;
     }
-    if (this.currentIndex <= this.outputs.length) {
-      this.showNextItem(); // Move to next item on answer selection
+    if (this.currentIndex == 2 || this.currentIndex == 4){
+      // console.log("here");
+      // setTimeout(() => {
+        this.showNextItem();
+      // }, 1000);
+      // if(this.currentIndex == 4){
+      // }
+    }
+    else if(this.currentIndex < this.outputs.length){
+      this.showNextItem();
     }
     // console.log(this.askMenstrual)
+  }
+  test(){
+    console.log("hi");
   }
   onSubmit(){
     const user = sessionStorage['user'];
@@ -145,6 +165,6 @@ export class ConclusionComponent implements AfterViewChecked{
       });
       setTimeout(() => {
         this.router.navigate(['/'])
-      }, 5000)
+      }, 7000)
   }
 }

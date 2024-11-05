@@ -15,8 +15,8 @@
                 <input
                 type="text"
                 [formControlName]="item.controlName"
-                (change)="onAnswerSelected()"
                 />
+                <button type="button" class="answer-button" (click)="onAnswerSelected()">Continue</button>
             </div>
         </div>
   
@@ -41,5 +41,5 @@
   
     </ng-container>
   
-    <button type="submit" class="submit-button" *ngIf="currentIndex === outputs.length">Complete</button>
+    <button type="submit" class="submit-button" *ngIf="currentIndex === outputs.length && showSubmit === true">Complete</button>
   </form>

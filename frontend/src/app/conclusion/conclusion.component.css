@@ -80,6 +80,7 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    align-items: center;
   }
   .submit-button {
     background-color: #DFF5E1;

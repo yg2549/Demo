@@ -129,7 +129,6 @@ export class ConclusionComponent implements AfterViewChecked{
     // console.log("here");
     console.log(this.currentIndex, this.outputs[this.currentIndex])
     if(this.currentIndex == 5){
-      console.log("hi")
       setTimeout(() => {
         this.showSubmit = true; // Show options after delay
       }, 2000);
@@ -165,6 +164,6 @@ export class ConclusionComponent implements AfterViewChecked{
       });
       setTimeout(() => {
         this.router.navigate(['/'])
-      }, 7000)
+      }, 3000)
   }
 }

@@ -228,6 +228,6 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
 
     setTimeout(() => {
       this.router.navigate(['/stress-form'])
-    }, 4000)
+    }, 3000)
   }
 }

@@ -99,7 +99,7 @@ export class LightupIntroComponent implements AfterViewChecked{
             this.showAnswers2 = true; // Show answers after delay
             setTimeout(() => {
               this.showSubmit = true; // Show answers after delay
-            }, 1000); // Delay before showing radio options
+            }, 2000); // Delay before showing radio options
         }
       }
     }

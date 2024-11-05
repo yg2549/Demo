@@ -68,10 +68,9 @@
   #scrollContainer {
     scroll-behavior: auto;
   }
-  .submit-button {
+  .submit-button, .answer-button {
     width: 30%;
     align-self: center;
-    background-color: #DFF5E1;
     color: black;
     margin-top: 20px;
     padding: 10px 20px;
@@ -79,4 +78,11 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    align-items: center;
+  }
+  .submit-button {
+    background-color: #DFF5E1;
+  }
+  .answer-button {
+    background-color: white;
   }

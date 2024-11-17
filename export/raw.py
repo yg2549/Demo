@@ -13,10 +13,11 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 from bidi.algorithm import get_display
 
-load_dotenv('../backend/.env')
-
-connection = pymongo.MongoClient("mongodb+srv://natalie:Littlemoose728!!@cluster0.zkotp.mongodb.net/?retryWrites=true&w=majority&readPreference=primary&appName=Cluster0")
-db = connection["Tova"].tova_participants
+# load_dotenv('./.env')
+load_dotenv()
+connection = pymongo.MongoClient(os.getenv("MONGO_URI"))
+# print(os.getenv("MONGO_URI"))
+db = connection[os.getenv("MONGO_DBNAME")].tova_participants
 
 intro_questions = {
     "gender": "מגדר",

@@ -7,11 +7,11 @@ import pymongo
 import pandas
 import openpyxl
 
-load_dotenv('./.env')
+load_dotenv()
 responses = []
 app = Flask(__name__, static_folder='static/browser')
 connection = pymongo.MongoClient(os.getenv("MONGO_URI"))
-db = connection["Tova"]
+db = connection[os.getenv("MONGO_DBNAME")].tova_participants
 
 @app.route('/')
 def show_home():
@@ -32,18 +32,15 @@ def serve_static(path):
 @app.route('/api/create-user', methods=["POST"])
 def create_user():
     user = request.data.decode()
-    db.tova_participants.insert_one({"user":user})
-    return make_response({"message":user}, 200)
+    db.insert_one({"user":user})
+    return make_response({"message":"success"}, 200)
 
 @app.route('/api/modify-user', methods=["POST"])
 def modify_user():
-    # print("called")
     user = request.json[0]
     field = request.json[1]
     data = request.json[2]
-    # print(item1)
-    # print(item2)
-    db.tova_participants.update_one({"user":user}, { '$set': { field:data} })
+    db.update_one({"user":user}, { '$set': { field:data} })
     return make_response({"message":"api was called"}, 200)
 
 @app.route('/api/export-results', methods=["POST"])
@@ -104,8 +101,6 @@ def get_results():
         print(str(participant))
     export()
     return make_response({},200)
-
-
 def export():
     # Create a new Excel workbook
     print("called")
@@ -134,7 +129,6 @@ def export():
     workbook.save("tova_results.xlsx")
 # Print a success message
     print("Excel file created successfully!")
-
 def sum_score(form):
     sum = 0
     for key in form.keys():

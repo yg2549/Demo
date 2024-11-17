@@ -13,6 +13,7 @@ app = Flask(__name__, static_folder='static/browser')
 connection = pymongo.MongoClient(os.getenv("MONGO_URI"))
 db = connection[os.getenv("MONGO_DBNAME")].tova_participants
 
+# hello world
 @app.route('/')
 def show_home():
     try:

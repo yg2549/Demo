@@ -45,13 +45,20 @@ def admin_login():
 
 # make admin sign up route/process
 
-@app.route('/api/get-data')
-def get_data():
+@app.route('/api/get-site-data')
+def get_site_data():
     site = request.args.get("site")
     participants = list(db.find({"site":int(site)}))
     data = list(participants)
     for participant in data:
         participant['_id'] = str(participant['_id'])  # Convert ObjectId to string
+    return jsonify(data)
+
+@app.route('/api/get-participant-data')
+def get_participant_data():
+    participant = request.args.get("participant")
+    data = db.find_one({"user":participant})
+    data['_id'] = str(data['_id'])
     return jsonify(data)
 
 @app.route('/<path:path>')

@@ -36,7 +36,9 @@ export class TableComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dbService: DbService, private authService: AuthService) {}
+  constructor(private dbService: DbService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.loadData()
@@ -44,7 +46,6 @@ export class TableComponent implements OnInit{
 
   loadData(): void {
     const site = this.authService.getselectedSite(); // Get selected site from AuthService
-    console.log(site)
 
     if (!site) {
       alert('No site selected. Please log in again.');

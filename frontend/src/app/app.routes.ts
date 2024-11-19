@@ -8,6 +8,7 @@ import { ConclusionComponent } from './questionnaire/conclusion/conclusion.compo
 import { TableComponent } from './admins/dashboard/table/table.component';
 import { AdminLoginComponent } from './admins/admin-login/admin-login.component';
 import { AuthService } from './admins/auth.service';
+import { RawTableComponent } from './admins/dashboard/raw-table/raw-table.component';
 
 export const routes: Routes = [
     { path: '', component: IntroComponent},
@@ -18,4 +19,5 @@ export const routes: Routes = [
     { path: 'conclusion', component: ConclusionComponent},
     { path: 'admin-login', component: AdminLoginComponent},
     { path: 'admins/dashboard/table', component: TableComponent }, // Protect route with AuthService
+    { path: 'raw-table', component: RawTableComponent}
 ];

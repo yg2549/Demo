@@ -6,6 +6,7 @@ import { LightupIntroComponent } from './questionnaire/lightup-intro/lightup-int
 import { IntroComponent } from './questionnaire/intro/intro.component';
 import { ConclusionComponent } from './questionnaire/conclusion/conclusion.component';
 import { TableComponent } from './dashboard/table/table.component';
+import { AdminLoginComponent } from './admins/admin-login/admin-login.component';
 
 export const routes: Routes = [
     { path: '', component: IntroComponent},
@@ -14,5 +15,6 @@ export const routes: Routes = [
     { path: 'conor-form', component: ConorFormComponent },
     { path: 'stress-form', component: StressFormComponent },
     { path: 'conclusion', component: ConclusionComponent},
-    { path: 'table', component: TableComponent}
+    { path: 'table', component: TableComponent},
+    { path: 'admin-login', component: AdminLoginComponent}
 ];

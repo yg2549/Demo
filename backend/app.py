@@ -7,12 +7,14 @@ import json
 import pymongo
 import pandas
 import openpyxl
+from werkzeug.security import check_password_hash, generate_password_hash
 
 load_dotenv()
 responses = []
 app = Flask(__name__, static_folder='static/browser')
 connection = pymongo.MongoClient(os.getenv("MONGO_URI"))
 db = connection[os.getenv("MONGO_DBNAME")].tova_participants
+db2 = connection[os.getenv("MONGO_DBNAME")].admins
 
 # hello world
 @app.route('/')
@@ -26,6 +28,23 @@ def show_home():
     # return make_response({"page":"active"})
     return send_from_directory(app.static_folder, 'index.html')
 # Serve static files from the Angular app
+
+@app.route('/api/admin-login', methods=["POST"])
+def admin_login():
+    data = request.get_json()
+
+    # Retrieve username and password from request
+    username = data.get('username')
+    password = data.get('password')
+
+    # real way to validate but comment for now because no hashed passwords yet
+    user = db2.find_one({"username": username})
+    if user and check_password_hash(user['password'], password):
+        return jsonify({"success": True, "message": "Login successful"})
+    else:
+        return jsonify({"success": False, "message": "Invalid credentials"}), 401
+
+# make admin sign up route/process
 
 @app.route('/api/get-data')
 def get_data():

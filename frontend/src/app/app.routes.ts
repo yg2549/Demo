@@ -5,8 +5,9 @@ import { StressFormComponent } from './questionnaire/stress-form/stress-form.com
 import { LightupIntroComponent } from './questionnaire/lightup-intro/lightup-intro.component';
 import { IntroComponent } from './questionnaire/intro/intro.component';
 import { ConclusionComponent } from './questionnaire/conclusion/conclusion.component';
-import { TableComponent } from './dashboard/table/table.component';
+import { TableComponent } from './admins/dashboard/table/table.component';
 import { AdminLoginComponent } from './admins/admin-login/admin-login.component';
+import { AuthService } from './admins/auth.service';
 
 export const routes: Routes = [
     { path: '', component: IntroComponent},
@@ -15,6 +16,6 @@ export const routes: Routes = [
     { path: 'conor-form', component: ConorFormComponent },
     { path: 'stress-form', component: StressFormComponent },
     { path: 'conclusion', component: ConclusionComponent},
-    { path: 'table', component: TableComponent},
-    { path: 'admin-login', component: AdminLoginComponent}
+    { path: 'admin-login', component: AdminLoginComponent},
+    { path: 'admins/dashboard/table', component: TableComponent }, // Protect route with AuthService
 ];

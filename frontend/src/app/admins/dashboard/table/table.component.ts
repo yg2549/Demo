@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { DbService } from '../db.service';
+import { DbService } from '../../db.service';
 import { NgForOf, NgIf } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
@@ -10,6 +10,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-table',
@@ -28,7 +29,6 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 
 export class TableComponent implements OnInit{
-  // displayedColumns: string[] = ['participant', 'gender', 'well being', 'conor score', 'stress score', 'menstrual changes'];
   displayedColumns: string[] = ['participant', 'date', 'conor', 'stress', 'danger', 'link'];
   dataSource = new MatTableDataSource<{ id: string; date: string; conor: number; stress: number; danger: string; link: string }>([]);
   totalRecords = 0;
@@ -36,14 +36,21 @@ export class TableComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dbService: DbService) {}
+  constructor(private dbService: DbService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loadData()
   }
 
   loadData(): void {
-    this.dbService.getResults().subscribe((data) => {
+    const site = this.authService.getselectedSite(); // Get selected site from AuthService
+    console.log(site)
+
+    if (!site) {
+      alert('No site selected. Please log in again.');
+      return;
+    }
+    this.dbService.getParticipantsBySite(site).subscribe((data) => {
       const formattedData = this.formatData(data)
       this.dataSource.data = formattedData;
       this.totalRecords = data.total;  // Adjust based on your API structure

@@ -32,7 +32,6 @@ def show_home():
 @app.route('/api/admin-login', methods=["POST"])
 def admin_login():
     data = request.get_json()
-
     # Retrieve username and password from request
     username = data.get('username')
     password = data.get('password')
@@ -40,7 +39,7 @@ def admin_login():
     # real way to validate but comment for now because no hashed passwords yet
     user = db2.find_one({"username": username})
     if user and check_password_hash(user['password'], password):
-        return jsonify({"success": True, "message": "Login successful"})
+        return jsonify({"success": True, "message": "Login successful", "site":user['site']})
     else:
         return jsonify({"success": False, "message": "Invalid credentials"}), 401
 
@@ -48,11 +47,12 @@ def admin_login():
 
 @app.route('/api/get-data')
 def get_data():
-    results = list(db.find())
-    participants = [
-        {**doc, "_id": str(doc["_id"])} for doc in results
-    ]
-    return make_response(jsonify([participant for participant in participants]), 200)
+    site = request.args.get("site")
+    participants = list(db.find({"site":int(site)}))
+    data = list(participants)
+    for participant in data:
+        participant['_id'] = str(participant['_id'])  # Convert ObjectId to string
+    return jsonify(data)
 
 @app.route('/<path:path>')
 def serve_static(path):

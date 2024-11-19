@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 from flask import Flask, make_response, request, redirect, url_for, jsonify, send_from_directory
 from flask_cors import CORS
+from datetime import datetime
 import os
 import json
 import pymongo
@@ -41,7 +42,7 @@ def serve_static(path):
 @app.route('/api/create-user', methods=["POST"])
 def create_user():
     user = request.data.decode()
-    db.insert_one({"user":user})
+    db.insert_one({"user":user, "date":datetime.today()})
     return make_response({"message":"success"}, 200)
 
 @app.route('/api/modify-user', methods=["POST"])

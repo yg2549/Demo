@@ -61,7 +61,7 @@ export class TableComponent implements OnInit{
       const danger = this.calculateDanger(conorScore, stressScore);
       const participant_data = {
         id: participant['user'],
-        date: "10-11-2024",
+        date: participant['date'],
         conor: conorScore,
         stress: stressScore,
         danger: danger,

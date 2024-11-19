@@ -1,0 +1,41 @@
+<mat-form-field appearance="outline">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Search">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <ng-container matColumnDef="participant">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Participant</th>
+    <td mat-cell *matCellDef="let element">{{ element['id'] }}</td>
+  </ng-container>
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+    <td mat-cell *matCellDef="let element">{{ element['date'] }}</td>
+  </ng-container>
+  <ng-container matColumnDef="conor">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Conor</th>
+    <td mat-cell *matCellDef="let element">{{ element['conor'] }}</td>
+  </ng-container>
+  <ng-container matColumnDef="stress">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Stress</th>
+    <td mat-cell *matCellDef="let element">{{ element['stress'] }}</td>
+  </ng-container>
+  <ng-container matColumnDef="danger">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Danger</th>
+    <td mat-cell *matCellDef="let element">{{ element['danger'] }}</td>
+  </ng-container>
+  <ng-container matColumnDef="link">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Link</th>
+    <td mat-cell *matCellDef="let element">{{ element['id'] }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator
+  [length]="totalRecords"
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 20]">
+</mat-paginator>

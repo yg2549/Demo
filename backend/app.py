@@ -26,6 +26,14 @@ def show_home():
     return send_from_directory(app.static_folder, 'index.html')
 # Serve static files from the Angular app
 
+@app.route('/api/get-data')
+def get_data():
+    results = list(db.find())
+    participants = [
+        {**doc, "_id": str(doc["_id"])} for doc in results
+    ]
+    return make_response(jsonify([participant for participant in participants]), 200)
+
 @app.route('/<path:path>')
 def serve_static(path):
     return send_from_directory(app.static_folder, path)
@@ -53,7 +61,7 @@ def export_results():
         print(item)
     return make_response({"message":"api was called"}, 200)
 
-@app.route('/get-results')
+# @app.route('/api/get-results')
 def get_results():
     # db.tova_participants.insert_one({
     #     "user":"chappel_roan",

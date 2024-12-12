@@ -2,7 +2,7 @@ import { NgIf, NgSwitchCase, NgSwitch, NgForOf, ViewportScroller } from '@angula
 import { HttpClient } from '@angular/common/http';
 import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,

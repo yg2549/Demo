@@ -9,12 +9,14 @@ import { TableComponent } from './admins/dashboard/table/table.component';
 import { AdminLoginComponent } from './admins/admin-login/admin-login.component';
 import { AuthService } from './admins/auth.service';
 import { RawTableComponent } from './admins/dashboard/raw-table/raw-table.component';
+import { NewQuestionsComponent } from './questionnaire/new-questions/new-questions.component';
 
 export const routes: Routes = [
     { path: '', component: IntroComponent},
     { path: 'intro', component: IntroComponent},
     { path: 'lightup-intro', component: LightupIntroComponent },  // Default route
     { path: 'conor-form', component: ConorFormComponent },
+    { path: 'new-questions', component: NewQuestionsComponent},
     { path: 'stress-form', component: StressFormComponent },
     { path: 'conclusion', component: ConclusionComponent},
     { path: 'admin-login', component: AdminLoginComponent},

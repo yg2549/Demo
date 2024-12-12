@@ -124,7 +124,7 @@ export class LightupIntroComponent implements AfterViewChecked{
         console.log("response", res);
       });
       setTimeout(() => {
-        this.router.navigate(['/conor-form'])
+        this.router.navigate(['/new-questions'])
       }, 1000)
   }
 }

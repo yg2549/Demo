@@ -1,5 +1,5 @@
 {
-    "intro_questions":{
+"intro_questions":{
     "gender": "מגדר",
     "wellbeing": "תרצ.י לשתף איך את מרגישה היום"
     },
@@ -36,7 +36,7 @@
 "conclusion_questions":{
     "menstrualChanges": "האם שמת לב לשינויים במחזור החודשי שלך בחודשים האחרונים",
     "changesExplained": "תרצי לספר מה השינויים אליהם שמת לב",
-    "additional comments":"יש עוד משהו שתרצ.י לשתף"
+    "additionalComments":"יש עוד משהו שתרצ.י לשתף"
 }}
 
 

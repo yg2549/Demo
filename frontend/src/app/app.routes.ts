@@ -18,6 +18,6 @@ export const routes: Routes = [
     { path: 'stress-form', component: StressFormComponent },
     { path: 'conclusion', component: ConclusionComponent},
     { path: 'admin-login', component: AdminLoginComponent},
-    { path: 'admins/dashboard/table', component: TableComponent }, // Protect route with AuthService
-    { path: 'raw-table', component: RawTableComponent}
+    { path: 'admins/dashboard/table', component: TableComponent },
+    { path: ':id', component: RawTableComponent}
 ];

@@ -10,7 +10,7 @@
 
     <!-- Answer Message Bubble on the Left -->
     <div *ngIf="i < currentQuestionIndex && i !== 5" class="bubble answer-input">
-      <p>{{ getValueName(stressForm.get(question.controlName!)?.value)}}</p>
+      <p>{{ getValueName(question.controlName!, stressForm.get(question.controlName!)?.value)}}</p>
     </div>
   </ng-container>
 

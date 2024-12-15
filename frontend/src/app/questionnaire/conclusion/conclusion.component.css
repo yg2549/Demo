@@ -17,6 +17,7 @@
     padding: 10px 15px;
     border-radius: 20px;
     margin: 5px 0;
+    direction: rtl;
   }
   
   /* Statement and Question Label styling (left-aligned) */
@@ -24,6 +25,8 @@
     background-color: #e0f7fa;
     align-self: flex-end; /* Align statement/question label to the left */
     text-align: right;
+    direction: rtl;
+
   }
   
   /* Answer options container aligned to the right */

@@ -46,6 +46,19 @@ export class ConclusionComponent implements AfterViewChecked{
     },
     {
       outputType: "question",
+      type: "radio",
+      label: "עד כמה נכון לגביך ההיגד: הבחירה שלי להכנס לתוכנית LightUp תומכת בי בזמן זה",
+      controlName: "lightUp",
+      options: [
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4}
+      ] 
+    },
+    {
+      outputType: "question",
       type: "text",
       label: "יש עוד משהו שתרצ.י לשתף",
       controlName: "additional comments"

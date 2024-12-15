@@ -1,0 +1,43 @@
+<form [formGroup]="newQuestionsForm" (ngSubmit)="onSubmit()" class="form" id="scrollContainer" #scrollContainer style="overflow-y: auto; height: 550px;">
+    <ng-container *ngFor="let item of displayedItems; let i = index">
+  
+      <!-- Left-Aligned Question or Statement Bubble -->
+      <div *ngIf="item.outputType === 'statement' || item.outputType === 'question'" class="chatbot-bubble statement">
+        <p>{{ item.content || item.label }}</p>
+      </div>
+  
+      <!-- Right-Aligned Answer Bubble for Questions -->
+      <div *ngIf="item.outputType === 'question'" class="response-container">
+  
+        <!-- Text Input for Answer -->
+        <div *ngIf="item.type === 'text' && showAnswers2 === true" class="bubble answer-input right-align">
+          <input
+            type="text"
+            [formControlName]="item.controlName"
+          />
+          <button type="button" class="answer-button" (click)="onAnswerSelected()">Continue</button>
+        </div>
+  
+        <!-- All Radio Options in One Bubble, Right-Aligned -->
+        <div *ngIf="item.type === 'radio' && showAnswers1 === true" class="bubble answer-input right-align">
+          <div class="radio-container" dir="rtl">
+            <ng-container *ngFor="let option of item.options">
+              <label class="radio-option">
+                <input
+                  type="radio"
+                  [formControlName]="item.controlName"
+                  [value]="option.value"
+                  (change)="onAnswerSelected()"
+                />
+                {{ option.label }}
+              </label>
+            </ng-container>
+          </div>
+        </div>
+        
+      </div> <!-- End Right-Aligned Answer Bubble -->
+  
+    </ng-container>
+  
+    <button type="submit" class="submit-button" *ngIf="currentIndex === outputs.length && showSubmit === true">בוא.י נמשיך</button>
+  </form>

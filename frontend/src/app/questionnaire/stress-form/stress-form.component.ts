@@ -269,7 +269,11 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
       this.scrollContainer.nativeElement.scrollTop = 2 * this.scrollContainer.nativeElement.scrollHeight;
     // },500)
   }
-  getValueName(value: number){
+  getValueName(
+    controlName: string,
+    value: number
+    // question: {label: string, controlName: string, type: string, options: []}
+  ){
     const options = [
       { label: "כמעט אף פעם", value: 0},
       { label: "לעיתים רחוקות", value: 1 },
@@ -277,7 +281,23 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
       { label: "לעיתים קרובות", value: 3 },
       { label: "לעיתים קרובות מאד", value: 4}
     ]
-    return options[value].label;
+    const inverse_options = [
+      { label: "כמעט אף פעם", value: 4},
+      { label: "לעיתים רחוקות", value: 3 },
+      { label: "לפעמים", value: 2 },
+      { label: "לעיתים קרובות", value: 1 },
+      { label: "לעיתים קרובות מאד", value: 0}
+    ]
+    // console.log(controlName, value)
+    // return options[1].label
+    if (controlName == "q4" || controlName == "q5" || controlName == "q6" || controlName == "q7" || controlName == "q9" || controlName == "q10" || controlName == "q13"){
+      console.log("detected", value)
+      return inverse_options[4 - value].label;
+    }
+    else{
+      return options[value].label;
+    }
+    
       
   }
           

@@ -21,13 +21,10 @@ export class LightupIntroComponent implements AfterViewChecked{
   showSubmit = false;
   outputs = [
     {
-      outputType: "statement",
-      content: "שלום, אנחנו שמחים מאד שהצטרפת לתוכנית Lightup. במשך שלושת החודשים הבאים נעבור מסע משותף בדרך לבניית שגרה מטיבה. ",
-
-    },
-    {
-      outputType: "statement",
-      content: "השנה האחרונה הייתה מטלטלת עבור כולנו ורבים מאיתנו חווים קשיים שונים ביום יום בעקבות כך. השאלון הבא יאפשר לנו להכיר אותך קצת יותר ולהבין מה את.ה חש.ה היום ובזמן הזה. דרכו נוכל להבין כיצד לבנות יחד תהליך משמעותי ומועיל לאורך התכנית. השאלון אנונימי, לא נשמרים פרטים מזהים שלך."
+      outputType: "question",
+      type: "text",
+      label: "הי, מה שלומך היום?",
+      controlName: "wellbeing"
     },
     {
       outputType: "statement",
@@ -48,12 +45,6 @@ export class LightupIntroComponent implements AfterViewChecked{
       outputType: "statement",
       content: "תודה רבה!"
     },
-    {
-      outputType: "question",
-      type: "text",
-      label: "תרצ.י לשתף איך את מרגישה היום",
-      controlName: "wellbeing"
-    }
 
   ]
   constructor(

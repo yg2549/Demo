@@ -22,18 +22,8 @@ export class LightupIntroComponent implements AfterViewChecked{
   outputs = [
     {
       outputType: "question",
-      type: "text",
-      label: "הי, מה שלומך היום?",
-      controlName: "wellbeing"
-    },
-    {
-      outputType: "statement",
-      content: "השאלון הבא עוזר לנו להבין טוב יותר איך את מרגישה היום ולהתאים את התוכנית טוב יותר עבורך. לא נשמרים פרטים מזהים שלך."
-    },
-    {
-      outputType: "question",
       type: "radio",
-      label: "לפני שנמשיך, תוכל.י בבקשה לסמן מה המגדר שלך",
+      label: "שלום! לפני שנתחיל,סמני בבקשה את המגדר שלך:",
       controlName: "gender",
       options: [
         {label: "זכר", value: "man"},
@@ -44,6 +34,16 @@ export class LightupIntroComponent implements AfterViewChecked{
     {
       outputType: "statement",
       content: "תודה רבה!"
+    },
+    {
+      outputType: "question",
+      type: "text",
+      label: "מה שלומך היום?",
+      controlName: "wellbeing"
+    },
+    {
+      outputType: "statement",
+      content: "השאלון הבא נועד לבחון יחד את ההרגשה שלך בימים אלה. דרכו נוכל ללמוד על התהליך האישי שלך במהלך התכנית ולהתכוונן נכון עבורך. חשוב לדעת: השאלון נעשה באופן אנונימי על מנת לשמור על פרטיותך."
     },
 
   ]

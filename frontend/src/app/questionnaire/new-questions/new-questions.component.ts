@@ -30,7 +30,7 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
     },
     { 
       outputType: "question",
-      label: "אני מצליחה לבטא את עצמי בפתיחות ובכנות ביחסים החברתיים שלי", 
+      label: "אני מצליח.ה לבטא את עצמי בפתיחות ובכנות ביחסים החברתיים שלי", 
       controlName: "q1", 
       type: "radio", 
       options: [
@@ -43,7 +43,7 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
     },
     { 
       outputType: "question",
-      label: "אני מרגיש יוזם ואקטיבי במערכות היחסים החברתיות שלי", 
+      label: "אני מרגיש.ה יוזמ.ת ואקטיבי.ת במערכות היחסים החברתיות שלי", 
       controlName: "q2", 
       type: "radio", 
       options: [
@@ -54,13 +54,9 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
         { label: "נכון כמעט כל הזמן", value: 4}
       ]
     },
-    {
-      outputType: "statement",
-      content: "מזכירים לך שההגדים מתייחסים לחודש האחרון :)"
-    },
     { 
       outputType: "question",
-      label: "אני מרגישה חיונית, בעלת אנרגיות במהלך היום", 
+      label: "אני מרגיש.ה חיוני.ת, בעל.ת אנרגיות במהלך היום", 
       controlName: "q3", 
       type: "radio", 
       options: [
@@ -73,7 +69,7 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
     },
     { 
       outputType: "question",
-      label: "אני מתרגלת שגרה בריאה (לדוגמא שינה בשעות קבועות, אוכל מזין, ספורט)", 
+      label: "אני מתרגל.ת שגרה בריאה (לדוגמא שינה בשעות קבועות, אוכל מזין, ספורט)", 
       controlName: "q4", 
       type: "radio", 
       options: [

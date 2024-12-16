@@ -44,7 +44,7 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
       ]   
     },
     { 
-      label:"בחודש האחרון, באיזו מידה הרגשת עצבני.ת 'לחוצ.ה", 
+      label:"בחודש האחרון, באיזו מידה הרגשת עצבני.ת, לחוצ.ה", 
       controlName: "q3", 
       type: "radio", 
       options: [

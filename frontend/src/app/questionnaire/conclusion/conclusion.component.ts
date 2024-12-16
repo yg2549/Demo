@@ -65,7 +65,7 @@ export class ConclusionComponent implements AfterViewChecked{
     },
     {
       outputType: "statement",
-      content: "מעולה, ענית על הכל, התשובות שלך יעזרו לצוות בחווה לבנות תוכנית מותאמת עבורך"
+      content: "מעולה, ענית על הכל, תודה רבה!"
     },
 
   ]

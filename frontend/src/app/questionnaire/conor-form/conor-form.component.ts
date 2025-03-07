@@ -26,11 +26,11 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
   outputs = [
     {
       outputType: "statement",
-      content: "במהלך השבועיים האחרונים עד כמה התסמינים הבאים הפריעו לך:"
+      content: "במהלך השבועיים האחרונים עד כמה התסמינים הבאים הפריעו לך?"
     },
     { 
       outputType: "question",
-      label: "זיכרונות טורדניים, חוזרים ולא רצויים של החוויה הטראומטית?", 
+      label: "זיכרונות טורדניים, חוזרים ולא רצויים של החוויה הטראומטית", 
       controlName: "q1", 
       type: "radio", 
       options: [
@@ -43,7 +43,7 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
     },
     { 
       outputType: "question",
-      label: "הרגשת מצוקה כאשר משהו הזכיר לך את החוויה הטראומטית?", 
+      label: "הרגשת מצוקה כאשר משהו הזכיר לך את החוויה הטראומטית", 
       controlName: "q2", 
       type: "radio", 
       options: [
@@ -56,7 +56,7 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
     },
     { 
       outputType: "question",
-      label: "הימנעות ממחשבות, רגשות או תחושות גופניות שהזכירו לך את החוויה הטראומטית, (כלומר גורמים מתוך עצמך ולא גורמים חיצוניים)?", 
+      label: "הימנעות ממחשבות, רגשות או תחושות גופניות שהזכירו לך את החוויה הטראומטית, (כלומר גורמים מתוך עצמך ולא גורמים חיצוניים)", 
       controlName: "q3", 
       type: "radio", 
       options: [
@@ -69,7 +69,7 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
     },
     { 
       outputType: "question",
-      label: "הימנעות מגורמים חיצוניים שהזכירו לך את החוויה הטראומטית (כמו: אנשים, מקומות, שיחות, חפצים, פעילויות או מצבים)?", 
+      label: "הימנעות מגורמים חיצוניים שהזכירו לך את החוויה הטראומטית (כמו: אנשים, מקומות, שיחות, חפצים, פעילויות או מצבים)", 
       controlName: "q4", 
       type: "radio", 
       options: [
@@ -82,7 +82,7 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
     },
     { 
       outputType: "question",
-      label: "אמונות שליליות חזקות על עצמך, על אנשים אחרים, או על העולם? (למשל, אני אדם רע ת, משהו ממש לא בסדר איתי, אי אפשר לסמוך על אף אחד, העולם הוא מקום מסוכן לגמרי)", 
+      label: "אמונות שליליות חזקות על עצמך, על אנשים אחרים, או על העולם (למשל, אני אדם רע, משהו ממש לא בסדר איתי, אי אפשר לסמוך על אף אחד, העולם הוא מקום מסוכן לגמרי)", 
       controlName: "q5", 
       type: "radio", 
       options: [
@@ -94,7 +94,7 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
       ]
     },{ 
       outputType: "question",
-      label: "אובדן עניין בפעילויות מהן נהגת ליהנות?", 
+      label: "אובדן עניין בפעילויות מהן נהגת ליהנות", 
       controlName: "q6", 
       type: "radio", 
       options: [
@@ -106,7 +106,7 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
       ]
     },{ 
       outputType: "question",
-      label: "הרגשה שאתה נוטה להיבהל בקלות או מאוד קופצני? ", 
+      label: "הרגשה שאת.ה נוטה להיבהל בקלות או מאוד קופצני.ת", 
       controlName: "q7", 
       type: "radio", 
       options: [
@@ -118,7 +118,7 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
       ]
     },{ 
       outputType: "question",
-      label: "קשיים בריכוז?", 
+      label: "קשיים בריכוז", 
       controlName: "q8", 
       type: "radio", 
       options: [
@@ -225,7 +225,7 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
 
 
     const today = new Date().toLocaleDateString('en-GB');
-    this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "PCL-5_results - "+today, {...this.conorForm.value, sum}])
+    this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "pcl-5_results - "+today, {...this.conorForm.value, sum}])
     .subscribe(res => {
       // const response = JSON.stringify(res);
       console.log("response", res);

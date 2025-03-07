@@ -26,11 +26,11 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
   outputs = [
     {
       outputType: "statement",
-      content: "במהלך השבועיים האחרונים, באיזו תדירות היית מוטרד מכל אחת מן הבעיות הבאות:"
+      content: "במהלך השבועיים האחרונים, באיזו תדירות היית מוטרד מכל אחת מן הבעיות הבאות?"
     },
     { 
       outputType: "question",
-      label: "עניין או הנאה מועטת מעשיית דברים?", 
+      label: "עניין או הנאה מועטת מעשיית דברים", 
       controlName: "q1", 
       type: "radio", 
       options: [
@@ -42,7 +42,7 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
     },
     { 
       outputType: "question",
-      label: "תחושת דכדוך,דיכאון, או חוסר תקווה? ", 
+      label: "תחושת דכדוך, דיכאון, או חוסר תקווה", 
       controlName: "q2", 
       type: "radio", 
       options: [
@@ -54,7 +54,7 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
     },
     { 
       outputType: "question",
-      label: "קשיים בהירדמות או בשינה רציפה, או עודף שינה?", 
+      label: "קשיים בהירדמות או בשינה רציפה, או עודף שינה", 
       controlName: "q3", 
       type: "radio", 
       options: [
@@ -66,7 +66,7 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
     },
     { 
       outputType: "question",
-      label: "תחושה של עייפות או אנרגיה מועטה?", 
+      label: "תחושה של עייפות או אנרגיה מועטה", 
       controlName: "q4", 
       type: "radio", 
       options: [
@@ -78,7 +78,7 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
     },
     { 
       outputType: "question",
-      label: "תיאבון מועט או אכילות יתר?", 
+      label: "תיאבון מועט או אכילות יתר", 
       controlName: "q5", 
       type: "radio", 
       options: [
@@ -90,7 +90,7 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
     },
     { 
       outputType: "question",
-      label: "מרגיש רע לגבי עצמך - מרגיש שאתה כישלון או שאכזבת את עצמך או את משפחתך?", 
+      label: "מרגיש.ה רע לגבי עצמך - מרגיש.ה שאת.ה כישלון או שאכזבת את עצמך או את משפחתך", 
       controlName: "q6", 
       type: "radio", 
       options: [
@@ -102,7 +102,7 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
     },
     { 
       outputType: "question",
-      label: "קושי להתרכז בדברים, כמו קריאה בעיתון או צפייה בטלוויזיה?", 
+      label: "קושי להתרכז בדברים, כמו קריאה בעיתון או צפייה בטלוויזיה", 
       controlName: "q7", 
       type: "radio", 
       options: [
@@ -114,7 +114,7 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
     },
     { 
       outputType: "question",
-      label: "היית מדבר או נע באיטיות עד שאחרים הבחינו בכך? או להיפך  - היית חסר שקט ומנוחה כך שהיית צריך להסתובב יותר מהרגיל?", 
+      label: "היית מדבר.ת או נע.ה באיטיות עד שאחרים הבחינו בכך? או להיפך  - היית חסר.ת שקט ומנוחה כך שהיית צריכ.ה להסתובב יותר מהרגיל", 
       controlName: "q8", 
       type: "radio", 
       options: [
@@ -208,7 +208,7 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
     }, 1000)
   // }, 1)
     const user = sessionStorage['user'];
-    
+
     const values = Object.values(this.newQuestionsForm.value) as number[]; // Type assertion
     let sum = 0;
     values.forEach((num: number) => {
@@ -216,7 +216,7 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
     });
 
     const today = new Date().toLocaleDateString('en-GB');
-    this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "PHQ-9_results - "+today, {...this.newQuestionsForm.value, sum}])
+    this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "phq-9_results - "+today, {...this.newQuestionsForm.value, sum}])
       .subscribe(res => {
         // const response = JSON.stringify(res);
         console.log("response", res);

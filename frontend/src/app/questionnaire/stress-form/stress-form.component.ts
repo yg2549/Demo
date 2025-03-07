@@ -26,11 +26,11 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
   outputs = [
     {
       outputType: "statement",
-      content: "במהלך השבועיים האחרונים, באיזו תדירות היית מוטרד מכל אחת מן הבעיות הבאות:"
+      content: "במהלך השבועיים האחרונים, באיזו תדירות היית מוטרד.ת מכל אחת מן הבעיות הבאות?"
     },
     { 
       outputType: "question",
-      label: "הרגשתי עצבני , חרד או מתוח מאוד?", 
+      label: "הרגשתי עצבני.ת , חרד.ה או מתוח.ה מאוד", 
       controlName: "q1", 
       type: "radio", 
       options: [
@@ -42,7 +42,7 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
     },
     { 
       outputType: "question",
-      label: "לא הייתי מסוגל להספיק לדאוג או לשלוט בדאגה?", 
+      label: "לא הייתי מסוגל.ת להפסיק לדאוג או לשלוט בדאגה?", 
       controlName: "q2", 
       type: "radio", 
       options: [
@@ -54,7 +54,7 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
     },
     { 
       outputType: "question",
-      label: "הייתי מודאג יותר מידי בנוגע לדברים שונים?", 
+      label: "הייתי מודאג.ת יותר מידי בנוגע לדברים שונים?", 
       controlName: "q3", 
       type: "radio", 
       options: [
@@ -66,7 +66,7 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
     },
     { 
       outputType: "question",
-      label: "התקשיתי להירגע?", 
+      label: "התקשיתי להירגע", 
       controlName: "q4", 
       type: "radio", 
       options: [
@@ -77,7 +77,7 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
       ]
     },{ 
       outputType: "question",
-      label: "הייתי כל כך חסר מנוחה שהיה לי קשה לשבת מבלי לנוע?", 
+      label: "הייתי כל כך חסר.ת מנוחה שהיה לי קשה לשבת מבלי לנוע", 
       controlName: "q5", 
       type: "radio", 
       options: [
@@ -88,7 +88,7 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
       ]
     },{ 
       outputType: "question",
-      label: "הייתי מתעצבן ומתרגז בקלות?", 
+      label: "הייתי מתעצבנ.ת ומתרגז.ת בקלות", 
       controlName: "q6", 
       type: "radio", 
       options: [
@@ -99,7 +99,7 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
       ]
     },{ 
       outputType: "question",
-      label: "פחדתי כאילו משהו נורא עלול לקרות?", 
+      label: "פחדתי כאילו משהו נורא עלול לקרות", 
       controlName: "q7", 
       type: "radio", 
       options: [
@@ -203,7 +203,7 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
 
     const today = new Date().toLocaleDateString('en-GB');
     
-    this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "stress_results - "+today, {...this.stressForm.value, sum}])
+    this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "gad-7_results - "+today, {...this.stressForm.value, sum}])
     .subscribe(res => {
       // const response = JSON.stringify(res);
       console.log("response", res);

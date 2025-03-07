@@ -27,7 +27,7 @@ export class IntroComponent {
     const user = this.form.value.user;
     console.log("user",user)
     sessionStorage.setItem('user', user);
-    this.http.post('https://tovademo.onrender.com/api/modify-user', user)
+    this.http.post('https://tovademo.onrender.com/api/create-user', user)
       .subscribe(res => {
         // const response = JSON.stringify(res);
         console.log("response", res);

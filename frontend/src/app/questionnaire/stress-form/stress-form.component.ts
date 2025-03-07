@@ -26,58 +26,87 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
   outputs = [
     {
       outputType: "statement",
-      content: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההגדים הבאים"
+      content: "במהלך השבועיים האחרונים, באיזו תדירות היית מוטרד מכל אחת מן הבעיות הבאות:"
     },
     { 
       outputType: "question",
-      label: "אני מצליח.ה לבטא את עצמי בפתיחות ובכנות ביחסים החברתיים שלי", 
+      label: "הרגשתי עצבני , חרד או מתוח מאוד?", 
       controlName: "q1", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
+        { label: "כלל לא", value: 0},
+        { label: "מספר ימים", value: 1 },
+        { label: "ביותר ממחצית מן הימים ", value: 2 },
+        { label: "כמעט כל יום ", value: 3 }
       ]
     },
     { 
       outputType: "question",
-      label: "אני מרגיש.ה יוזמ.ת ואקטיבי.ת במערכות היחסים החברתיות שלי", 
+      label: "לא הייתי מסוגל להספיק לדאוג או לשלוט בדאגה?", 
       controlName: "q2", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
+        { label: "כלל לא", value: 0},
+        { label: "מספר ימים", value: 1 },
+        { label: "ביותר ממחצית מן הימים ", value: 2 },
+        { label: "כמעט כל יום ", value: 3 }
       ]
     },
     { 
       outputType: "question",
-      label: "אני מרגיש.ה חיוני.ת, בעל.ת אנרגיות במהלך היום", 
+      label: "הייתי מודאג יותר מידי בנוגע לדברים שונים?", 
       controlName: "q3", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
+        { label: "כלל לא", value: 0},
+        { label: "מספר ימים", value: 1 },
+        { label: "ביותר ממחצית מן הימים ", value: 2 },
+        { label: "כמעט כל יום ", value: 3 }
       ]
     },
     { 
       outputType: "question",
-      label: "אני מתרגל.ת שגרה בריאה (לדוגמא שינה בשעות קבועות, אוכל מזין, ספורט)", 
+      label: "התקשיתי להירגע?", 
       controlName: "q4", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
+        { label: "כלל לא", value: 0},
+        { label: "מספר ימים", value: 1 },
+        { label: "ביותר ממחצית מן הימים ", value: 2 },
+        { label: "כמעט כל יום ", value: 3 }
+      ]
+    },{ 
+      outputType: "question",
+      label: "הייתי כל כך חסר מנוחה שהיה לי קשה לשבת מבלי לנוע?", 
+      controlName: "q5", 
+      type: "radio", 
+      options: [
+        { label: "כלל לא", value: 0},
+        { label: "מספר ימים", value: 1 },
+        { label: "ביותר ממחצית מן הימים ", value: 2 },
+        { label: "כמעט כל יום ", value: 3 }
+      ]
+    },{ 
+      outputType: "question",
+      label: "הייתי מתעצבן ומתרגז בקלות?", 
+      controlName: "q6", 
+      type: "radio", 
+      options: [
+        { label: "כלל לא", value: 0},
+        { label: "מספר ימים", value: 1 },
+        { label: "ביותר ממחצית מן הימים ", value: 2 },
+        { label: "כמעט כל יום ", value: 3 }
+      ]
+    },{ 
+      outputType: "question",
+      label: "פחדתי כאילו משהו נורא עלול לקרות?", 
+      controlName: "q7", 
+      type: "radio", 
+      options: [
+        { label: "כלל לא", value: 0},
+        { label: "מספר ימים", value: 1 },
+        { label: "ביותר ממחצית מן הימים ", value: 2 },
+        { label: "כמעט כל יום ", value: 3 }
       ]
     },
   ]
@@ -149,11 +178,10 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
   }
   getValueName(value: number){
     const options = [
-      { label: "לא נכון בכלל", value: 0},
-      { label: "נכון לעיתים רחוקות", value: 1 },
-      { label: "לפעמים נכון", value: 2 },
-      { label: "נכון לעיתים קרובות", value: 3 },
-      { label: "נכון כמעט כל הזמן", value: 4}
+      { label: "כלל לא", value: 0},
+      { label: "מספר ימים", value: 1 },
+      { label: "ביותר ממחצית מן הימים ", value: 2 },
+      { label: "כמעט כל יום ", value: 3 }
     ]
     return options[value].label;
       

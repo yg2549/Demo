@@ -26,58 +26,107 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
   outputs = [
     {
       outputType: "statement",
-      content: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההגדים הבאים"
+      content: "במהלך השבועיים האחרונים עד כמה התסמינים הבאים הפריעו לך:"
     },
     { 
       outputType: "question",
-      label: "אני מצליח.ה לבטא את עצמי בפתיחות ובכנות ביחסים החברתיים שלי", 
+      label: "זיכרונות טורדניים, חוזרים ולא רצויים של החוויה הטראומטית?", 
       controlName: "q1", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
+        { label: "כלל לא", value: 0},
+        { label: " במידה מועטה", value: 1 },
+        { label: "באופן בינוני", value: 2 },
+        { label: "במידה רבה", value: 3 },
+        { label: "באופן קיצוני", value: 4}
       ]
     },
     { 
       outputType: "question",
-      label: "אני מרגיש.ה יוזמ.ת ואקטיבי.ת במערכות היחסים החברתיות שלי", 
+      label: "הרגשת מצוקה כאשר משהו הזכיר לך את החוויה הטראומטית?", 
       controlName: "q2", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
+        { label: "כלל לא", value: 0},
+        { label: " במידה מועטה", value: 1 },
+        { label: "באופן בינוני", value: 2 },
+        { label: "במידה רבה", value: 3 },
+        { label: "באופן קיצוני", value: 4}
       ]
     },
     { 
       outputType: "question",
-      label: "אני מרגיש.ה חיוני.ת, בעל.ת אנרגיות במהלך היום", 
+      label: "הימנעות ממחשבות, רגשות או תחושות גופניות שהזכירו לך את החוויה הטראומטית, (כלומר גורמים מתוך עצמך ולא גורמים חיצוניים)?", 
       controlName: "q3", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
+        { label: "כלל לא", value: 0},
+        { label: " במידה מועטה", value: 1 },
+        { label: "באופן בינוני", value: 2 },
+        { label: "במידה רבה", value: 3 },
+        { label: "באופן קיצוני", value: 4}
       ]
     },
     { 
       outputType: "question",
-      label: "אני מתרגל.ת שגרה בריאה (לדוגמא שינה בשעות קבועות, אוכל מזין, ספורט)", 
+      label: "הימנעות מגורמים חיצוניים שהזכירו לך את החוויה הטראומטית (כמו: אנשים, מקומות, שיחות, חפצים, פעילויות או מצבים)?", 
       controlName: "q4", 
       type: "radio", 
       options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
+        { label: "כלל לא", value: 0},
+        { label: " במידה מועטה", value: 1 },
+        { label: "באופן בינוני", value: 2 },
+        { label: "במידה רבה", value: 3 },
+        { label: "באופן קיצוני", value: 4}
+      ]
+    },
+    { 
+      outputType: "question",
+      label: "אמונות שליליות חזקות על עצמך, על אנשים אחרים, או על העולם? (למשל, אני אדם רע ת, משהו ממש לא בסדר איתי, אי אפשר לסמוך על אף אחד, העולם הוא מקום מסוכן לגמרי)", 
+      controlName: "q5", 
+      type: "radio", 
+      options: [
+        { label: "כלל לא", value: 0},
+        { label: " במידה מועטה", value: 1 },
+        { label: "באופן בינוני", value: 2 },
+        { label: "במידה רבה", value: 3 },
+        { label: "באופן קיצוני", value: 4}
+      ]
+    },{ 
+      outputType: "question",
+      label: "אובדן עניין בפעילויות מהן נהגת ליהנות?", 
+      controlName: "q6", 
+      type: "radio", 
+      options: [
+        { label: "כלל לא", value: 0},
+        { label: " במידה מועטה", value: 1 },
+        { label: "באופן בינוני", value: 2 },
+        { label: "במידה רבה", value: 3 },
+        { label: "באופן קיצוני", value: 4}
+      ]
+    },{ 
+      outputType: "question",
+      label: "הרגשה שאתה נוטה להיבהל בקלות או מאוד קופצני? ", 
+      controlName: "q7", 
+      type: "radio", 
+      options: [
+        { label: "כלל לא", value: 0},
+        { label: " במידה מועטה", value: 1 },
+        { label: "באופן בינוני", value: 2 },
+        { label: "במידה רבה", value: 3 },
+        { label: "באופן קיצוני", value: 4}
+      ]
+    },{ 
+      outputType: "question",
+      label: "קשיים בריכוז?", 
+      controlName: "q8", 
+      type: "radio", 
+      options: [
+        { label: "כלל לא", value: 0},
+        { label: " במידה מועטה", value: 1 },
+        { label: "באופן בינוני", value: 2 },
+        { label: "במידה רבה", value: 3 },
+        { label: "באופן קיצוני", value: 4}
       ]
     },
   ]
@@ -149,11 +198,11 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
   }
   getValueName(value: number){
     const options = [
-      { label: "לא נכון בכלל", value: 0},
-      { label: "נכון לעיתים רחוקות", value: 1 },
-      { label: "לפעמים נכון", value: 2 },
-      { label: "נכון לעיתים קרובות", value: 3 },
-      { label: "נכון כמעט כל הזמן", value: 4}
+      { label: "כלל לא", value: 0},
+      { label: " במידה מועטה", value: 1 },
+      { label: "באופן בינוני", value: 2 },
+      { label: "במידה רבה", value: 3 },
+      { label: "באופן קיצוני", value: 4}
     ]
     return options[value].label;
       
@@ -166,8 +215,17 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
     }, 1000)
   // }, 1)
     const user = sessionStorage['user'];
+
+
+    const values = Object.values(this.conorForm.value) as number[]; // Type assertion
+    let sum = 0;
+    values.forEach((num: number) => {
+      sum += num;
+    });
+
+
     const today = new Date().toLocaleDateString('en-GB');
-    this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "conor_results - "+today, this.conorForm.value])
+    this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "PCL-5_results - "+today, {...this.conorForm.value, sum}])
     .subscribe(res => {
       // const response = JSON.stringify(res);
       console.log("response", res);

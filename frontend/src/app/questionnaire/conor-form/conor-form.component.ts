@@ -11,17 +11,27 @@ import { Router, RouterOutlet } from '@angular/router';
   styleUrls: ['./conor-form.component.css'], // Replace with your actual styles URL
   imports: [ReactiveFormsModule, NgIf, NgSwitchCase, NgSwitch, NgForOf]
 })
-export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewChecked {
+export class ConorFormComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
   conorForm: FormGroup;
   intro = "";
-  conclusion = "תודה רבה על התשובות. זה טבעי לחוש ככה. בוא.י נמשיך";
+  conclusion = "continue";
   showConclusion = false;
-  // scrollContainer: any
-  questions = [
+  displayedItems: Array<any> = [];
+  showAnswers1 = false;
+  showAnswers2 = false;
+  currentIndex = 0;
+  showSubmit = false;
+
+  outputs = [
+    {
+      outputType: "statement",
+      content: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההגדים הבאים"
+    },
     { 
-      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: אני מצליח.ה להסתגל לשינויים", 
-      controlName: "q1",
+      outputType: "question",
+      label: "אני מצליח.ה לבטא את עצמי בפתיחות ובכנות ביחסים החברתיים שלי", 
+      controlName: "q1", 
       type: "radio", 
       options: [
         { label: "לא נכון בכלל", value: 0},
@@ -29,10 +39,11 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
         { label: "לפעמים נכון", value: 2 },
         { label: "נכון לעיתים קרובות", value: 3 },
         { label: "נכון כמעט כל הזמן", value: 4}
-      ]   
+      ]
     },
     { 
-      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: אני יכול.ה להתמודד עם כל דבר", 
+      outputType: "question",
+      label: "אני מרגיש.ה יוזמ.ת ואקטיבי.ת במערכות היחסים החברתיות שלי", 
       controlName: "q2", 
       type: "radio", 
       options: [
@@ -41,10 +52,11 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
         { label: "לפעמים נכון", value: 2 },
         { label: "נכון לעיתים קרובות", value: 3 },
         { label: "נכון כמעט כל הזמן", value: 4}
-      ]     
+      ]
     },
     { 
-      label:"חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: אני רואה את הצד המשעשע בדברים", 
+      outputType: "question",
+      label: "אני מרגיש.ה חיוני.ת, בעל.ת אנרגיות במהלך היום", 
       controlName: "q3", 
       type: "radio", 
       options: [
@@ -53,10 +65,11 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
         { label: "לפעמים נכון", value: 2 },
         { label: "נכון לעיתים קרובות", value: 3 },
         { label: "נכון כמעט כל הזמן", value: 4}
-      ]   
+      ]
     },
     { 
-      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: התמודדות עם לחץ מחזקת אותי", 
+      outputType: "question",
+      label: "אני מתרגל.ת שגרה בריאה (לדוגמא שינה בשעות קבועות, אוכל מזין, ספורט)", 
       controlName: "q4", 
       type: "radio", 
       options: [
@@ -65,141 +78,74 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
         { label: "לפעמים נכון", value: 2 },
         { label: "נכון לעיתים קרובות", value: 3 },
         { label: "נכון כמעט כל הזמן", value: 4}
-      ]  
+      ]
     },
-    { 
-      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: אני נוטה להתאושש בקלות ממחלה או קושי", 
-      controlName: "q5", 
-      type: "radio", 
-      options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]   
-    },
-    { 
-      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: תחת לחץ, אני מתמקד.ת וחושב בבהירות", 
-      controlName: "q6", 
-      type: "radio", 
-      options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]   
-    },
-    { 
-      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: אני יכול.ה להשיג את המטרות שלי למרות הקשיים", 
-      controlName: "q7", 
-      type: "radio", 
-      options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]    
-    },
-    { 
-      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: אני לא מתייאש.ת בקלות מכישלונות", 
-      controlName: "q8", 
-      type: "radio", 
-      options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]    
-    },
-    { 
-      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד: אני חושב.ת על עצמי כעל אדם חזק", 
-      controlName: "q9", 
-      type: "radio", 
-      options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]  
-    },
-    { 
-      label: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההיגד אני: יכול.ה להתמודד עם רגשות לא נעימים", 
-      controlName: "q10", 
-      type: "radio", 
-      options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ]  
-    },
-  
   ]
-  currentQuestionIndex = 0;
-  showAnswers = false;
+
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient, // Inject HttpClient here
     private router: Router,
-    // private scroller: ViewportScroller
-  ) {
+  ){
     this.conorForm = this.fb.group({});
-    this.questions.forEach(question => {
-      this.conorForm.addControl(question.controlName, this.fb.control(''));
+    this.outputs.forEach(output => {
+      if(output['outputType'] === "question"){
+        this.conorForm.addControl(output.controlName!, this.fb.control(''));
+      }
+      
     });
   }
 
-  ngAfterViewInit(): void {
-  }
-  ngAfterViewChecked() {
-    this.scrollToBottom(); // Call scroll after each check
-  }
-
   ngOnInit() {
-    this.showQuestionWithDelay();
+    // Show answer options for the first question after a short delay
+    this.showNextItem();
   }
-
-  showQuestionWithDelay() {
-    this.showAnswers = false; // Hide options initially
-    setTimeout(() => {
-      this.showAnswers = true; // Show options after delay
-    }, 1000); // Adjust delay time (in milliseconds) as needed
+  ngAfterViewChecked(): void {
+    this.scrollToBottom(); 
   }
-
-  onAnswerSelected() {
-    const controlName = this.questions[this.currentQuestionIndex].controlName;
-    const value = this.conorForm.get(controlName)?.value;
-
-    // Automatically move to the next question if an answer is selected
-    if (value !== undefined) {
-      this.moveToNextQuestion();
-    }
-  }
-
-  moveToNextQuestion() {
-    this.currentQuestionIndex++;
-    // this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
-    // this.scroller.scrollToPosition([0, this.scrollContainer.nativeElement.scrollHeight])
-    
-    if (this.currentQuestionIndex < this.questions.length) {
-      this.showQuestionWithDelay(); // Show next question with a delay for answer options
-    } else {
-      this.onSubmit(); // Automatically submit when the last question is answered
-    }
-  }
-
   private scrollToBottom(): void {
     // console.log("called");
-    setTimeout(() =>{
-      this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
-    },500)
+    this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
+  }
+  showNextItem() {
+    if (this.currentIndex < this.outputs.length) {
+      const currentItem = this.outputs[this.currentIndex];
+        // setTimeout(() => {
+          console.log(this.currentIndex);
+          this.displayedItems.push(currentItem); // Add current item to displayedItems array
+        // }, 1000 * this.currentIndex)
+
+      if (currentItem.outputType === 'statement') {
+        setTimeout(() => {
+          this.currentIndex++;
+          this.showNextItem();
+        }, 1500);
+          
+      }
+      else if (currentItem.outputType === 'question') {
+        if(currentItem.type == 'radio'){
+          this.showAnswers1 = true; // Show answers after delay
+        }
+      }
+    }
+    else{
+            this.showAnswers2 = true; // Show answers after delay
+            setTimeout(() => {
+              this.showSubmit = true; // Show answers after delay
+            }, 2000); // Delay before showing radio options
+      }
+    }
+
+
+
+  onAnswerSelected() {
+    if (this.currentIndex <= this.outputs.length) {
+      setTimeout(() => {
+        this.currentIndex++; // Move to next item after showing question
+        this.showNextItem(); // Move to next item on answer selection
+      }, 500);
+    }
   }
   getValueName(value: number){
     const options = [
@@ -220,7 +166,8 @@ export class ConorFormComponent implements OnInit, AfterViewInit, AfterViewCheck
     }, 1000)
   // }, 1)
     const user = sessionStorage['user'];
-    this.http.post('https://tova-demo.onrender.com/api/modify-user', [user, "conor_results", this.conorForm.value])
+    const today = new Date().toLocaleDateString('en-GB');
+    this.http.post('https://tova-demo.onrender.com/api/modify-user', [user, "conor_results - "+today, this.conorForm.value])
     .subscribe(res => {
       // const response = JSON.stringify(res);
       console.log("response", res);

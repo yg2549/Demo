@@ -11,293 +11,151 @@ import { Router } from '@angular/router';
   styleUrls: ['./stress-form.component.css'], // Replace with your actual styles URL
   imports: [ReactiveFormsModule, NgIf, NgSwitchCase, NgSwitch, NgForOf]
 })
-export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChecked {
+export class StressFormComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
   stressForm: FormGroup;
   intro = "";
   conclusion = "continue";
   showConclusion = false;
-  // scrollContainer: any
-  questions = [
+  displayedItems: Array<any> = [];
+  showAnswers1 = false;
+  showAnswers2 = false;
+  currentIndex = 0;
+  showSubmit = false;
+
+  outputs = [
+    {
+      outputType: "statement",
+      content: "חשב.י על החודש האחרון, עד כמה נכון לגביך ההגדים הבאים"
+    },
     { 
-      label: "בחודש האחרון, באיזו מידה היית 'מעוצבנ.ת' בגלל משהו שקרה באופן בלתי צפוי", 
+      outputType: "question",
+      label: "אני מצליח.ה לבטא את עצמי בפתיחות ובכנות ביחסים החברתיים שלי", 
       controlName: "q1", 
       type: "radio", 
       options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ]   
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4}
+      ]
     },
     { 
-      label: "בחודש האחרון, באיזו מידה הרגשת חוסר שליטה בדברים החשובים בחייך", 
+      outputType: "question",
+      label: "אני מרגיש.ה יוזמ.ת ואקטיבי.ת במערכות היחסים החברתיות שלי", 
       controlName: "q2", 
       type: "radio", 
       options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ]   
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4}
+      ]
     },
     { 
-      label:"בחודש האחרון, באיזו מידה הרגשת עצבני.ת, לחוצ.ה", 
+      outputType: "question",
+      label: "אני מרגיש.ה חיוני.ת, בעל.ת אנרגיות במהלך היום", 
       controlName: "q3", 
       type: "radio", 
       options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4}
       ]
     },
     { 
-      label: "בחודש האחרון, באיזו מידה טיפלת בהצלחה במטרדים מרגיזים", 
+      outputType: "question",
+      label: "אני מתרגל.ת שגרה בריאה (לדוגמא שינה בשעות קבועות, אוכל מזין, ספורט)", 
       controlName: "q4", 
       type: "radio", 
       options: [
-        { label: "כמעט אף פעם", value: 4},
-        { label: "לעיתים רחוקות", value: 3 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 1 },
-        { label: "לעיתים קרובות מאד", value: 0}
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4}
       ]
     },
-    { 
-      label: "בחודש האחרון, באיזו מידה הרגשת שאת.ה מתמודד.ת ביעילות עם שינויים חשובים בחייך", 
-      controlName: "q5", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 4},
-        { label: "לעיתים רחוקות", value: 3 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 1 },
-        { label: "לעיתים קרובות מאד", value: 0}
-      ]
-    },
-    {
-      statement: "true",
-      label: "בהחלט תקופה מאתגרת, חשוב מאד שאת.ה משתפ.ת ומקדיש.ה זמן לעצמך"
-    },
-    { 
-      label: "בחודש האחרון, באיזו מידה הרגשת בטחון ביכולתך לטפל בבעיותיך האישיות", 
-      controlName: "q6", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 4},
-        { label: "לעיתים רחוקות", value: 3 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 1 },
-        { label: "לעיתים קרובות מאד", value: 0}
-      ] 
-    },
-    { 
-      label: "בחודש האחרון, באיזו מידה הרגשת שהדברים מתפתחים בהתאם לרצונך", 
-      controlName: "q7", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 4},
-        { label: "לעיתים רחוקות", value: 3 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 1 },
-        { label: "לעיתים קרובות מאד", value: 0}
-      ]   
-    },
-    { 
-      label: "בחודש האחרון, באיזו מידה יכולת להתמודד עם כל הדברים שהיה עליך לעשות", 
-      controlName: "q8", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ] 
-    },
-    { 
-      label: "בחודש האחרון, באיזו מידה יכולת לשלוט בדברים המרגיזים אותך", 
-      controlName: "q9", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 4},
-        { label: "לעיתים רחוקות", value: 3 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 1 },
-        { label: "לעיתים קרובות מאד", value: 0}
-      ] 
-    },
-    { 
-      label: "בחודש האחרון, באיזו מידה הרגשת שאת.ה שולט.ת במצב", 
-      controlName: "q10", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 4},
-        { label: "לעיתים רחוקות", value: 3 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 1 },
-        { label: "לעיתים קרובות מאד", value: 0}
-      ] 
-    },
-    { 
-      label: "בחודש האחרון, באיזו מידה התרגזת בגלל אירועים שהיו מחוץ לשליטתך", 
-      controlName: "q11", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ]
-    },
-    { 
-      label: "בחודש האחרון, באיזו מידה הטרידו אותך מחשבות על דברים שהיה עליך להשלים", 
-      controlName: "q12", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ]  
-    },
-    { 
-      label: "בחודש האחרון, באיזו מידה יכולת לשלוט בדרך שבה את/ה מנצל.ת את זמנך", 
-      controlName: "q13", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 4},
-        { label: "לעיתים רחוקות", value: 3 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 1 },
-        { label: "לעיתים קרובות מאד", value: 0}
-      ]  
-    },
-    { 
-      label: "בחודש האחרון, באיזו מידה הרגשת שהקשיים מצטברים עד כדי כך שלא יכולת להתגבר עליהם", 
-      controlName: "q14", 
-      type: "radio", 
-      options: [
-        { label: "כמעט אף פעם", value: 0},
-        { label: "לעיתים רחוקות", value: 1 },
-        { label: "לפעמים", value: 2 },
-        { label: "לעיתים קרובות", value: 3 },
-        { label: "לעיתים קרובות מאד", value: 4}
-      ]  
-    },
-  
   ]
-  currentQuestionIndex = 0;
-  showAnswers = false;
+
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient, // Inject HttpClient here
     private router: Router,
-    private scroller: ViewportScroller
-  ) {
+  ){
     this.stressForm = this.fb.group({});
-    this.questions.forEach(question => {
-      if(!question.statement){
-        console.log("called")
-        this.stressForm.addControl(question.controlName!, this.fb.control(''));
+    this.outputs.forEach(output => {
+      if(output['outputType'] === "question"){
+        this.stressForm.addControl(output.controlName!, this.fb.control(''));
       }
+      
     });
   }
 
-  ngAfterViewInit(): void {
-  }
-  
-  ngAfterViewChecked() {
-    setTimeout(() => {
-      this.scrollToBottom(); // Call scroll after each check
-    }, 3000)
-    
-  }
-
   ngOnInit() {
-    this.showQuestionWithDelay();
+    // Show answer options for the first question after a short delay
+    this.showNextItem();
   }
+  ngAfterViewChecked(): void {
+    this.scrollToBottom(); 
+  }
+  private scrollToBottom(): void {
+    // console.log("called");
+    this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
+  }
+  showNextItem() {
+    if (this.currentIndex < this.outputs.length) {
+      const currentItem = this.outputs[this.currentIndex];
+        // setTimeout(() => {
+          console.log(this.currentIndex);
+          this.displayedItems.push(currentItem); // Add current item to displayedItems array
+        // }, 1000 * this.currentIndex)
 
-  showQuestionWithDelay() {
-    if(this.currentQuestionIndex == 5){
-      setTimeout(() => {
-        this.scrollToBottom();
-        this.moveToNextQuestion();
-      }, 500); // Adjust delay time (in milliseconds) as needed
+      if (currentItem.outputType === 'statement') {
+        setTimeout(() => {
+          this.currentIndex++;
+          this.showNextItem();
+        }, 1500);
+          
+      }
+      else if (currentItem.outputType === 'question') {
+        if(currentItem.type == 'radio'){
+          this.showAnswers1 = true; // Show answers after delay
+        }
+      }
     }
     else{
-      this.showAnswers = false; // Hide options initially
-      setTimeout(() => {
-        this.showAnswers = true; // Show options after delay
-        this.scrollToBottom();
-      }, 1000); // Adjust delay time (in milliseconds) as needed
+            this.showAnswers2 = true; // Show answers after delay
+            setTimeout(() => {
+              this.showSubmit = true; // Show answers after delay
+            }, 2000); // Delay before showing radio options
+      }
     }
-  }
+
+
 
   onAnswerSelected() {
-    const controlName = this.questions[this.currentQuestionIndex].controlName;
-    const value = this.stressForm.get(controlName!)!.value;
-
-    // Automatically move to the next question if an answer is selected
-    if (value !== undefined) {
-      this.moveToNextQuestion();
+    if (this.currentIndex <= this.outputs.length) {
+      setTimeout(() => {
+        this.currentIndex++; // Move to next item after showing question
+        this.showNextItem(); // Move to next item on answer selection
+      }, 500);
     }
   }
-
-  moveToNextQuestion() {
-    this.currentQuestionIndex++;
-    // if(this.currentQuestionIndex == 6){
-    //   setTimeout(() => {
-    //   }, 500);
-    // }
-    if (this.currentQuestionIndex < this.questions.length) {
-      this.showQuestionWithDelay(); // Show next question with a delay for answer options
-    } else {
-      this.onSubmit(); // Automatically submit when the last question is answered
-    }
-  }
-
-  private scrollToBottom(): void {
-    // setTimeout(() =>{
-      this.scrollContainer.nativeElement.scrollTop = 2 * this.scrollContainer.nativeElement.scrollHeight;
-    // },500)
-  }
-  getValueName(
-    controlName: string,
-    value: number
-    // question: {label: string, controlName: string, type: string, options: []}
-  ){
+  getValueName(value: number){
     const options = [
-      { label: "כמעט אף פעם", value: 0},
-      { label: "לעיתים רחוקות", value: 1 },
-      { label: "לפעמים", value: 2 },
-      { label: "לעיתים קרובות", value: 3 },
-      { label: "לעיתים קרובות מאד", value: 4}
+      { label: "לא נכון בכלל", value: 0},
+      { label: "נכון לעיתים רחוקות", value: 1 },
+      { label: "לפעמים נכון", value: 2 },
+      { label: "נכון לעיתים קרובות", value: 3 },
+      { label: "נכון כמעט כל הזמן", value: 4}
     ]
-    const inverse_options = [
-      { label: "כמעט אף פעם", value: 4},
-      { label: "לעיתים רחוקות", value: 3 },
-      { label: "לפעמים", value: 2 },
-      { label: "לעיתים קרובות", value: 1 },
-      { label: "לעיתים קרובות מאד", value: 0}
-    ]
-    // console.log(controlName, value)
-    // return options[1].label
-    if (controlName == "q4" || controlName == "q5" || controlName == "q6" || controlName == "q7" || controlName == "q9" || controlName == "q10" || controlName == "q13"){
-      console.log("detected", value)
-      return inverse_options[4 - value].label;
-    }
-    else{
-      return options[value].label;
-    }
-    
+    return options[value].label;
       
   }
           
@@ -308,7 +166,16 @@ export class StressFormComponent implements OnInit, AfterViewInit, AfterViewChec
     }, 1000)
   // }, 1)
     const user = sessionStorage['user'];
-    this.http.post('https://tova-demo.onrender.com/api/modify-user', [user, "stress_results", this.stressForm.value])
+
+    const values = Object.values(this.stressForm.value) as number[]; // Type assertion
+    let sum = 0;
+    values.forEach((num: number) => {
+      sum += num;
+    });
+
+    const today = new Date().toLocaleDateString('en-GB');
+    
+    this.http.post('https://tova-demo.onrender.com/api/modify-user', [user, "stress_results - "+today, {...this.stressForm.value, sum}])
     .subscribe(res => {
       // const response = JSON.stringify(res);
       console.log("response", res);

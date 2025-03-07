@@ -1,93 +1,88 @@
 .form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-  }
-  * {
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-size: large;
-  }
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  direction: rtl;
+}
 
-  #scrollContainer {
-    scroll-behavior: auto;
-  }  
-  
-  /* Chat bubble styling */
-  .chatbot-bubble {
-    padding: 10px 15px;
-    border-radius: 20px;
-    margin: 5px 0;
-    direction: rtl;
-  }
-  
-  /* Statement and Question Label styling (left-aligned) */
-  .statement {
-    background-color: #e0f7fa;
-    align-self: flex-end; /* Align statement/question label to the left */
-    text-align: right;
-    direction: rtl;
+/* Chat bubble styling */
+.chatbot-bubble {
+  padding: 10px 15px;
+  border-radius: 20px;
+  margin: 5px 0;
+}
 
-  }
-  
-  /* Answer options container aligned to the right */
-  .response-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  /* Answer bubble styling (right-aligned) */
-  .right-align {
-    align-self: flex-start;
-  }
-  
-  .answer-options {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .bubble.answer-input.right-align {
-    display: flex;
-    flex-direction: column;
-    background-color: 	#f1f8e9;
-    border-radius: 15px;
-    padding: 8px 12px;
-    margin-top: 5px;
-    text-align: right;
-  }
+/* Statement and Question Label styling (left-aligned) */
+.statement {
+  background-color: #e0f7fa;
+  align-self: flex-start; /* Align statement/question label to the left */
+  text-align: right;
+  max-width: 60%;
+}
 
-  .radio-options {
-    display: flex;
-    flex-direction: column; /* Align options in a row */
-    justify-content: flex-end; /* Align to the right */
-  }
-  
-  .radio-container {
-    display: flex;
-    flex-direction: column; /* Align items in a row */
-    direction: rtl; /* Ensure the content flows right to left */
-    align-items: center; /* Vertically center the items */
-  }
-  
-  .radio-container label {
-    margin: 0 10px; /* Add margin between options */
-  }
-  .submit-button, .answer-button {
-    width: 30%;
-    align-self: center;
-    color: black;
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    align-items: center;
-  }
-  .submit-button {
-    background-color: #DFF5E1;
-  }
-  .answer-button {
-    background-color: white;
-  }
+/* Answer options container aligned to the right */
+.response-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* Answer bubble styling (right-aligned) */
+.right-align {
+  align-self: flex-ens;
+}
+
+.answer-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bubble.answer-input {
+  background-color: 	#f1f8e9;
+  border-radius: 15px;
+  padding: 8px 12px;
+  margin-top: 5px;
+  text-align: right;
+}
+.radio-options {
+  display: flex;
+  flex-direction: row; /* Align options in a row */
+  justify-content: center; /* Align to the right */
+}
+
+.radio-container {
+  display: flex;
+  flex-direction: row; /* Align items in a row */
+  direction: rtl; /* Ensure the content flows right to left */
+  align-items: center; /* Vertically center the items */
+}
+* {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: large;
+}
+
+.radio-container label {
+  margin: 0 10px; /* Add margin between options */
+}
+#scrollContainer {
+  scroll-behavior: auto;
+}
+.submit-button, .answer-button {
+  width: 30%;
+  align-self: center;
+  color: black;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  align-items: center;
+}
+.submit-button {
+  background-color: #DFF5E1;
+}
+.answer-button {
+  background-color: white;
+}

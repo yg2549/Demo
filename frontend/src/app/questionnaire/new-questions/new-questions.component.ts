@@ -165,7 +165,8 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
     }, 1000)
   // }, 1)
     const user = sessionStorage['user'];
-    this.http.post('https://tova-demo.onrender.com/api/modify-user', [user, "new_questions_results", this.newQuestionsForm.value])
+    const today = new Date().toLocaleDateString('en-GB');
+    this.http.post('https://tova-demo.onrender.com/api/modify-user', [user, "new_questions_results - "+today, this.newQuestionsForm.value])
       .subscribe(res => {
         // const response = JSON.stringify(res);
         console.log("response", res);

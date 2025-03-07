@@ -113,7 +113,8 @@ export class LightupIntroComponent implements AfterViewChecked{
     const gender = this.introForm.value['gender'];
     sessionStorage.setItem('gender', gender);
     console.log(this.introForm.value)
-    this.http.post('https://tova-demo.onrender.com/api/modify-user', [user, "intro_results", this.introForm.value])
+    const today = new Date().toLocaleDateString('en-GB');
+    this.http.post('https://tova-demo.onrender.com/api/modify-user', [user, "intro_results - "+today, this.introForm.value])
       .subscribe(res => {
         // const response = JSON.stringify(res);
         console.log("response", res);

@@ -14,61 +14,31 @@ import { Router } from '@angular/router';
 export class ConclusionComponent implements AfterViewChecked{
   @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
   conclusionForm: FormGroup;
+
+  intro = "";
+  conclusion = "continue";
+  showConclusion = false;
   displayedItems: Array<any> = [];
-  showAnswers = false;
+  showAnswers1 = false;
+  showAnswers2 = false;
   currentIndex = 0;
-  askMenstrual = false;
   showSubmit = false;
+
   outputs = [
-    {
+    { 
       outputType: "question",
-      type: "radio",
-      label: "האם שמת לב לשינויים במחזור החודשי שלך בחודשים האחרונים",
-      controlName: "menstrualChanges",
-      options: [
-        {label: "כן", value: true},
-        {label: "לא", value: false},
-      ],
-    },
-    {
-      outputType: "statement",
-      content: "בסדר גמור"
-    },
-    {
-      outputType: "question",
-      type: "text",
-      label: "תרצי לספר מה השינויים אליהם שמת לב",
-      controlName: "changesExplained"
-    },
-    {
-      outputType: "statement",
-      content: "תודה רבה ששיתפת"
-    },
-    {
-      outputType: "question",
-      type: "radio",
-      label: "עד כמה נכון לגביך ההיגד: הבחירה שלי להכנס לתוכנית LightUp תומכת בי בזמן זה",
-      controlName: "lightUp",
-      options: [
-        { label: "לא נכון בכלל", value: 0},
-        { label: "נכון לעיתים רחוקות", value: 1 },
-        { label: "לפעמים נכון", value: 2 },
-        { label: "נכון לעיתים קרובות", value: 3 },
-        { label: "נכון כמעט כל הזמן", value: 4}
-      ] 
-    },
-    {
-      outputType: "question",
-      type: "text",
-      label: "יש עוד משהו שתרצ.י לשתף",
-      controlName: "additional comments"
+      label: "יש עוד משהו שתרצ.י לשתף", 
+      controlName: "q1", 
+      type: "text", 
+      
     },
     {
       outputType: "statement",
       content: "מעולה, ענית על הכל, תודה רבה!"
     },
-
   ]
+
+
   constructor(
     private fb: FormBuilder,
     private http: HttpClient, // Inject HttpClient here
@@ -78,99 +48,83 @@ export class ConclusionComponent implements AfterViewChecked{
     this.outputs.forEach(output => {
       if(output['outputType'] === "question"){
         this.conclusionForm.addControl(output.controlName!, this.fb.control(''));
-      }      
+      }
+      
     });
   }
+
   ngOnInit() {
     // Show answer options for the first question after a short delay
     this.showNextItem();
   }
-  ngAfterViewChecked() {
-    this.scrollToBottom(); // Call scroll after each check
+  ngAfterViewChecked(): void {
+    this.scrollToBottom(); 
   }
   private scrollToBottom(): void {
-    setTimeout(() =>{
-      this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
-    },500)
+    // console.log("called");
+    this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
   }
   showNextItem() {
-    console.log(this.currentIndex);
     if (this.currentIndex < this.outputs.length) {
       const currentItem = this.outputs[this.currentIndex];
-      if(sessionStorage['gender'] === "man" && (this.currentIndex === 0 || this.currentIndex === 1 || this.currentIndex === 2)){
-        this.currentIndex++;
-        this.showNextItem();
-      }
-      else if((this.currentIndex == 2 || this.currentIndex == 3) && this.askMenstrual == false){
-        this.currentIndex++;
-        this.showNextItem();
-      }
-      else if(this.currentIndex == 1 && this.askMenstrual == true){
-        this.currentIndex++;
-        this.showNextItem();
-      }
-      else{
-        setTimeout(() => this.displayedItems.push(currentItem), 500);
-         // Add current item to displayedItems array
-        if (currentItem.outputType === 'statement') {
+        // setTimeout(() => {
+          console.log(this.currentIndex);
+          this.displayedItems.push(currentItem); // Add current item to displayedItems array
+        // }, 1000 * this.currentIndex)
+
+      if (currentItem.outputType === 'statement') {
+        setTimeout(() => {
           this.currentIndex++;
-          setTimeout(() => this.showNextItem(), 
-          1000); // Delay to show next statement
-            // setTimeout(() => this.showNextItem(), 1); // use shorter delay for testing
-        }
-        else if (currentItem.outputType === 'question') {
-          if (currentItem.type === 'radio') {
-            this.showAnswers = false; // Initially hide answers
-            setTimeout(() => {
-              this.showAnswers = true; // Show answers after delay
-            }, 1000); // Delay before showing radio options
-            // }, 1); //use a shorter delay for testing
-          }
-          this.currentIndex++; // Move to next item after showing question
+          this.showNextItem();
+        }, 1500);
+          
+      }
+      else if (currentItem.outputType === 'question') {
+        if(currentItem.type == 'text'){
+          this.showAnswers2 = true; // Show answers after delay
         }
       }
     }
-  }
-  showQuestionWithDelay() {
-    this.showAnswers = false; // Hide options initially
-    setTimeout(() => {
-      this.showAnswers = true; // Show options after delay
-    }, 3000); // Adjust delay time (in milliseconds) as needed
-    // }, 1); //use a shorter delay for testing
-  }
+    else{
+            this.showAnswers2 = true; // Show answers after delay
+            setTimeout(() => {
+              this.showSubmit = true; // Show answers after delay
+            }, 2000); // Delay before showing radio options
+      }
+    }
+
+
+
   onAnswerSelected() {
-    // console.log("here");
-    console.log(this.currentIndex, this.outputs[this.currentIndex])
-    if(this.currentIndex == 5){
+    if (this.currentIndex <= this.outputs.length) {
       setTimeout(() => {
-        this.showSubmit = true; // Show options after delay
-      }, 2000);
+        this.currentIndex++; // Move to next item after showing question
+        this.showNextItem(); // Move to next item on answer selection
+      }, 500);
     }
-    if (this.conclusionForm.value.menstrualChanges == true){
-      this.askMenstrual = true;
-    }
-    if (this.currentIndex == 2 || this.currentIndex == 4){
-      // console.log("here");
-      // setTimeout(() => {
-        this.showNextItem();
-      // }, 1000);
-      // if(this.currentIndex == 4){
-      // }
-    }
-    else if(this.currentIndex < this.outputs.length){
-      this.showNextItem();
-    }
-    // console.log(this.askMenstrual)
   }
-  test(){
-    console.log("hi");
+  getValueName(value: number){
+    const options = [
+      { label: "לא נכון בכלל", value: 0},
+      { label: "נכון לעיתים רחוקות", value: 1 },
+      { label: "לפעמים נכון", value: 2 },
+      { label: "נכון לעיתים קרובות", value: 3 },
+      { label: "נכון כמעט כל הזמן", value: 4}
+    ]
+    return options[value].label;
+      
   }
+
+
+
+
   onSubmit(){
     const user = sessionStorage['user'];
     const gender = this.conclusionForm.value['gender'];
     sessionStorage.setItem('gender', gender);
     console.log(this.conclusionForm.value)
-    this.http.post('https://tova-demo.onrender.com/api/modify-user', [user, "conclusion_results", this.conclusionForm.value])
+    const today = new Date().toLocaleDateString('en-GB');
+    this.http.post('https://tova-demo.onrender.com/api/modify-user', [user, "conclusion_results - "+today, this.conclusionForm.value])
       .subscribe(res => {
         // const response = JSON.stringify(res);
         console.log("response", res);

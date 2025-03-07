@@ -1,64 +1,43 @@
-<div class="chat-container" dir="rtl" id='scrollContainer' #scrollContainer style="overflow-y: auto; height: 550px;">
-  <p>{{ intro }}</p>
+<form [formGroup]="stressForm" (ngSubmit)="onSubmit()" class="form" id="scrollContainer" #scrollContainer style="overflow-y: auto; height: 550px;">
+  <ng-container *ngFor="let item of displayedItems; let i = index">
 
-  <!-- Loop through past questions as separate message boxes -->
-  <ng-container *ngFor="let question of questions; let i = index">
-    <!-- Question Message Bubble on the Left -->
-    <div *ngIf="i < currentQuestionIndex" class="bubble question">
-      <p>{{ question.label }}</p>
+    <!-- Left-Aligned Question or Statement Bubble -->
+    <div *ngIf="item.outputType === 'statement' || item.outputType === 'question'" class="chatbot-bubble statement">
+      <p>{{ item.content || item.label }}</p>
     </div>
 
-    <!-- Answer Message Bubble on the Left -->
-    <div *ngIf="i < currentQuestionIndex && i !== 5" class="bubble answer-input">
-      <p>{{ getValueName(question.controlName!, stressForm.get(question.controlName!)?.value)}}</p>
-    </div>
+    <!-- Right-Aligned Answer Bubble for Questions -->
+    <div *ngIf="item.outputType === 'question'" class="response-container">
+
+      <!-- Text Input for Answer -->
+      <div *ngIf="item.type === 'text' && showAnswers2 === true" class="bubble answer-input right-align">
+        <input
+          type="text"
+          [formControlName]="item.controlName"
+        />
+        <button type="button" class="answer-button" (click)="onAnswerSelected()">Continue</button>
+      </div>
+
+      <!-- All Radio Options in One Bubble, Right-Aligned -->
+      <div *ngIf="item.type === 'radio' && showAnswers1 === true" class="bubble answer-input right-align">
+        <div class="radio-container" dir="rtl">
+          <ng-container *ngFor="let option of item.options">
+            <label class="radio-option">
+              <input
+                type="radio"
+                [formControlName]="item.controlName"
+                [value]="option.value"
+                (change)="onAnswerSelected()"
+              />
+              {{ option.label }}
+            </label>
+          </ng-container>
+        </div>
+      </div>
+      
+    </div> <!-- End Right-Aligned Answer Bubble -->
+
   </ng-container>
 
-  <!-- Current Question and Answer Input -->
-  <form [formGroup]="stressForm" (ngSubmit)="onSubmit()" class="form">
-    <ng-container *ngIf="questions.length > currentQuestionIndex && currentQuestionIndex !== 5">
-      <!-- Current Question Message Bubble on the Left -->
-      <div class="bubble question">
-        <label>{{ questions[currentQuestionIndex].label }}</label>
-      </div>
-
-      <!-- Current Answer Options on the Left, displayed with delay -->
-      <div *ngIf="showAnswers && currentQuestionIndex !== 5" class="bubble answer-options">
-        <ng-container [ngSwitch]="questions[currentQuestionIndex].type">
-          
-          <!-- Radio Button Options on the Left -->
-          <div *ngSwitchCase="'radio'" class="bubble answer-input right-align">
-              <div class="radio-container" dir="rtl">
-                  <ng-container *ngFor="let option of questions[currentQuestionIndex].options">
-                      <label class="radio-option">
-                          <input
-                              type="radio"
-                              [formControlName]="questions[currentQuestionIndex].controlName!"
-                              [value]="option.value"
-                              (change)="onAnswerSelected()"
-                          />
-                          {{ option.label }}
-                      </label>
-                  </ng-container>
-              </div>
-          </div>
-
-          <!-- Text Input Option -->
-          <div *ngSwitchCase="'text'">
-            <input
-              type="text"
-              [formControlName]="questions[currentQuestionIndex].controlName!"
-              (input)="onAnswerSelected()"
-            />
-          </div>
-
-        </ng-container>
-      </div>
-    </ng-container>
-
-  </form>
-  <!-- <div *ngIf="showConclusion === true" class="conclusion">
-      <p>{{ conclusion }}</p>
-  </div> -->
-  
-</div>
+  <button type="submit" class="submit-button" *ngIf="currentIndex === outputs.length && showSubmit === true">בוא.י נמשיך</button>
+</form>

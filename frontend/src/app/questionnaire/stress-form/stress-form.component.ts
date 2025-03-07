@@ -42,7 +42,7 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
     },
     { 
       outputType: "question",
-      label: "לא הייתי מסוגל.ת להפסיק לדאוג או לשלוט בדאגה?", 
+      label: "לא הייתי מסוגל.ת להפסיק לדאוג או לשלוט בדאגה", 
       controlName: "q2", 
       type: "radio", 
       options: [
@@ -54,7 +54,7 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
     },
     { 
       outputType: "question",
-      label: "הייתי מודאג.ת יותר מידי בנוגע לדברים שונים?", 
+      label: "הייתי מודאג.ת יותר מידי בנוגע לדברים שונים", 
       controlName: "q3", 
       type: "radio", 
       options: [

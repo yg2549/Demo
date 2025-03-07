@@ -175,7 +175,7 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
 
     const today = new Date().toLocaleDateString('en-GB');
     
-    this.http.post('https://tova-demo.onrender.com/api/modify-user', [user, "stress_results - "+today, {...this.stressForm.value, sum}])
+    this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "stress_results - "+today, {...this.stressForm.value, sum}])
     .subscribe(res => {
       // const response = JSON.stringify(res);
       console.log("response", res);

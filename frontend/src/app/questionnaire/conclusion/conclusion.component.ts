@@ -124,7 +124,7 @@ export class ConclusionComponent implements AfterViewChecked{
     sessionStorage.setItem('gender', gender);
     console.log(this.conclusionForm.value)
     const today = new Date().toLocaleDateString('en-GB');
-    this.http.post('https://tova-demo.onrender.com/api/modify-user', [user, "conclusion_results - "+today, this.conclusionForm.value])
+    this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "conclusion_results - "+today, this.conclusionForm.value])
       .subscribe(res => {
         // const response = JSON.stringify(res);
         console.log("response", res);

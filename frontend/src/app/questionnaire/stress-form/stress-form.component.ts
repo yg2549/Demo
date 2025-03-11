@@ -26,7 +26,7 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
   outputs = [
     {
       outputType: "statement",
-      content: "במהלך השבועיים האחרונים, באיזו תדירות היית מוטרד.ת מכל אחת מן הבעיות הבאות?"
+      content: "במהלך השבועיים האחרונים, באיזו תדירות היית מוטרד מהבעיות הבאות:"
     },
     { 
       outputType: "question",
@@ -35,8 +35,8 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
       type: "radio", 
       options: [
         { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
+        { label: "כמה ימים", value: 1 },
+        { label: "יותר ממחצית הימים", value: 2 },
         { label: "כמעט כל יום ", value: 3 }
       ]
     },
@@ -47,8 +47,8 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
       type: "radio", 
       options: [
         { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
+        { label: "כמה ימים", value: 1 },
+        { label: "יותר ממחצית הימים", value: 2 },
         { label: "כמעט כל יום ", value: 3 }
       ]
     },
@@ -59,8 +59,8 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
       type: "radio", 
       options: [
         { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
+        { label: "כמה ימים", value: 1 },
+        { label: "יותר ממחצית הימים", value: 2 },
         { label: "כמעט כל יום ", value: 3 }
       ]
     },
@@ -71,8 +71,8 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
       type: "radio", 
       options: [
         { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
+        { label: "כמה ימים", value: 1 },
+        { label: "יותר ממחצית הימים", value: 2 },
         { label: "כמעט כל יום ", value: 3 }
       ]
     },{ 
@@ -82,19 +82,19 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
       type: "radio", 
       options: [
         { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
+        { label: "כמה ימים", value: 1 },
+        { label: "יותר ממחצית הימים", value: 2 },
         { label: "כמעט כל יום ", value: 3 }
       ]
     },{ 
       outputType: "question",
-      label: "הייתי מתעצבנ.ת ומתרגז.ת בקלות", 
+      label: "הייתי מתעצבן.ת או מתרגז.ת בקלות", 
       controlName: "q6", 
       type: "radio", 
       options: [
         { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
+        { label: "כמה ימים", value: 1 },
+        { label: "יותר ממחצית הימים", value: 2 },
         { label: "כמעט כל יום ", value: 3 }
       ]
     },{ 
@@ -104,10 +104,14 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
       type: "radio", 
       options: [
         { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
+        { label: "כמה ימים", value: 1 },
+        { label: "יותר ממחצית הימים", value: 2 },
         { label: "כמעט כל יום ", value: 3 }
       ]
+    },
+    {
+      outputType: "statement",
+      content: "בהחלט תקופה מאתגרת, חשוב מאד שאת.ה משתפ.ת ומקדיש.ה זמן לעצמך."
     },
   ]
 
@@ -179,8 +183,8 @@ export class StressFormComponent implements OnInit, AfterViewChecked {
   getValueName(value: number){
     const options = [
       { label: "כלל לא", value: 0},
-      { label: "מספר ימים", value: 1 },
-      { label: "ביותר ממחצית מן הימים ", value: 2 },
+      { label: "כמה ימים", value: 1 },
+      { label: "יותר ממחצית הימים", value: 2 },
       { label: "כמעט כל יום ", value: 3 }
     ]
     return options[value].label;

@@ -26,104 +26,65 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
   outputs = [
     {
       outputType: "statement",
-      content: "במהלך השבועיים האחרונים, באיזו תדירות היית מוטרד מכל אחת מן הבעיות הבאות?"
+      content: "חשב.י על השבועיים האחרונים, עד כמה נכון לגביך ההגדים הבאים:"
     },
     { 
       outputType: "question",
-      label: "עניין או הנאה מועטת מעשיית דברים", 
+      label: "אני מצליח.ה לבטא את עצמי בפתיחות ובכנות ביחסים החברתיים שלי", 
       controlName: "q1", 
       type: "radio", 
       options: [
-        { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
-        { label: "כמעט כל יום ", value: 3 }
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4 }
       ]
     },
     { 
       outputType: "question",
-      label: "תחושת דכדוך, דיכאון, או חוסר תקווה", 
+      label: "אני מרגיש.ה יוזם.ת ואקטיבי.ת במערכות היחסים החברתיות שלי", 
       controlName: "q2", 
       type: "radio", 
       options: [
-        { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
-        { label: "כמעט כל יום ", value: 3 }
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4 }
       ]
     },
     { 
       outputType: "question",
-      label: "קשיים בהירדמות או בשינה רציפה, או עודף שינה", 
+      label: "אני מרגיש.ה חיוני.ת, בעלת אנרגיות במהלך היום", 
       controlName: "q3", 
       type: "radio", 
       options: [
-        { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
-        { label: "כמעט כל יום ", value: 3 }
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4 }
       ]
     },
     { 
       outputType: "question",
-      label: "תחושה של עייפות או אנרגיה מועטה", 
+      label: "אני מתרגל.ת שגרה בריאה (לדוגמא שינה בשעות קבועות, אוכל מזין, ספורט)", 
       controlName: "q4", 
       type: "radio", 
       options: [
-        { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
-        { label: "כמעט כל יום ", value: 3 }
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4 }
       ]
     },
-    { 
-      outputType: "question",
-      label: "תיאבון מועט או אכילות יתר", 
-      controlName: "q5", 
-      type: "radio", 
-      options: [
-        { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
-        { label: "כמעט כל יום ", value: 3 }
-      ]
+    {
+      outputType: "statement",
+      content: "תודה על השיתוף, נמשיך לשאלות הבאות."
     },
-    { 
-      outputType: "question",
-      label: "מרגיש.ה רע לגבי עצמך - מרגיש.ה שאת.ה כישלון או שאכזבת את עצמך או את משפחתך", 
-      controlName: "q6", 
-      type: "radio", 
-      options: [
-        { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
-        { label: "כמעט כל יום ", value: 3 }
-      ]
-    },
-    { 
-      outputType: "question",
-      label: "קושי להתרכז בדברים, כמו קריאה בעיתון או צפייה בטלוויזיה", 
-      controlName: "q7", 
-      type: "radio", 
-      options: [
-        { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
-        { label: "כמעט כל יום ", value: 3 }
-      ]
-    },
-    { 
-      outputType: "question",
-      label: "היית מדבר.ת או נע.ה באיטיות עד שאחרים הבחינו בכך? או להיפך  - היית חסר.ת שקט ומנוחה כך שהיית צריכ.ה להסתובב יותר מהרגיל", 
-      controlName: "q8", 
-      type: "radio", 
-      options: [
-        { label: "כלל לא", value: 0},
-        { label: "מספר ימים", value: 1 },
-        { label: "ביותר ממחצית מן הימים ", value: 2 },
-        { label: "כמעט כל יום ", value: 3 }
-      ]
-    },
+    
   ]
 
 
@@ -193,10 +154,11 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
   }
   getValueName(value: number){
     const options = [
-      { label: "כלל לא", value: 0},
-      { label: "מספר ימים", value: 1 },
-      { label: "ביותר ממחצית מן הימים ", value: 2 },
-      { label: "כמעט כל יום ", value: 3 }
+      { label: "לא נכון בכלל", value: 0},
+      { label: "נכון לעיתים רחוקות", value: 1 },
+      { label: "לפעמים נכון", value: 2 },
+      { label: "נכון לעיתים קרובות", value: 3 },
+      { label: "נכון כמעט כל הזמן", value: 4 }
     ]
     return options[value].label;
       
@@ -216,7 +178,7 @@ export class NewQuestionsComponent implements OnInit, AfterViewChecked{
     });
 
     const today = new Date().toLocaleDateString('en-GB');
-    this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "phq-9_results - "+today, {...this.newQuestionsForm.value, sum}])
+    this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "well-being_results - "+today, {...this.newQuestionsForm.value, sum}])
       .subscribe(res => {
         // const response = JSON.stringify(res);
         console.log("response", res);

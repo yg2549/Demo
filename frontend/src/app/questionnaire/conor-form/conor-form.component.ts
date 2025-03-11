@@ -26,108 +26,136 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
   outputs = [
     {
       outputType: "statement",
-      content: "במהלך השבועיים האחרונים עד כמה התסמינים הבאים הפריעו לך?"
+      content: "חשב.י על השבועיים האחרונים, עד כמה נכון לגביך ההגדים הבאים:"
     },
     { 
       outputType: "question",
-      label: "זיכרונות טורדניים, חוזרים ולא רצויים של החוויה הטראומטית", 
+      label: "אני מצליח.ה להסתגל לשינויים", 
       controlName: "q1", 
       type: "radio", 
       options: [
-        { label: "כלל לא", value: 0},
-        { label: " במידה מועטה", value: 1 },
-        { label: "באופן בינוני", value: 2 },
-        { label: "במידה רבה", value: 3 },
-        { label: "באופן קיצוני", value: 4}
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4 }
       ]
     },
     { 
       outputType: "question",
-      label: "הרגשת מצוקה כאשר משהו הזכיר לך את החוויה הטראומטית", 
+      label: "אני יכול.ה להתמודד עם כל דבר", 
       controlName: "q2", 
       type: "radio", 
       options: [
-        { label: "כלל לא", value: 0},
-        { label: " במידה מועטה", value: 1 },
-        { label: "באופן בינוני", value: 2 },
-        { label: "במידה רבה", value: 3 },
-        { label: "באופן קיצוני", value: 4}
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4 }
       ]
     },
     { 
       outputType: "question",
-      label: "הימנעות ממחשבות, רגשות או תחושות גופניות שהזכירו לך את החוויה הטראומטית, (כלומר גורמים מתוך עצמך ולא גורמים חיצוניים)", 
+      label: "אני רואה את הצד המשעשע בדברים", 
       controlName: "q3", 
       type: "radio", 
       options: [
-        { label: "כלל לא", value: 0},
-        { label: " במידה מועטה", value: 1 },
-        { label: "באופן בינוני", value: 2 },
-        { label: "במידה רבה", value: 3 },
-        { label: "באופן קיצוני", value: 4}
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4 }
       ]
     },
     { 
       outputType: "question",
-      label: "הימנעות מגורמים חיצוניים שהזכירו לך את החוויה הטראומטית (כמו: אנשים, מקומות, שיחות, חפצים, פעילויות או מצבים)", 
+      label: "התמודדות עם לחץ מחזקת אותי", 
       controlName: "q4", 
       type: "radio", 
       options: [
-        { label: "כלל לא", value: 0},
-        { label: " במידה מועטה", value: 1 },
-        { label: "באופן בינוני", value: 2 },
-        { label: "במידה רבה", value: 3 },
-        { label: "באופן קיצוני", value: 4}
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4 }
       ]
     },
     { 
       outputType: "question",
-      label: "אמונות שליליות חזקות על עצמך, על אנשים אחרים, או על העולם (למשל, אני אדם רע, משהו ממש לא בסדר איתי, אי אפשר לסמוך על אף אחד, העולם הוא מקום מסוכן לגמרי)", 
+      label: "אני נוטה להתאושש בקלות ממחלה או קושי", 
       controlName: "q5", 
       type: "radio", 
       options: [
-        { label: "כלל לא", value: 0},
-        { label: " במידה מועטה", value: 1 },
-        { label: "באופן בינוני", value: 2 },
-        { label: "במידה רבה", value: 3 },
-        { label: "באופן קיצוני", value: 4}
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4 }
       ]
     },{ 
       outputType: "question",
-      label: "אובדן עניין בפעילויות מהן נהגת ליהנות", 
+      label: "תחת לחץ, אני מתמקד.ת וחושב בבהירות", 
       controlName: "q6", 
       type: "radio", 
       options: [
-        { label: "כלל לא", value: 0},
-        { label: " במידה מועטה", value: 1 },
-        { label: "באופן בינוני", value: 2 },
-        { label: "במידה רבה", value: 3 },
-        { label: "באופן קיצוני", value: 4}
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4 }
       ]
     },{ 
       outputType: "question",
-      label: "הרגשה שאת.ה נוטה להיבהל בקלות או מאוד קופצני.ת", 
+      label: "אני יכול.ה להשיג את המטרות שלי למרות הקשיים", 
       controlName: "q7", 
       type: "radio", 
       options: [
-        { label: "כלל לא", value: 0},
-        { label: " במידה מועטה", value: 1 },
-        { label: "באופן בינוני", value: 2 },
-        { label: "במידה רבה", value: 3 },
-        { label: "באופן קיצוני", value: 4}
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4 }
       ]
     },{ 
       outputType: "question",
-      label: "קשיים בריכוז", 
+      label: "אני לא מתייאש.ת בקלות מכישלונות", 
       controlName: "q8", 
       type: "radio", 
       options: [
-        { label: "כלל לא", value: 0},
-        { label: " במידה מועטה", value: 1 },
-        { label: "באופן בינוני", value: 2 },
-        { label: "במידה רבה", value: 3 },
-        { label: "באופן קיצוני", value: 4}
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4 }
       ]
+    },{ 
+      outputType: "question",
+      label: "אני חושב.ת על עצמי כעל אדם חזק", 
+      controlName: "q9", 
+      type: "radio", 
+      options: [
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4 }
+      ]
+    },{ 
+      outputType: "question",
+      label: "יכול.ה להתמודד עם רגשות לא נעימים", 
+      controlName: "q10", 
+      type: "radio", 
+      options: [
+        { label: "לא נכון בכלל", value: 0},
+        { label: "נכון לעיתים רחוקות", value: 1 },
+        { label: "לפעמים נכון", value: 2 },
+        { label: "נכון לעיתים קרובות", value: 3 },
+        { label: "נכון כמעט כל הזמן", value: 4 }
+      ]
+    },
+    {
+      outputType: "statement",
+      content: "תודה על השיתוף. חשוב לתת מקום לתחושות ולרגשות שלנו. עוד כמה שאלות וסיימנו."
     },
   ]
 
@@ -198,11 +226,11 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
   }
   getValueName(value: number){
     const options = [
-      { label: "כלל לא", value: 0},
-      { label: " במידה מועטה", value: 1 },
-      { label: "באופן בינוני", value: 2 },
-      { label: "במידה רבה", value: 3 },
-      { label: "באופן קיצוני", value: 4}
+      { label: "לא נכון בכלל", value: 0},
+      { label: "נכון לעיתים רחוקות", value: 1 },
+      { label: "לפעמים נכון", value: 2 },
+      { label: "נכון לעיתים קרובות", value: 3 },
+      { label: "נכון כמעט כל הזמן", value: 4 }
     ]
     return options[value].label;
       
@@ -225,7 +253,7 @@ export class ConorFormComponent implements OnInit, AfterViewChecked {
 
 
     const today = new Date().toLocaleDateString('en-GB');
-    this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "pcl-5_results - "+today, {...this.conorForm.value, sum}])
+    this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "conor_results - "+today, {...this.conorForm.value, sum}])
     .subscribe(res => {
       // const response = JSON.stringify(res);
       console.log("response", res);

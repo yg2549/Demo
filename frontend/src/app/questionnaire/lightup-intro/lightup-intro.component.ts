@@ -20,20 +20,10 @@ export class LightupIntroComponent implements AfterViewChecked{
   currentIndex = 0;
   showSubmit = false;
   outputs = [
-    {
-      outputType: "question",
-      type: "radio",
-      label: "שלום! לפני שנתחיל , מה המגדר שלך?",
-      controlName: "gender",
-      options: [
-        {label: "זכר", value: "man"},
-        {label: "נקבה", value: "woman"},
-        {label: "אחר", value: "other"},
-      ],
-    },
+ 
     {
       outputType: "statement",
-      content: "תודה רבה!"
+      content: "ברוכים הבאים לתוכנית!"
     },
     {
       outputType: "question",
@@ -43,7 +33,14 @@ export class LightupIntroComponent implements AfterViewChecked{
     },
     {
       outputType: "statement",
-      content: "השאלון הבא נועד לבחון יחד את ההרגשה שלך בימים אלה. דרכו נוכל ללמוד על התהליך האישי שלך במהלך התכנית ולהתכוונן נכון עבורך. חשוב לדעת: השאלון נעשה באופן אנונימי על מנת לשמור על פרטיותך."
+      content: "השאלון הבא עוזר לנו להבין טוב יותר איך את.ה מרגיש.ה היום ולהתאים את התוכנית טוב יותר עבורך. נחזור על השאלון מספר פעמים לאורך התכנית, כך נוכל ללמוד יחד על ההתקדמות שלך."
+    },{
+      outputType: "statement",
+      content: "חשוב לדעת: השאלון אנונימי, לא נשמרים פרטים מזהים שלך. "
+    },
+    {
+      outputType: "statement",
+      content: "בוא.י נתחיל"
     },
 
   ]
@@ -110,8 +107,6 @@ export class LightupIntroComponent implements AfterViewChecked{
   }
   onSubmit(){
     const user = sessionStorage['user'];
-    const gender = this.introForm.value['gender'];
-    sessionStorage.setItem('gender', gender);
     console.log(this.introForm.value)
     const today = new Date().toLocaleDateString('en-GB');
     this.http.post('https://tovademo.onrender.com/api/modify-user', [user, "intro_results - "+today, this.introForm.value])

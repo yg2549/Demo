@@ -27,14 +27,14 @@ export class ConclusionComponent implements AfterViewChecked{
   outputs = [
     { 
       outputType: "question",
-      label: "יש עוד משהו שתרצ.י לשתף", 
+      label: "עוד משהו שתרצ.י לשתף?", 
       controlName: "q1", 
       type: "text", 
       
     },
     {
       outputType: "statement",
-      content: "מעולה, ענית על הכל, תודה רבה!"
+      content: "מעולה, סיימנו, תודה רבה"
     },
   ]
 

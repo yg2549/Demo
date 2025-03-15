@@ -29,7 +29,7 @@
 
 /* Answer bubble styling (right-aligned) */
 .right-align {
-  align-self: flex-end;
+  align-self: flex-ens;
 }
 
 .answer-options {
@@ -39,57 +39,35 @@
 }
 
 .bubble.answer-input {
-  background-color: #f1f8e9;
+  background-color: 	#f1f8e9;
   border-radius: 15px;
   padding: 8px 12px;
   margin-top: 5px;
   text-align: right;
 }
-
-/* Radio button options */
 .radio-options {
   display: flex;
-  flex-wrap: wrap; /* Allow options to wrap to the next line if needed */
-  justify-content: center; /* Align options in the center */
-  gap: 10px; /* Ensure spacing between options */
-  width: 100%;
+  flex-direction: row; /* Align options in a row */
+  justify-content: center; /* Align to the right */
 }
 
-/* Container for each radio button + label */
 .radio-container {
   display: flex;
-  flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Center-align options */
-  text-align: center;
-  width: auto;
-  margin: 5px;
+  flex-direction: row; /* Align items in a row */
+  direction: rtl; /* Ensure the content flows right to left */
+  align-items: center; /* Vertically center the items */
 }
-
-/* Ensure labels and radio buttons align properly */
-.radio-container label {
-  display: flex;
-  flex-direction: column; /* Stack radio button above text */
-  align-items: center;
-  margin: 5px;
-}
-
-/* Global styling */
 * {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-size: large;
 }
 
-/* Make radio buttons properly spaced */
-.radio-container input[type="radio"] {
-  margin-bottom: 5px;
+.radio-container label {
+  margin: 0 10px; /* Add margin between options */
 }
-
-/* Scrolling behavior */
 #scrollContainer {
   scroll-behavior: auto;
 }
-
-/* Button styling */
 .submit-button, .answer-button {
   width: 30%;
   align-self: center;
@@ -102,32 +80,9 @@
   font-size: 16px;
   align-items: center;
 }
-
-/* Different button colors */
 .submit-button {
   background-color: #DFF5E1;
 }
 .answer-button {
   background-color: white;
-}
-
-/* Mobile-specific adjustments */
-@media (max-width: 600px) {
-  .radio-options {
-    flex-direction: column; /* Stack options in a single column */
-    align-items: center;
-  }
-
-  .radio-container {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .radio-container label {
-    font-size: medium; /* Adjust font size for better readability */
-  }
-
-  .submit-button, .answer-button {
-    width: 50%; /* Make buttons larger on mobile for better usability */
-  }
 }

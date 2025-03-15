@@ -23,7 +23,7 @@ export class LightupIntroComponent implements AfterViewChecked{
  
     {
       outputType: "statement",
-      content: "ברוכים הבאים לתוכנית!"
+      content: " LightUp ברוכים הבאים לתוכנית!"
     },
     {
       outputType: "question",
@@ -38,11 +38,7 @@ export class LightupIntroComponent implements AfterViewChecked{
       outputType: "statement",
       content: "חשוב לדעת: השאלון אנונימי, לא נשמרים פרטים מזהים שלך. "
     },
-    {
-      outputType: "statement",
-      content: "בוא.י נתחיל"
-    },
-
+   
   ]
   constructor(
     private fb: FormBuilder,

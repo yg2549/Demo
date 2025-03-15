@@ -23,7 +23,7 @@ export class LightupIntroComponent implements AfterViewChecked{
  
     {
       outputType: "statement",
-      content: " LightUp ברוכים הבאים לתוכנית!"
+      content: "ברוכים הבאים לתוכנית LightUp!"
     },
     {
       outputType: "question",
